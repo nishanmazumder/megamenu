@@ -202,6 +202,9 @@
 .sina-nav .sina-menu > li > a:focus {
   color: #E42825;
   background-color: transparent;
+}
+.sina-nav .sina-menu > li > a:hover,
+.sina-nav .sina-menu > li > a:focus {
   border-bottom: 2px solid #E42825;
 }
 .sina-nav .sina-menu > li.sina-nav-cta-btn {
@@ -446,7 +449,7 @@
 .nm_cart {
   padding: 15px !important;
 }
-.nm_cart:hover {
+.nm_cart:hover, .nm_cart:focus {
   border: none !important;
 }
 .nm_cart i {
@@ -994,4 +997,4 @@
   }
 }
 
-/*# sourceMappingURL=sina-nav.css.map */
+/*# sourceMappingURL=style.css.map */

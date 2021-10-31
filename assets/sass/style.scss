@@ -325,6 +325,10 @@ $animateTime: 1s;
 			>a:focus {
 				color: $hoverColor;
 				background-color: $hoverBG;
+			}
+
+			>a:hover, 
+			>a:focus{
 				border-bottom: 2px solid $hoverColor;
 			}
 
@@ -649,7 +653,7 @@ $animateTime: 1s;
 .nm_cart{
 	padding: 15px !important;
 
-	&:hover{
+	&:hover, &:focus{
 		border: none !important;
 	}
 
