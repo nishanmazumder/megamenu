@@ -11,10 +11,16 @@ $navBG: #fff;
 $color: #222;
 $anchorBG: transparent;
 $titleColor: $color;
-$font: 'Montserrat', sans-serif;
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Open+Sans:wght@300;500&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&display=swap');
+$font: 'Montserrat',
+sans-serif;
+// $font: 'Open Sans', sans-serif;
 
 // Hover, focus
-$hoverColor: #1085e4;
+$hoverColor: #E42825;
 $hoverBG: transparent;
 
 // Active, active hover, active focus color
@@ -75,27 +81,55 @@ $transition: all 0.3s ease-in-out;
 $animateTime: 1s;
 
 
+//Notification
+.nm-notofication {
+	padding: 10px 30px;
+
+	span,
+	a {
+		font-size: 14px;
+	}
+
+	a {
+		color: $hoverColor;
+	}
+
+	.nm_user_login{
+		display: none;
+
+		i{
+			font-size: 24px;
+			color: $hoverColor;
+			position: absolute;
+			top: 60px;
+			right: 20px;
+		}
+	}
+}
+
 // Search Box
 // =================================
-.search-box{
+.search-box {
 	padding: 8px 0;
 	display: none;
 	border-radius: 4px;
 	overflow: hidden;
 	background-color: $searchBG;
 
-	input.form-control{
+	input.form-control {
 		height: 44px;
 		border: 0;
 		box-shadow: 0 0 0;
 		color: $searchColor;
 		background-color: transparent;
 	}
-	.search-input{
+
+	.search-input {
 		float: left;
-		width: calc( 100% - 108px );
+		width: calc(100% - 108px);
 	}
-	.search-addon{
+
+	.search-addon {
 		padding: 10px 20px;
 		float: left;
 		color: $searchColor;
@@ -109,20 +143,20 @@ $animateTime: 1s;
 
 // Overlay
 // ======================
-.sina-nav-overlay{
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9998;
-  background: rgba(0, 0, 0, 0.5);
+.sina-nav-overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9998;
+	background: rgba(0, 0, 0, 0.5);
 }
 
 // Genaral Nav
 // =================================
-.sina-nav{
+.sina-nav {
 	margin-bottom: 0;
 	border-radius: 0;
 	min-height: 60px;
@@ -134,29 +168,33 @@ $animateTime: 1s;
 	transition: box-shadow, border, background 0.5s ease-in-out;
 
 	ul,
-	ul ul{
-		padding: 0;
+	ul ul {
+		padding: 10px 5px;
 		margin: 0;
 		list-style: none;
 	}
-	ul li a{
+
+	ul li a {
 		display: block;
 		font-family: $font;
-		text-transform: uppercase;
+		// text-transform: uppercase;
 		line-height: 20px;
 		text-decoration: none;
-		white-space:normal;
+		white-space: normal;
 		transition: $transition;
 		background: transparent;
 	}
+
 	.animated {
 		animation-duration: $animateTime;
 		animation-fill-mode: both;
 	}
+
 	.container,
-	.container-fluid{
+	.container-fluid {
 		position: relative;
 	}
+
 	// Brand
 	.sina-brand {
 		height: 60px;
@@ -166,10 +204,12 @@ $animateTime: 1s;
 		float: left;
 		text-decoration: none;
 
-		> img{
+		>img {
 			height: 100%;
 			padding: 6px 0;
+			margin-top: 5px;
 		}
+
 		h2 {
 			color: $titleColor;
 			font-size: 30px;
@@ -177,6 +217,7 @@ $animateTime: 1s;
 			margin: 0;
 			padding: 0;
 		}
+
 		p {
 			color: $titleColor;
 			font-size: 14px;
@@ -185,23 +226,28 @@ $animateTime: 1s;
 			padding: 0;
 		}
 	}
+
 	.logo-primary,
-	&.navbar-transparent .logo-secondary{
+	&.navbar-transparent .logo-secondary {
 		display: inline-block;
 	}
+
 	.logo-secondary,
-	&.navbar-transparent .logo-primary{
+	&.navbar-transparent .logo-primary {
 		display: none;
 	}
+
 	.dropdown-toggle::after {
 		width: inherit;
 		height: inherit;
 		border: 0;
 		margin: 0;
 	}
+
 	.dropdown {
 		position: relative;
 	}
+
 	.dropdown-menu {
 		position: absolute;
 		display: none;
@@ -209,70 +255,84 @@ $animateTime: 1s;
 		left: 0;
 		z-index: 1000;
 	}
-	.open > .dropdown-menu {
+
+	.open>.dropdown-menu {
 		display: block;
 	}
+
 	.collapse:not(.show) {
 		display: none;
 	}
+
 	.collapsing {
 		position: relative;
 		height: 0;
 		overflow: hidden;
 		transition: height 0.35s ease;
 	}
+
 	.navbar-collapse {
 		overflow-x: visible;
 		padding-right: 15px;
 		padding-left: 15px;
 		-webkit-overflow-scrolling: touch;
 	}
+
 	.navbar-collapse.show {
 		overflow-y: auto;
 	}
+
 	.navbar-collapse:before,
 	.navbar-collapse:after {
 		content: " ";
 		display: table;
 	}
+
 	.navbar-collapse:after {
 		clear: both;
 	}
 
-	.sina-menu{
+	.sina-menu {
 		li {
-			a{
+			a {
 				position: relative;
 				display: block;
 				font-size: 14px;
 			}
-			.fa-icon-left{
+
+			.fa-icon-left {
 				margin-right: 8px;
 			}
-			.fa-icon-right{
+
+			.fa-icon-right {
 				margin-left: 8px;
 			}
 		}
-		> li {
-			> a {
+
+		>li {
+			>a {
 				padding: 20px 15px;
 				max-width: 160px;
 				color: $color;
 				font-size: 14px;
 				font-weight: 700;
 				line-height: 20px;
+				border-bottom: 2px solid transparent;
 			}
-			&.active > a,
-			> a:hover,
-			> a:focus{
+
+			&.active>a,
+			>a:hover,
+			>a:focus {
 				color: $hoverColor;
 				background-color: $hoverBG;
+				border-bottom: 2px solid $hoverColor;
 			}
+
 			&.sina-nav-cta-btn {
 				padding: 11px 15px;
 				margin-left: 20px;
 
-				a{
+				a {
 					padding: 8px 15px;
 					border: 1px solid $hoverColor;
 					border-radius: 4px;
@@ -281,7 +341,7 @@ $animateTime: 1s;
 					background: $hoverColor;
 
 					&:hover,
-					&:focus{
+					&:focus {
 						border-color: $hoverColor;
 						color: $hoverColor;
 						background: transparent;
@@ -289,62 +349,70 @@ $animateTime: 1s;
 				}
 			}
 		}
-		li .description{
+
+		li .description {
 			font-style: italic;
 			font-size: 90%;
 			margin: 6px 0 0;
 			font-weight: 400;
 		}
+
 		// Dropdown & Mega menu
-		.dropdown-menu{
+		.dropdown-menu {
 			background-color: $dropdownBG;
 			margin: 0;
 
 			li {
-				a{
+				a {
 					color: $dropdownColor;
 					font-size: 12px;
 				}
-				&.active > a,
-				> a:hover,
-				> a:focus{
+
+				&.active>a,
+				>a:hover,
+				>a:focus {
 					color: $dropdownHoverColor;
 					background-color: $dropdownHoverBG;
 				}
 			}
 		}
+
 		.dropdown-toggle:focus {
 			outline: 0;
 		}
+
 		.mega-menu-col-title:before,
 		.dropdown .dropdown-toggle:before,
-		.dropdown .dropdown-toggle:after{
+		.dropdown .dropdown-toggle:after {
 			font-family: 'FontAwesome';
 		}
 	}
 
 	// Navbar Reverse
-	&.navbar-reverse{
-		.search-box .form-control{
+	&.navbar-reverse {
+		.search-box .form-control {
 			text-align: right;
 		}
-		.extension-nav > ul > li.dropdown .dropdown-menu{
+
+		.extension-nav>ul>li.dropdown .dropdown-menu {
 			left: 0;
 			margin-left: 0;
 		}
+
 		&.sina-nav-cta-btn {
 			margin-right: 20px;
-			margin-left:0;
+			margin-left: 0;
 		}
 	}
-	.navbar-collapse{
+
+	.navbar-collapse {
 		padding: 0;
 	}
 
 
 	// Mega Menu
 	// =================================
-	.menu-item-has-mega-menu.dropdown{
+	.menu-item-has-mega-menu.dropdown {
 		position: static;
 
 		.mega-menu.dropdown-menu {
@@ -352,52 +420,57 @@ $animateTime: 1s;
 			padding: 0;
 			background-color: $dropdownBG;
 		}
+
 		.mega-menu-row {
 			width: 100%;
 			float: left;
 		}
-		.mega-menu-col{
+
+		.mega-menu-col {
 			list-style: none;
 			color: $dropdownColor;
 
-			a{
+			a {
 				color: $dropdownColor;
 			}
-			.active > a,
-			> a:hover,
-			> a:focus{
+
+			.active>a,
+			>a:hover,
+			>a:focus {
 				color: $hoverColor;
 				background: transparent;
 			}
 		}
-		.mega-menu-col-title{
+
+		.mega-menu-col-title {
 			font-size: 15px;
 			line-height: 20px;
 			margin: 0;
+			font-weight: 400;
 		}
 	}
 
 
 	// Fixed Nav
 	// =================================
-	&.navbar-fixed{
+	&.navbar-fixed {
 		position: relative;
 	}
 
 
 	// Extension Nav
 	// =================================
-	.extension-nav{
+	.extension-nav {
 		float: right;
 		margin-left: 20px;
 
-		> ul{
+		>ul {
 			float: left;
 
-			> li{
+			>li {
 				float: left;
 
-				> a{
+				>a {
 					display: block;
 					padding: 20px 12px;
 					position: relative;
@@ -409,7 +482,8 @@ $animateTime: 1s;
 						color: $hoverColor;
 						background-color: $hoverBG;
 					}
-					.shop-badge{
+
+					.shop-badge {
 						position: absolute;
 						top: 12px;
 						right: 10px;
@@ -421,7 +495,8 @@ $animateTime: 1s;
 						color: #fff;
 					}
 				}
-				&.dropdown .dropdown-menu{
+
+				&.dropdown .dropdown-menu {
 					border-radius: 0;
 					box-shadow: 0 0 0;
 					margin-left: 40px;
@@ -430,16 +505,18 @@ $animateTime: 1s;
 					background-color: $dropdownBG;
 					border: solid 1px $border;
 				}
-				.shop-menu > li {
+
+				.shop-menu>li {
 					padding: 12px 15px;
 					width: 100%;
 					overflow: hidden;
 					border-bottom: solid 1px $border;
 
-					&:last-child{
+					&:last-child {
 						border-bottom: 0;
 					}
-					.shop-item-photo{
+
+					.shop-item-photo {
 						padding: 0;
 						float: left;
 						width: 60px;
@@ -447,8 +524,9 @@ $animateTime: 1s;
 						margin-right: 10px;
 						border: solid 1px $border;
 					}
+
 					.shop-item-link,
-					.shop-item-price{
+					.shop-item-price {
 						margin: 0;
 						padding: 0;
 						font-size: 14px;
@@ -457,17 +535,19 @@ $animateTime: 1s;
 						max-width: 130px;
 						color: $dropdownColor;
 					}
-					.shop-item-link{
+
+					.shop-item-link {
 						color: $specialColor;
 						font-size: 12px;
 
 						&:hover,
-						&:focus{
+						&:focus {
 							background-color: transparent;
 						}
 					}
-					&.shop-total-price{
-						.shop-btn{
+
+					&.shop-total-price {
+						.shop-btn {
 							padding: 8px 12px;
 							display: inline-block;
 							border-radius: 4px;
@@ -477,12 +557,13 @@ $animateTime: 1s;
 							background-color: $dropdownBG;
 
 							&:hover,
-							&:focus{
+							&:focus {
 								background-color: $specialColor;
 								color: $dropdownBG;
 							}
 						}
-						> span {
+
+						>span {
 							color: $dropdownColor;
 							float: right;
 							font-weight: 700;
@@ -497,14 +578,14 @@ $animateTime: 1s;
 	// For WordPress Toolbar
 	&.navbar-fixed.navbar-freez.wp-topbar,
 	&.mobile-sidebar.wp-topbar .navbar-collapse,
-	&.wp-topbar .widget-bar{
+	&.wp-topbar .widget-bar {
 		top: 32px;
 	}
 
 
 	// Widget-bar
 	// =================================
-	.widget-bar{
+	.widget-bar {
 		position: fixed;
 		overflow-y: auto;
 		top: 0;
@@ -516,58 +597,119 @@ $animateTime: 1s;
 		transition: all 0.6s ease;
 		background-color: $sideBG;
 
-		&.on{
+		&.on {
 			right: 0;
 		}
-		.widget{
+
+		.widget {
 			margin-bottom: 30px;
 
-			.link li a{
+			.link li a {
 				color: $sideColor;
 				font-size: 14px;
 
 				&:focus,
-				&:hover{
+				&:hover {
 					color: $sideHoverColor;
 				}
 			}
-			.title{
+
+			.title {
 				font-size: 20px;
 				margin-bottom: 10px;
 				color: $sideColor;
 				font-weight: 700;
 			}
 		}
-		.close-widget-bar{
+
+		.close-widget-bar {
 			float: right;
 			font-size: 16px;
 			color: $sideColor;
 		}
 	}
-	&.navbar-reverse .widget-bar{
+
+	&.navbar-reverse .widget-bar {
 		right: inherit;
 		left: -300px;
 		text-align: right;
 
-		&.on{
+		&.on {
 			right: inherit;
 			left: 0;
 		}
-		.close-widget-bar{
+
+		.close-widget-bar {
 			float: left;
 		}
 	}
 }
 
+//Cart menu
+.nm_cart{
+	padding: 15px !important;
+
+	&:hover{
+		border: none !important;
+	}
+
+	i{
+		font-size: 24px;
+		
+	}
+}
+
+// Shop
+.nm-shop-area{
+	margin-top: 10px;
+}
+.nm-shop {
+	background: #F5F5F5 !important;
+    margin: 5px;
+    padding: 20px;
+    border-radius: 10px;
+    float: left;
+    width: 48%;
+}
+
+.nm-shop-item {
+	display: inline-flex;
+
+	.nm-shop-item-image {
+		width: 20%;
+
+		img {
+			width: 100%;
+		}
+	}
+
+	.nm-shop-item-details {
+		width: 80%;
+		padding-left: 30px;
+
+		h4 {
+			font-size: 16px;
+		}
+		
+		i.fa-star, span{
+			color: #E42825;
+		}
+
+		i.fa-star-o{
+			border-color: #E42825;
+		}
+	}
+}
 
 // =========================
 // Responsive
 // =========================
 @media (min-width: 1025px) {
-	.sina-nav{
+	.sina-nav {
 		.navbar-toggle {
 			display: none;
 		}
+
 		.navbar-collapse.collapse {
 			display: block;
 		}
@@ -575,23 +717,25 @@ $animateTime: 1s;
 
 		// For Navbar Reverse
 		// =================================
-		&.navbar-reverse{
+		&.navbar-reverse {
 			.sina-nav-header {
 				float: right;
 			}
-			.container,
-			.container-fluid{
-			}
-			.sina-brand{
+
+			// .container,
+			// .container-fluid{
+			// }
+			.sina-brand {
 				margin: 0 0 0 30px;
 				text-align: right;
 			}
+
 			.extension-nav {
 				float: left;
 				margin-right: 20px;
 				margin-left: 0;
 
-				li{
+				li {
 					float: right;
 				}
 			}
@@ -603,45 +747,51 @@ $animateTime: 1s;
 		.sina-menu {
 			float: left;
 
-			> li {
+			>li {
 				float: left;
 			}
-			> .dropdown > .dropdown-toggle{
+
+			>.dropdown>.dropdown-toggle {
 				padding-right: 20px;
 
-				&:after{
-					content: "\f107";
-					position: absolute;
-					top: 20px;
-					right: 5px;
-				}
+				// &:after {
+				// 	content: "\f107";
+				// 	position: absolute;
+				// 	top: 20px;
+				// 	right: 5px;
+				// }
 			}
-			.dropdown .dropdown-menu{
+
+			.dropdown .dropdown-menu {
 				box-shadow: 0 0 0;
 				border-radius: 0;
 				width: 200px;
 				border: solid 1px $border;
 
-				.dropdown-menu{
+				.dropdown-menu {
 					left: 100%;
 					top: 0;
 				}
-				.dropdown:first-child > .dropdown-menu{
+
+				.dropdown:first-child>.dropdown-menu {
 					top: -1px;
 				}
-				> li {
-					> a{
+
+				>li {
+					>a {
 						padding: 10px 12px;
 						border-top: solid 1px $topBorder;
 					}
-					&:first-child > a{
+
+					&:first-child>a {
 						border-top: 0;
 					}
 				}
-				.dropdown > .dropdown-toggle{
+
+				.dropdown>.dropdown-toggle {
 					padding: 10px 20px 10px 12px;
 
-					&:before{
+					&:before {
 						float: right;
 						content: "\f105";
 						position: absolute;
@@ -653,66 +803,79 @@ $animateTime: 1s;
 
 			// Megamenu
 			// =================================
-			.dropdown .mega-menu.dropdown-menu{
+			.dropdown .mega-menu.dropdown-menu {
 				max-height: 400px;
 				overflow-y: auto;
 			}
-			.mega-menu-col{
+
+			.mega-menu-col {
 				padding: 10px 15px;
 				float: left;
 
-				.sub-menu{
+				.sub-menu {
 					a {
 						padding: 6px 10px;
 						display: inline-block;
+						font-size: 22px;
+						line-height: 26px;
 
 						&:hover,
-						&:focus{
+						&:focus {
 							color: $hoverColor;
 							background: transparent;
 						}
 					}
 				}
 			}
-			.mega-menu-col-title{
-				font-weight: 700;
+
+			.mega-menu-col-title {
+				// font-weight: 700;
 				padding: 6px 10px;
 				display: inline-block;
+
+				h4 {
+					font-size: 18px;
+					font-weight: 400;
+				}
 			}
-			.mega-menu-col-content{
+
+			.mega-menu-col-content {
 				padding: 4px 10px;
 			}
-			
+
 
 			// Menu Right
 			// =================================
-			&.sina-menu-dropdown-right{
+			&.sina-menu-dropdown-right {
 				float: right;
 				left: auto;
 				right: 0;
 
-				.mega-menu.dropdown-menu .mega-menu-col{
+				.mega-menu.dropdown-menu .mega-menu-col {
 					float: right;
 				}
-				> .dropdown > .dropdown-toggle{
+
+				>.dropdown>.dropdown-toggle {
 					padding-left: 20px;
 					padding-right: 15px;
 
-					&:after{
+					&:after {
 						left: 5px;
 						right: inherit;
 					}
 				}
-				.dropdown-menu .dropdown-menu{
+
+				.dropdown-menu .dropdown-menu {
 					left: -200px;
 				}
+
 				.dropdown .dropdown-menu {
 					text-align: right;
 
-					.dropdown > .dropdown-toggle{
+					.dropdown>.dropdown-toggle {
 						padding: 10px 12px 10px 20px;
 
-						&:before{
+						&:before {
 							float: left;
 							content: "\f104";
 							left: 8px;
@@ -721,19 +884,21 @@ $animateTime: 1s;
 					}
 				}
 			}
+
 			&.sina-menu-right,
-			&.sina-menu-list-right > li{
-				float: right;
-			}
-			&.sina-menu-left{
+			&.sina-menu-list-right>li {
 				float: left;
+			}
+
+			&.sina-menu-left {
+				float: right;
 			}
 		}
 
 
 		// Fiexd Nav
 		// ==================
-		&.navbar-fixed.navbar-freez{
+		&.navbar-fixed.navbar-freez {
 			position: fixed !important;
 			top: 0;
 			box-shadow: 0 1px 4px $border;
@@ -742,32 +907,36 @@ $animateTime: 1s;
 
 		// Transparent Nav
 		// ===========================
-		&.navbar-transparent{
+		&.navbar-transparent {
 			background-color: transparent;
 			border-color: transparent;
 
-			.sina-brand{
+			.sina-brand {
 				color: $transTitleColor;
 			}
-			.extension-nav > ul > li > a,
-			.sina-menu > li > a{
+
+			.extension-nav>ul>li>a,
+			.sina-menu>li>a {
 				color: $transparentColor;
 			}
-			.extension-nav > ul > li,
-			.sina-menu > li{
-				&.active > a,
-				> a:hover,
-				> a:focus{
+
+			.extension-nav>ul>li,
+			.sina-menu>li {
+
+				&.active>a,
+				>a:hover,
+				>a:focus {
 					color: $transparentHoverColor;
 				}
 			}
-			.sina-menu > li.sina-nav-cta-btn a{
+
+			.sina-menu>li.sina-nav-cta-btn a {
 				border-color: $hoverColor;
 				color: $navBG;
 				background: $hoverColor;
 
 				&:hover,
-				&:focus{
+				&:focus {
 					border-color: $navBG;
 					color: $hoverColor;
 					background: $navBG;
@@ -778,41 +947,45 @@ $animateTime: 1s;
 
 		// Barnd Center
 		// =================================
-		&.logo-center{
-			.sina-nav-header{
+		&.logo-center {
+			.sina-nav-header {
 				width: 100%;
 				position: absolute;
 				text-align: center;
 				top: 0;
 				left: 0;
 			}
-			.sina-brand{
+
+			.sina-brand {
 				float: none;
 				display: inline-block;
 				margin: 0;
 			}
-			.navbar-collapse{
+
+			.navbar-collapse {
 				text-align: center;
 
-				.col-half{
+				.col-half {
 					width: 50%;
 					float: left;
 					display: block;
 
-					&.left{
+					&.left {
 						padding-right: 120px;
 					}
-					&.right{
+
+					&.right {
 						padding-left: 120px;
 					}
 				}
 			}
-			.sina-menu{
+
+			.sina-menu {
 				display: inline-block;
 				padding: 0;
 
-				> li {
-					> .dropdown-menu.mega-menu{
+				>li {
+					>.dropdown-menu.mega-menu {
 						margin-top: 0;
 					}
 				}
@@ -822,8 +995,8 @@ $animateTime: 1s;
 
 		// Menu Center
 		// =================================
-		.sina-menu.sina-menu-center{
-			float:none;
+		.sina-menu.sina-menu-center {
+			float: none;
 			margin: 0 auto;
 			display: table;
 		}
@@ -832,16 +1005,18 @@ $animateTime: 1s;
 
 
 @media (max-width: 1024px) {
+
 	// Genaral nav 
 	// =========================
-	.sina-nav{
+	.sina-nav {
 		background-color: $smNavBG;
 		border-color: $smBorder;
 
 		// For WordPress Toolbar
-		&.navbar-fixed.navbar-freez.wp-topbar{
+		&.navbar-fixed.navbar-freez.wp-topbar {
 			top: inherit;
 		}
+
 		// Brand
 		.sina-brand {
 			display: inline-block;
@@ -854,19 +1029,22 @@ $animateTime: 1s;
 				margin-top: 0;
 			}
 		}
+
 		// Brand
 		&.navbar-reverse,
-		&.navbar-reverse{
+		&.navbar-reverse {
 			.sina-brand {
 				margin: 0 -26px 0 15px;
 			}
 		}
+
 		.sina-nav-header {
 			float: none;
 			display: block;
 			text-align: center;
 			height: 60px;
 		}
+
 		.navbar-toggle {
 			display: inline-block;
 			position: relative;
@@ -884,40 +1062,45 @@ $animateTime: 1s;
 			color: $smColor;
 
 			&:hover,
-			&:focus{
+			&:focus {
 				outline: 0;
 				color: $smHoverColor;
 				background-color: $smHoverBG;
 			}
 		}
-		&.navbar-reverse{
+
+		&.navbar-reverse {
 			.navbar-toggle {
 				float: right;
 			}
-			.extension-nav{
+
+			.extension-nav {
 				left: 15px;
 				right: inherit;
 				margin-left: 0;
 				margin-right: 15px;
 
-				li{
+				li {
 					float: right;
 				}
 			}
-			.sina-menu > li.sina-nav-cta-btn{
+
+			.sina-menu>li.sina-nav-cta-btn {
 				margin-right: 0;
 			}
 		}
+
 		.navbar-collapse {
 			overflow-y: auto !important;
 			border: 1px solid $smBorder;
 		}
+
 		// Dropdown & Mega Menu
 		.mega-menu-col .mega-menu-col-title,
-		.dropdown .dropdown-toggle{
+		.dropdown .dropdown-toggle {
 			padding: 12px 24px 12px 12px;
 
-			&:before{
+			&:before {
 				float: right;
 				content: "\f105";
 				font-size: 16px;
@@ -925,21 +1108,24 @@ $animateTime: 1s;
 				right: 8px;
 			}
 		}
+
 		.mega-menu-col.on .mega-menu-col-title:before,
-		.dropdown.on > .dropdown-toggle:before{
+		.dropdown.on>.dropdown-toggle:before {
 			content: "\f107";
 		}
+
 		.sina-menu {
 			float: none !important;
 
-			.sina-nav-cta-btn{
+			.sina-nav-cta-btn {
 				margin-top: 20px;
 			}
+
 			li {
 				float: none;
 
 				.mega-menu-col-title,
-				a{
+				a {
 					max-width: inherit;
 					padding: 12px;
 					font-weight: 400;
@@ -951,32 +1137,36 @@ $animateTime: 1s;
 					color: $smColor;
 					border-top: solid 1px $smTopBorder;
 				}
+
 				a:hover,
 				a:focus,
-				&.active > a,
+				&.active>a,
 				.mega-menu-col-title:hover,
-				.mega-menu.dropdown-menu .mega-menu-col .active > a,
-				.dropdown-menu li.active > a,
+				.mega-menu.dropdown-menu .mega-menu-col .active>a,
+				.dropdown-menu li.active>a,
 				.dropdown-menu li a:hover,
 				.dropdown-menu li a:focus,
 				.mega-menu .mega-menu-col ul li a:hover,
-				.mega-menu .mega-menu-col ul li a:focus{
+				.mega-menu .mega-menu-col ul li a:focus {
 					color: $smHoverColor;
 					background-color: $smHoverBG;
 				}
 			}
-			> li{
-				&:first-child > a {
+
+			>li {
+				&:first-child>a {
 					border-top: 0;
 				}
-				&.sina-nav-cta-btn{
+
+				&.sina-nav-cta-btn {
 					margin-left: 0;
 				}
 			}
 		}
+
 		// Dropdown & Mega Menu
 		.sina-menu .dropdown .mega-menu.dropdown-menu,
-		.sina-menu .dropdown .dropdown-menu{
+		.sina-menu .dropdown .dropdown-menu {
 			float: none;
 			position: relative;
 			left: 0;
@@ -989,13 +1179,14 @@ $animateTime: 1s;
 
 		// Megamenu
 		// =================================
-		.sina-menu .dropdown .mega-menu.dropdown-menu .mega-menu-row{
+		.sina-menu .dropdown .mega-menu.dropdown-menu .mega-menu-row {
 			float: none;
 
 			.mega-menu-col {
 				padding: 0;
 			}
-			.mega-menu-col-title{
+
+			.mega-menu-col-title {
 				font-size: 14px;
 			}
 		}
@@ -1010,27 +1201,30 @@ $animateTime: 1s;
 
 		// Logo Center
 		// =================================
-		&.logo-center{
-			.sina-menu{
-				.dropdown .dropdown-toggle:before{
+		&.logo-center {
+			.sina-menu {
+				.dropdown .dropdown-toggle:before {
 					content: "\f105";
 					float: right;
 				}
-				.dropdown.on > .dropdown-toggle:before{
+
+				.dropdown.on>.dropdown-toggle:before {
 					content: "\f107";
 				}
 			}
+
 			.col-half:first-child .sina-menu {
 				padding-bottom: 0;
 
-				> li:first-child > a{
+				>li:first-child>a {
 					border-top: 0;
 				}
 			}
+
 			.col-half:last-child .sina-menu {
 				padding-top: 0;
 
-				> li:first-child > a{
+				>li:first-child>a {
 					border-top: solid 1px $smTopBorder;
 				}
 			}
@@ -1039,14 +1233,15 @@ $animateTime: 1s;
 
 		// Exntension Nav
 		// =================================
-		.extension-nav{
+		.extension-nav {
 			position: absolute;
 			right: 15px;
 			margin-right: 0;
 
-			> ul {
-				> .dropdown > .dropdown-toggle,
-				> li > a{
+			>ul {
+
+				>.dropdown>.dropdown-toggle,
+				>li>a {
 					padding: 20px 10px;
 					color: $smColor;
 
@@ -1055,7 +1250,8 @@ $animateTime: 1s;
 						color: $smHoverColor;
 					}
 				}
-				.dropdown> .dropdown-toggle:before{
+
+				.dropdown>.dropdown-toggle:before {
 					display: none;
 				}
 			}
@@ -1066,118 +1262,165 @@ $animateTime: 1s;
 	// Mobile Sibebar
 	// =================================
 	.sina-nav.mobile-sidebar {
-		.navbar-collapse{
+		.navbar-collapse {
 			position: fixed;
 			overflow-x: hidden;
 			display: block;
 			z-index: 99;
-			width: 300px;
+			width: 450px;
 			height: 100% !important;
 			max-height: 100%;
-			left: -300px;
-			top: 0;
+			left: -450px;
+			top: 105px;
 			padding: 0 0 60px;
 			margin: 0;
 			transition: all 0.4s ease-in-out;
 			background-color: $smCollapseBG;
 
-			&.show{
+			&.show {
 				left: 0;
 			}
+
 			.mega-menu-col {
 				width: 100%;
 				max-width: 100%;
 			}
 		}
-		.sina-menu{
+
+		.sina-menu {
 			padding: 15px;
 			margin: 0;
 		}
+
 		&.navbar-reverse {
-			.navbar-collapse{
+			.navbar-collapse {
 				right: -300px;
 				left: inherit;
 
-				&.show{
+				&.show {
 					right: 0;
 					left: inherit;
 				}
 			}
 		}
 	}
+
 	body {
-		&.mobile-left > .wrapper{
+		&.mobile-left>.wrapper {
 			margin-left: 300px;
 			margin-right: -300px;
 		}
-		&.mobile-right > .wrapper{
+
+		&.mobile-right>.wrapper {
 			margin-right: 300px;
 			margin-left: -300px;
 		}
-		> .wrapper{
+
+		>.wrapper {
 			transition: all 0.4s ease-in-out;
 			position: relative;
 		}
 	}
+
+		//Shop
+		.nm-shop{
+			width: 100%;
+		}
+		.nm-shop-item-image,
+		.nm-shop-item-details {
+			width: 100%;
+			display: block;
+		}
 }
 
 
 @media (max-width: 767px) {
+
 	// Genaral Nav
 	// ==================
-	.sina-nav{
+	.sina-nav {
+
 		.sina-nav-header,
 		.navbar-collapse {
 			margin: 0;
 		}
-		.sina-nav-header.social-on{
+
+		.sina-nav-header.social-on {
 			height: 120px;
 
 			.sina-brand {
 				margin-top: 60px;
 			}
-		} 
+		}
 	}
 }
 
 
 @media (max-width: 479px) {
-	.sina-nav{
-		.widget-bar{
+	//Login & register
+	.nm-dnone-mobile{
+		display: none !important;
+	}
+
+	.nm_user_login{
+		display: block !important;
+	}
+
+	.sina-nav {
+		.widget-bar {
 			right: -250px;
 			width: 250px;
 		}
 	}
+
 	// For Side menu
-	body.on-side{
+	body.on-side {
 		margin-left: -250px;
+	}
+
+	//Shop
+	.nm-shop{
+		width: 100%;
+	}
+	.nm-shop-item-image,
+	.nm-shop-item-details {
+		width: 100%;
+		display: block;
 	}
 
 
 	// Mobile Sibebar
 	// =================================
-	body.mobile-left > .wrapper{
+	body.mobile-left>.wrapper {
 		margin-left: 250px;
 		margin-right: -250px;
 	}
-	body.mobile-right > .wrapper{
+
+	body.mobile-right>.wrapper {
 		margin-right: 250px;
 		margin-left: -250px;
 	}
-	.sina-nav.mobile-sidebar .navbar-collapse{
-		width: 250px;
-		left: -250px;
+
+	.sina-nav.mobile-sidebar .navbar-collapse {
+		width: 100%;
+		left: -375px;
+		top: 105px;
 	}
+
+	// .show{
+	// 	margin-top: 130px;
+	// }
 }
 
 
 // For WordPress Toolbar
 @media (max-width: 782px) {
-	.sina-nav{
-		&.mobile-sidebar.wp-topbar .navbar-collapse{
+	.sina-nav {
+		&.mobile-sidebar.wp-topbar .navbar-collapse {
 			top: 46px;
 		}
-		&.wp-topbar .widget-bar{
+
+		&.wp-topbar .widget-bar {
 			top: 46px;
 		}
 	}

@@ -44,7 +44,7 @@
 				var mainNav		= getNav.find('.sina-menu'),
 					rightNav 	= mainNav.clone(),
 					lists 		= mainNav.children('li'),
-					divided 	= Math.round(lists.length / 2);
+					divided 	= Math.round(lists.length);
 
 				// Remove All list item for newly creation
 				mainNav.empty();
@@ -57,9 +57,11 @@
 				mainNav.addClass('sina-menu-right').wrap('<div class="col-half left"></div>');
 
 				// Create right part
-				for (var i = divided; i < lists.length; i++) {
-					rightNav.append( lists[i] );
-				}
+				// for (var i = divided; i < lists.length; i++) {
+				// 	rightNav.append( lists[i] );
+				// }
+
+				rightNav.html('<li><a href="#" class="nm_cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>');
 				getNav.find('.col-half.left').after( rightNav.addClass('sina-menu-dropdown-right sina-menu-left') );
 				rightNav.wrap('<div class="col-half right"></div>');
 			}
