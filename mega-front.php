@@ -8,7 +8,7 @@ function nm_mega_menu_el()
 
 ?>
 
-<div class="container-fluid nm-notofication">
+	<div class="container-fluid nm-notofication">
 		<div class="row">
 			<div class="col-md-10 col-xs-8 text-center">
 				<span>Free Shipping on All Orders</span>
@@ -19,6 +19,7 @@ function nm_mega_menu_el()
 			</div>
 
 			<div class="nm_user_login">
+				<a href="#" class="woo_amc_open_active"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
 				<a href="#"><i class="fa fa-user-o" aria-hidden="true"></i></a>
 			</div>
 		</div>
@@ -26,7 +27,7 @@ function nm_mega_menu_el()
 	<nav class="sina-nav mobile-sidebar logo-center" data-top="0">
 		<div class="container-fluid">
 
-			<div class="search-box">
+			<!-- <div class="search-box">
 				<form role="search" method="get" action="#">
 					<span class="search-addon close-search"><i class="fa fa-times"></i></span>
 					<div class="search-input">
@@ -34,7 +35,8 @@ function nm_mega_menu_el()
 					</div>
 					<span class="search-addon search-icon"><i class="fa fa-search"></i></span>
 				</form>
-			</div><!-- .search-box -->
+			</div> -->
+			<!-- .search-box -->
 
 			<div class="sina-nav-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
@@ -45,8 +47,8 @@ function nm_mega_menu_el()
 					Sina-nav
 				</h2>
 				<p>Learn Something New</p> -->
-					<img src="<?php echo get_template_directory_uri(); ?>/assets/mega/assets/img/royal_logo_1.svg" alt="" class="logo-primary">
-					<img src="<?php echo get_template_directory_uri(); ?>/assets/mega/assets/img/royal_logo_1.svg" alt="" class="logo-secondary">
+					<img src="<?php echo plugin_dir_url(__FILE__); ?>/assets/img/royal_logo_1.svg" alt="" class="logo-primary">
+					<img src="<?php echo plugin_dir_url(__FILE__); ?>/assets/img/royal_logo_1.svg" alt="" class="logo-secondary">
 				</a>
 			</div><!-- .sina-nav-header -->
 
@@ -75,7 +77,7 @@ function nm_mega_menu_el()
 										<a href="#" class="nm-shop">
 											<div class="nm-shop-item">
 												<div class="nm-shop-item-image">
-													<img src="<?php echo get_template_directory_uri(); ?>/assets/mega/assets/img/oil_nat_1000-300x300.jpg.webp" alt="">
+													<img src="<?php echo plugin_dir_url(__FILE__); ?>/assets/img/oil_nat_1000-300x300.jpg.webp" alt="">
 												</div>
 												<div class="nm-shop-item-details">
 													<h4>Full Spectrum CBD Oil 1000mg</h4>
@@ -93,11 +95,11 @@ function nm_mega_menu_el()
 												</div>
 											</div>
 										</a>
-	
+
 										<a href="#" class="nm-shop">
 											<div class="nm-shop-item">
 												<div class="nm-shop-item-image">
-													<img src="<?php echo get_template_directory_uri(); ?>/assets/mega/assets/img/oil_nat_1000-300x300.jpg.webp" alt="">
+													<img src="<?php echo plugin_dir_url(__FILE__); ?>/assets/img/oil_nat_1000-300x300.jpg.webp" alt="">
 												</div>
 												<div class="nm-shop-item-details">
 													<h4>Full Spectrum CBD Oil 1000mg</h4>
@@ -115,11 +117,11 @@ function nm_mega_menu_el()
 												</div>
 											</div>
 										</a>
-	
+
 										<a href="#" class="nm-shop">
 											<div class="nm-shop-item">
 												<div class="nm-shop-item-image">
-													<img src="<?php echo get_template_directory_uri(); ?>/assets/mega/assets/img/oil_nat_1000-300x300.jpg.webp" alt="">
+													<img src="<?php echo plugin_dir_url(__FILE__); ?>/assets/img/oil_nat_1000-300x300.jpg.webp" alt="">
 												</div>
 												<div class="nm-shop-item-details">
 													<h4>Full Spectrum CBD Oil 1000mg</h4>
@@ -137,11 +139,11 @@ function nm_mega_menu_el()
 												</div>
 											</div>
 										</a>
-	
+
 										<a href="#" class="nm-shop">
 											<div class="nm-shop-item">
 												<div class="nm-shop-item-image">
-													<img src="<?php echo get_template_directory_uri(); ?>/assets/mega/assets/img/oil_nat_1000-300x300.jpg.webp" alt="">
+													<img src="<?php echo plugin_dir_url(__FILE__); ?>/assets/img/oil_nat_1000-300x300.jpg.webp" alt="">
 												</div>
 												<div class="nm-shop-item-details">
 													<h4>Full Spectrum CBD Oil 1000mg</h4>
