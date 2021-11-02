@@ -29,12 +29,10 @@ if (!defined('WPINC')) {
  * Mega Menu init
  */
 
-require(plugin_dir_path(__FILE__) . 'activation.php');
-$el = new Elementor_Widegets_Register();
-$el->init();
+require(plugin_dir_path(__FILE__) . 'widgets/class-activation.php');
+$mega = new Elementor_Widegets_Register();
+$mega->init();
 
-//Scripts
-require(plugin_dir_path(__FILE__) . 'mega-script.php');
 
 /**
  * Sidebar cart Init
@@ -42,7 +40,6 @@ require(plugin_dir_path(__FILE__) . 'mega-script.php');
 require plugin_dir_path(__FILE__) . 'cart-sidebar/includes/class-woo-amc.php';
 function run_woocommerce_ajax_mini_cart()
 {
-
 	$plugin = new WooAmc();
 	$plugin->run();
 }

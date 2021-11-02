@@ -79,11 +79,12 @@ class NM_MEGA_MENU extends Widget_Base
 
 		$this->end_controls_section();
 
-		//Main Menu
+
+		// Main Menu
 		$this->start_controls_section(
-			'nm_mega_section',
+			'nm_mega_menu_section',
 			[
-				'label' => __('Logo', 'nm_theme'),
+				'label' => __('Mega Menu', 'nm_theme'),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -99,17 +100,7 @@ class NM_MEGA_MENU extends Widget_Base
 			]
 		);
 
-		$this->end_controls_section();
-
-		// Main Menu
-		$this->start_controls_section(
-			'nm_mega_menu_section',
-			[
-				'label' => __('Mega Menu', 'nm_theme'),
-				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-			]
-		);
-
+		//Menu add
 		$repeater = new \Elementor\Repeater();
 
 		$repeater->add_control(
@@ -182,10 +173,6 @@ class NM_MEGA_MENU extends Widget_Base
 		);
 
 		// Get Product Categories
-		//global $post;
-		//$terms = wp_get_post_terms($post->ID, 'product_cat');
-		//foreach ($terms as $term) $options[] = $term->term_id;
-
 		$product_cats = get_terms(array(
 			'taxonomy' => 'product_cat',
 			'hide_empty' => false,
@@ -204,6 +191,24 @@ class NM_MEGA_MENU extends Widget_Base
 		);
 
 		$this->end_controls_section();
+
+
+		//Styles
+		$this->start_controls_section(
+			'nm_mega_menu_style',
+			[
+				'label' => __('Styles', 'nm_theme'),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->add_control('usc_apply_block_bg', [
+			'label' => __('Apply Block Background', 'nm_theme'),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'default' => __('#131313', 'nm_theme'),
+		]);
+
+		$this->end_controls_section();
 	}
 
 	/**
@@ -211,25 +216,7 @@ class NM_MEGA_MENU extends Widget_Base
 	 */
 	protected function render()
 	{
-		$settings = $this->get_settings_for_display();
-?>
-
-		<?php
-
-		// echo '<pre>'; 
-		// print_r($settings['nm_mega_menu_products_type']);
-
-		// $product_cat = get_terms(array(
-		// 	'taxonomy' => 'product_cat',
-		// 	'hide_empty' => false,
-		// ));
-
-		//global $post, $woocommerce;
-
-
-
-
-		?>
+		$settings = $this->get_settings_for_display(); ?>
 
 		<div class="container-fluid nm-notofication">
 			<div class="row">
@@ -370,11 +357,11 @@ class NM_MEGA_MENU extends Widget_Base
 
 																				if ($sell_price) { ?>
 																					Starting at <del><?php echo get_woocommerce_currency_symbol() . $regular_price; ?></del> <span><?php echo get_woocommerce_currency_symbol() . $regular_price; ?></span>
-																					<?php
+																				<?php
 																				} else { ?>
 																					Starting at <span><?php echo get_woocommerce_currency_symbol() . $regular_price; ?></span>
 																				<?php } ?>
-																				
+
 																			</div>
 																		</div>
 																	</div>
