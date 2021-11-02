@@ -56,9 +56,9 @@
 
         <div class="nm-secure-checkout woo_amc_footer">
             <span>You've unlocked <b>FREE Priority Shipping!</b></span>
-            <div class="nm-subtotal">
+            <div class="nm-subtotal woo_amc_footer_total">
                 <span>Subtotal</span>
-                <span><?php echo $cart_total; ?></span>
+                <span class="woo_amc_value"><?php echo $cart_total; ?></span>
             </div>
             <a href="<?php echo get_permalink(wc_get_page_id('cart')); ?>"><i class="fa fa-lock" aria-hidden="true"></i>Secure Chekout</a>
             <p>Taxes are calculated at checkout</p>

@@ -35,21 +35,21 @@ define( 'WAMC_INCONVER_VERSION', '1.0.2' );
 /**
  * The code that runs during plugin activation.
  */
-function activate_woocommerce_ajax_mini_cart() {
-	require_once plugin_dir_path( __FILE__ ) . 'cart-sidebar/includes/class-woo-amc-activator.php';
-    WooAmcActivator::activate();
-}
+// function activate_woocommerce_ajax_mini_cart() {
+// 	require_once plugin_dir_path( __FILE__ ) . 'cart-sidebar/includes/class-woo-amc-activator.php';
+//     WooAmcActivator::activate();
+// }
 
 /**
  * The code that runs during plugin deactivation.
  */
-function deactivate_woocommerce_ajax_mini_cart() {
-	require_once plugin_dir_path( __FILE__ ) . 'cart-sidebar/includes/class-woo-amc-deactivator.php';
-    WooAmcDeactivator::deactivate();
-}
+// function deactivate_woocommerce_ajax_mini_cart() {
+// 	require_once plugin_dir_path( __FILE__ ) . 'cart-sidebar/includes/class-woo-amc-deactivator.php';
+//     WooAmcDeactivator::deactivate();
+// }
 
-register_activation_hook( __FILE__, 'activate_woocommerce_ajax_mini_cart' );
-register_deactivation_hook( __FILE__, 'deactivate_woocommerce_ajax_mini_cart' );
+//register_activation_hook( __FILE__, 'activate_woocommerce_ajax_mini_cart' );
+//register_deactivation_hook( __FILE__, 'deactivate_woocommerce_ajax_mini_cart' );
 
 /**
  * The core plugin class that is used to define internationalization,

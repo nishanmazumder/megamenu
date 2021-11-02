@@ -3,8 +3,7 @@
 class WooAmc {
 
 	/**
-	 * The loader that's responsible for maintaining and registering all hooks that power
-	 * the plugin.
+	 * The loader that's responsible for maintaining and registering all hooks
 	 */
 	protected $loader;
 
@@ -31,7 +30,7 @@ class WooAmc {
 
 		$this->load_dependencies();
 		$this->set_locale();
-		$this->define_admin_hooks();
+		//$this->define_admin_hooks();
 		$this->define_public_hooks();
 
 	}
@@ -56,7 +55,7 @@ class WooAmc {
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woo-amc-admin.php';
+		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woo-amc-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -83,17 +82,17 @@ class WooAmc {
 	 * Register all of the hooks related to the admin area functionality
 	 * of the plugin.
 	 */
-	private function define_admin_hooks() {
+	// private function define_admin_hooks() {
 
-		$plugin_admin = new WooAmcAdmin( $this->get_plugin_name(), $this->get_version() );
+	// 	$plugin_admin = new WooAmcAdmin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-        $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+	// 	$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+    //     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_page' );
-        $this->loader->add_action( 'admin_init', $plugin_admin, 'page_init' );
+    //     $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_page' );
+    //     $this->loader->add_action( 'admin_init', $plugin_admin, 'page_init' );
 
-	}
+	// }
 
 	/**
 	 * Register all of the hooks related to the public-facing functionality
