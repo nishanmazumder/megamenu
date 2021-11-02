@@ -15,7 +15,7 @@
  * Domain Path:       /languages
  */
 
- /**
+/**
  * Currently plugin version.
  */
 define('NM_MEGA_MENU', '1.0.0');
@@ -29,7 +29,7 @@ if (!defined('WPINC')) {
  * Mega Menu init
  */
 
-require_once(plugin_dir_path(__FILE__) . 'activation.php');
+require(plugin_dir_path(__FILE__) . 'activation.php');
 $el = new Elementor_Widegets_Register();
 $el->init();
 

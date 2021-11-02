@@ -11,7 +11,11 @@
 }
 .nm-notofication span,
 .nm-notofication a {
-  font-size: 14px;
+  font-size: 12px;
+  text-decoration: none !important;
+}
+.nm-notofication a {
+  color: #E42825 !important;
 }
 .nm-notofication .nm_user_login {
   display: none;
@@ -67,11 +71,15 @@
   border: 1px solid #eee;
   transition: box-shadow, border, background 0.5s ease-in-out;
 }
+.sina-nav a {
+  text-decoration: none;
+}
 .sina-nav ul,
 .sina-nav ul ul {
   padding: 10px 5px;
   margin: 0;
   list-style: none;
+  z-index: 100;
 }
 .sina-nav ul li a {
   display: block;
@@ -172,6 +180,7 @@
   position: relative;
   display: block;
   font-size: 14px;
+  text-decoration: none !important;
 }
 .sina-nav .sina-menu li .fa-icon-left {
   margin-right: 8px;
@@ -187,6 +196,7 @@
   font-weight: 700;
   line-height: 20px;
   border-bottom: 2px solid transparent;
+  text-decoration: none !important;
 }
 .sina-nav .sina-menu > li.active > a,
 .sina-nav .sina-menu > li > a:hover,
@@ -259,6 +269,7 @@
 }
 .sina-nav .menu-item-has-mega-menu.dropdown {
   position: static;
+  z-index: 100 !important;
 }
 .sina-nav .menu-item-has-mega-menu.dropdown .mega-menu.dropdown-menu {
   width: 100%;

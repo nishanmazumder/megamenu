@@ -21,7 +21,7 @@ class NM_MEGA_MENU extends Widget_Base
 	 */
 	public function get_title()
 	{
-		return "Mega Menu & Cart";
+		return "Mega Menu";
 	}
 
 	/**
@@ -45,47 +45,53 @@ class NM_MEGA_MENU extends Widget_Base
 	 */
 	protected function _register_controls()
 	{
-		//Application Information
+
+		//Top Bar
 		$this->start_controls_section(
-			'usc_banner',
+			'nm_top_section',
 			[
-				'label' => __('Usc Banner', 'nm_theme'),
+				'label' => __('Top Bar', 'nm_theme'),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
 
-		$this->add_control('usc_banner_title', [
-			'label' => __('Banner Title', 'nm_theme'),
+		$this->add_control('nm_notification', [
+			'label' => __('Notification', 'nm_theme'),
 			'label_block' => true,
 			'type' => \Elementor\Controls_Manager::TEXT,
-			'default' => __('MASTER OF STUDIES IN LAW AT USC GOULD', 'nm_theme'),
+			'default' => __('Free Shipping on All Orders', 'nm_theme'),
 		]);
 
-		$this->add_control('usc_banner_subtitle', [
-			'label' => __('Banner Subtitle', 'nm_theme'),
+		$this->add_control('nm_login_register', [
+			'label' => __('Login/Register', 'nm_theme'),
 			'label_block' => true,
 			'type' => \Elementor\Controls_Manager::TEXT,
-			'default' => __('Earn your degree at a fully accredited,', 'nm_theme'),
+			'default' => __('Login/Register', 'nm_theme'),
 		]);
 
-		$this->add_control('usc_banner_subtitle_2', [
-			'label' => __('Banner Second Subtitle', 'nm_theme'),
+		$this->add_control('nm_login_register_url', [
+			'label' => __('Login/Register Link', 'nm_theme'),
 			'label_block' => true,
 			'type' => \Elementor\Controls_Manager::TEXT,
-			'default' => __('TOP-RANKED LAW SCHOOL.', 'nm_theme'),
+			'input_type' => 'url',
+			'default' => esc_url(wp_login_url(get_permalink()))
 		]);
 
-		$this->add_control('usc_banner_des', [
-			'label' => __('Banner Content', 'nm_theme'),
-			'label_block' => true,
-			'type' => \Elementor\Controls_Manager::WYSIWYG,
-			'default' => __('The online Master of Studies in Law (MSL) degree offers experienced', 'nm_theme'),
-		]);
+		$this->end_controls_section();
+
+		//Main Menu
+		$this->start_controls_section(
+			'nm_mega_section',
+			[
+				'label' => __('Logo', 'nm_theme'),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
 
 		$this->add_control(
-			'banner_icon_image',
+			'nm_mega_logo',
 			[
-				'label' => __('Icon Image', 'nm_theme'),
+				'label' => __('Add Logo', 'nm_theme'),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -95,35 +101,62 @@ class NM_MEGA_MENU extends Widget_Base
 
 		$this->end_controls_section();
 
-		// Apply Online
+		// Main Menu
 		$this->start_controls_section(
-			'usc_apply_form',
+			'nm_mega_menu_section',
 			[
-				'label' => __('Application Form', 'nm_theme'),
+				'label' => __('Mega Menu', 'nm_theme'),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
 
-		$this->add_control('usc_apply_form_title', [
-			'label' => __('Form Title', 'nm_theme'),
-			'label_block' => true,
-			'type' => \Elementor\Controls_Manager::TEXT,
-			'default' => __('THE FUTURE STARTS TODAY', 'nm_theme'),
-		]);
+		$repeater = new \Elementor\Repeater();
 
-		$this->add_control('usc_apply_form_phone', [
-			'label' => __('Phone Number', 'nm_theme'),
-			'label_block' => true,
-			'type' => \Elementor\Controls_Manager::TEXT,
-			'default' => __('(213) 821-5916', 'nm_theme'),
-		]);
+		$repeater->add_control(
+            'menu_item',
+            [
+                'label' => __('Menu Label', 'nm_theme'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => __('Home', 'nm_theme'),
+                'label_block' => true,
+            ]
+        );
 
-		$this->add_control('usc_apply_form_button', [
-			'label' => __('Form Button', 'nm_theme'),
-			'label_block' => true,
-			'type' => \Elementor\Controls_Manager::TEXT,
-			'default' => __('REQUEST INFORMATION', 'nm_theme'),
-		]);
+		$repeater->add_control(
+            'menu_item_url',
+            [
+                'label' => __('Menu Link', 'nm_theme'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+				'input_type' => 'url',
+                'default' => __('#', 'nm_theme'),
+                'label_block' => true,
+            ]
+        );
+
+        // $repeater->add_control(
+        //     'menu_item_content',
+        //     [
+        //         'label' => __('Menu Label List', 'nm_theme'),
+        //         'type' => \Elementor\Controls_Manager::WYSIWYG,
+        //         'default' => __('100 percent online — convenient', 'nm_theme'),
+        //         'show_label' => false,
+        //     ]
+        // );
+
+		$this->add_control(
+            'nm_mega_menu_main_items',
+            [
+                'label' => __('Main Menu Items', 'nm_theme'),
+                'type' => \Elementor\Controls_Manager::REPEATER,
+                'fields' => $repeater->get_controls(),
+                'default' => [
+                    [
+                        'menu_item' => __('Home', 'nm_theme'),
+                        'menu_item_url' => __('#', 'nm_theme'),
+                    ]
+                ]
+            ]
+        );
 
 		$this->end_controls_section();
 	}
@@ -139,16 +172,16 @@ class NM_MEGA_MENU extends Widget_Base
 		<div class="container-fluid nm-notofication">
 			<div class="row">
 				<div class="col-md-10 col-xs-8 text-center">
-					<span>Free Shipping on All Orders</span>
+					<span><?php echo $settings['nm_notification']; ?></span>
 				</div>
 
 				<div class="col-md-2 col-xs-4 text-right nm-dnone-mobile">
-					<a href="#">Login/Register</a>
+					<a href="<?php echo $settings['nm_login_register_url']; ?>"><?php echo $settings['nm_login_register']; ?></a>
 				</div>
 
 				<div class="nm_user_login">
 					<a href="#" class="woo_amc_open_active"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
-					<a href="#"><i class="fa fa-user-o" aria-hidden="true"></i></a>
+					<a href="<?php echo $settings['nm_login_register_url']; ?>"><i class="fa fa-user-o" aria-hidden="true"></i></a>
 				</div>
 			</div>
 		</div>
@@ -159,19 +192,20 @@ class NM_MEGA_MENU extends Widget_Base
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
 						<i class="fa fa-bars"></i>
 					</button>
-					<a class="sina-brand" href="#">
+					<a class="sina-brand" href="<?php echo home_url(); ?>">
 						<!-- <h2>
 					Sina-nav
 				</h2>
 				<p>Learn Something New</p> -->
-						<img src="<?php echo plugin_dir_url(__FILE__); ?>/assets/img/royal_logo_1.svg" alt="" class="logo-primary">
-						<img src="<?php echo plugin_dir_url(__FILE__); ?>/assets/img/royal_logo_1.svg" alt="" class="logo-secondary">
+						<img src="<?php echo $settings['nm_mega_logo']['url']; ?>" alt="" class="logo-primary">
+						<img src="<?php echo $settings['nm_mega_logo']['url']; ?>" alt="" class="logo-secondary">
 					</a>
 				</div><!-- .sina-nav-header -->
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="sina-menu" data-in="fadeInTop" data-out="fadeInOut">
+					<?php if ($settings['nm_mega_menu_main_items']) : ?>
 						<li class="dropdown menu-item-has-mega-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Shoap</a>
 							<div class="mega-menu dropdown-menu">
@@ -283,8 +317,11 @@ class NM_MEGA_MENU extends Widget_Base
 								</ul><!-- end row -->
 							</div>
 						</li>
-						<li><a href="#">Learn</a></li>
-						<li><a href="#">About</a></li>
+						<?php foreach ($settings['nm_mega_menu_main_items'] as $main_menu_items) : ?>
+						<li><a href="<?php echo $main_menu_items['menu_item_url']; ?>"><?php echo $main_menu_items['menu_item']; ?></a></li>
+
+						<?php endforeach; 
+					endif; ?>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div><!-- .container -->

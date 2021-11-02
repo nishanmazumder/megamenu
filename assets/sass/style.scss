@@ -88,7 +88,12 @@ $animateTime: 1s;
 
 	span,
 	a {
-		font-size: 14px;
+		font-size: 12px;
+		text-decoration: none !important;
+	}
+
+	a{
+		color: $hoverColor !important;
 	}
 
 	.nm_user_login {
@@ -156,11 +161,16 @@ $animateTime: 1s;
 	border: 1px solid $border;
 	transition: box-shadow, border, background 0.5s ease-in-out;
 
+	a{
+		text-decoration: none;
+	}
+
 	ul,
 	ul ul {
 		padding: 10px 5px;
 		margin: 0;
 		list-style: none;
+		z-index: 100;
 	}
 
 	ul li a {
@@ -287,6 +297,7 @@ $animateTime: 1s;
 				position: relative;
 				display: block;
 				font-size: 14px;
+				text-decoration: none !important;
 			}
 
 			.fa-icon-left {
@@ -307,6 +318,7 @@ $animateTime: 1s;
 				font-weight: 700;
 				line-height: 20px;
 				border-bottom: 2px solid transparent;
+				text-decoration: none !important;
 			}
 
 			&.active>a,
@@ -407,6 +419,7 @@ $animateTime: 1s;
 	// =================================
 	.menu-item-has-mega-menu.dropdown {
 		position: static;
+		z-index: 100 !important;
 
 		.mega-menu.dropdown-menu {
 			width: 100%;
