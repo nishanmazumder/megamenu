@@ -8,6 +8,7 @@
 .nm-notofication {
   padding: 10px 30px;
   font-family: "Montserrat", sans-serif;
+  border-bottom: 1px solid #f5f5f5;
 }
 .nm-notofication span,
 .nm-notofication a {
@@ -68,7 +69,7 @@
   left: 0;
   right: 0;
   background: #fff;
-  border: 1px solid #eee;
+  border: none;
   transition: box-shadow, border, background 0.5s ease-in-out;
 }
 .sina-nav a {
@@ -275,6 +276,7 @@
   width: 100%;
   padding: 0;
   background-color: #fcfcfc;
+  border: none;
 }
 .sina-nav .menu-item-has-mega-menu.dropdown .mega-menu-row {
   width: 100%;
@@ -576,12 +578,18 @@
   width: 100%;
 }
 .nm_enjoy_product .nm-product-area .nm-product p {
+  margin: 0px;
+}
+.nm_enjoy_product .nm-product-area .nm-product p a {
   font-size: 12px;
   font-family: "Montserrat", sans-serif;
   margin-bottom: 0px;
   margin-top: 5px;
+  color: #222;
+  padding: 0px;
+  background: transparent;
 }
-.nm_enjoy_product .nm-product-area .nm-product a {
+.nm_enjoy_product .nm-product-area .nm-product .nm_cart_btn {
   font-size: 12px;
   color: #E42825;
   background: #fff;
@@ -590,10 +598,10 @@
   font-family: "Montserrat", sans-serif;
   border-radius: 5px;
 }
-.nm_enjoy_product .nm-product-area .nm-product a:hover {
+.nm_enjoy_product .nm-product-area .nm-product .nm_cart_btn:hover {
   color: #222;
 }
-.nm_enjoy_product .nm-product-area .nm-product a del {
+.nm_enjoy_product .nm-product-area .nm-product .nm_cart_btn del {
   color: #222;
   margin-right: 5px;
 }
