@@ -15,55 +15,35 @@
  * Domain Path:       /languages
  */
 
-
-//Scripts
-require(plugin_dir_path(__FILE__) . 'mega-script.php');
-
-//Mega Menu
-require(plugin_dir_path(__FILE__) . 'mega-front.php');
+ /**
+ * Currently plugin version.
+ */
+define('NM_MEGA_MENU', '1.0.0');
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
+if (!defined('WPINC')) {
 	die;
 }
 
 /**
- * Currently plugin version.
+ * Mega Menu init
  */
-define( 'WAMC_INCONVER_VERSION', '1.0.2' );
+
+require_once(plugin_dir_path(__FILE__) . 'activation.php');
+$el = new Elementor_Widegets_Register();
+$el->init();
+
+//Scripts
+require(plugin_dir_path(__FILE__) . 'mega-script.php');
 
 /**
- * The code that runs during plugin activation.
+ * Sidebar cart Init
  */
-// function activate_woocommerce_ajax_mini_cart() {
-// 	require_once plugin_dir_path( __FILE__ ) . 'cart-sidebar/includes/class-woo-amc-activator.php';
-//     WooAmcActivator::activate();
-// }
-
-/**
- * The code that runs during plugin deactivation.
- */
-// function deactivate_woocommerce_ajax_mini_cart() {
-// 	require_once plugin_dir_path( __FILE__ ) . 'cart-sidebar/includes/class-woo-amc-deactivator.php';
-//     WooAmcDeactivator::deactivate();
-// }
-
-//register_activation_hook( __FILE__, 'activate_woocommerce_ajax_mini_cart' );
-//register_deactivation_hook( __FILE__, 'deactivate_woocommerce_ajax_mini_cart' );
-
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path( __FILE__ ) . 'cart-sidebar/includes/class-woo-amc.php';
-
-/**
- * Begins execution of the plugin.
- */
-function run_woocommerce_ajax_mini_cart() {
+require plugin_dir_path(__FILE__) . 'cart-sidebar/includes/class-woo-amc.php';
+function run_woocommerce_ajax_mini_cart()
+{
 
 	$plugin = new WooAmc();
 	$plugin->run();
-
 }
 run_woocommerce_ajax_mini_cart();
