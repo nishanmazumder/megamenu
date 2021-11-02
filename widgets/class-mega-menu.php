@@ -202,10 +202,25 @@ class NM_MEGA_MENU extends Widget_Base
 			]
 		);
 
-		$this->add_control('usc_apply_block_bg', [
-			'label' => __('Apply Block Background', 'nm_theme'),
+		// Primary Color
+		$this->add_control('nm_mega_primary', [
+			'label' => __('Primary Color', 'nm_theme'),
 			'type' => \Elementor\Controls_Manager::COLOR,
-			'default' => __('#131313', 'nm_theme'),
+			'default' => __('#222', 'nm_theme'),
+		]);
+
+		// Secondary Color
+		$this->add_control('nm_mega_secondary', [
+			'label' => __('Secondary Color', 'nm_theme'),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'default' => __('#E42825', 'nm_theme'),
+		]);
+
+		//Fonts
+		$this->add_control('nm_mega_fonts', [
+			'label' => __('Fonts', 'nm_theme'),
+			'type' => \Elementor\Controls_Manager::FONT,
+			'default' => __('"Montserrat"' . ',' . ' sans-serif', 'nm_theme'),
 		]);
 
 		$this->end_controls_section();
@@ -217,6 +232,99 @@ class NM_MEGA_MENU extends Widget_Base
 	protected function render()
 	{
 		$settings = $this->get_settings_for_display(); ?>
+
+		<?php
+		$primanry = $settings['nm_mega_primary'];
+		$secondary = $settings['nm_mega_secondary'];
+		$fonts = $settings['nm_mega_fonts'];
+		?>
+		<style>
+			.sina-nav .sina-menu>li>a,
+			.sina-nav .sina-menu .mega-menu-col .sub-menu a,
+			.woo_amc_head_title,
+			.woo_amc_item_title a,
+			.woo_amc_item_quanity_wrap input,
+			.woo_amc_item_total_price,
+			.nm_enjoy_product h4,
+			.nm-product p a,
+			.nm_cart_btn:hover,
+			.nm_cart_btn del,
+			.nm-secure-checkout span,
+			.nm-shop-item-details:hover {
+				color: <?php echo $primanry; ?> !important;
+				font-family: <?php echo $fonts; ?>;
+			}
+
+			.woo_amc_close i,
+			.woo_amc_item_quanity_wrap i,
+			.nm_user_login i,
+			.woo_amc_item_wrap i
+			{
+				color: <?php echo $primanry; ?>;
+			}
+
+			.nm-shop-item .nm-shop-item-details i.fa-star, 
+			.nm-shop-item .nm-shop-item-details i.fa-star{
+				color: <?php echo $secondary; ?> !important;
+			}
+
+			.nm-notofication a,
+			.sub-menu a:hover,
+			.sub-menu a:focus,
+			.sina-menu>li.sina-nav-cta-btn a:hover,
+			.sina-menu>li.sina-nav-cta-btn a:focus,
+			.sina-menu li .active>a,
+			.sina-menu li a:hover,
+			.sina-menu li a:focus,
+			.nm-shop-item .nm-shop-item-details span,
+			.nm-shop-item .nm-shop-item-details span,
+			.sina-menu li a:hover,
+			.sina-menu li a:focus,
+			.sina-nav .sina-menu .mega-menu-col .sub-menu a:hover {
+				color: <?php echo $secondary; ?> !important;
+				font-family: <?php echo $fonts; ?>;
+			}
+
+			.sina-nav-cta-btn a {
+				border: 1px solid <?php echo $secondary; ?>;
+				background: <?php echo $secondary; ?>;
+				font-family: <?php echo $fonts; ?>;
+			}
+
+			.sina-nav .sina-menu>li>a:hover{
+				border-bottom: 2px solid <?php echo $secondary; ?>;
+			}
+
+			.sina-nav-cta-btn a:hover,
+			.sina-nav-cta-btn a:focus {
+				border-color: <?php echo $secondary; ?>;
+				color: <?php echo $secondary; ?>;
+			}
+
+			.mega-menu-col .active>a,
+			.mega-menu-col a:hover,
+			.mega-menu-col a:focus {
+				color: <?php echo $secondary; ?>;
+			}
+
+			.nm-secure-checkout a {
+				background: <?php echo $secondary; ?>;
+				font-family: <?php echo $fonts; ?>;
+			}
+
+			.sina-menu>li.sina-nav-cta-btn a {
+				border-color: <?php echo $secondary; ?>;
+				background: <?php echo $secondary; ?>;
+				font-family: <?php echo $fonts; ?>;
+			}
+
+			.nm-notofication,
+			.nm-item-notification span,
+			.nm_cart_btn,
+			.nm-secure-checkout {
+				font-family: <?php echo $fonts; ?>;
+			}
+		</style>
 
 		<div class="container-fluid nm-notofication">
 			<div class="row">

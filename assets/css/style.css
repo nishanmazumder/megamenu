@@ -15,9 +15,6 @@
   font-size: 12px;
   text-decoration: none !important;
 }
-.nm-notofication a {
-  color: #E42825 !important;
-}
 .nm-notofication .nm_user_login {
   display: none;
 }
@@ -192,7 +189,6 @@
 .sina-nav .sina-menu > li > a {
   padding: 20px 15px;
   max-width: 160px;
-  color: #222;
   font-size: 14px;
   font-weight: 700;
   line-height: 20px;
@@ -202,12 +198,7 @@
 .sina-nav .sina-menu > li.active > a,
 .sina-nav .sina-menu > li > a:hover,
 .sina-nav .sina-menu > li > a:focus {
-  color: #E42825;
   background-color: transparent;
-}
-.sina-nav .sina-menu > li > a:hover,
-.sina-nav .sina-menu > li > a:focus {
-  border-bottom: 2px solid #E42825;
 }
 .sina-nav .sina-menu > li.sina-nav-cta-btn {
   padding: 11px 15px;
@@ -215,15 +206,11 @@
 }
 .sina-nav .sina-menu > li.sina-nav-cta-btn a {
   padding: 8px 15px;
-  border: 1px solid #E42825;
   border-radius: 4px;
   text-align: center;
   color: #fff;
-  background: #E42825;
 }
 .sina-nav .sina-menu > li.sina-nav-cta-btn a:hover, .sina-nav .sina-menu > li.sina-nav-cta-btn a:focus {
-  border-color: #E42825;
-  color: #E42825;
   background: transparent;
 }
 .sina-nav .sina-menu li .description {
@@ -292,7 +279,6 @@
 .sina-nav .menu-item-has-mega-menu.dropdown .mega-menu-col .active > a,
 .sina-nav .menu-item-has-mega-menu.dropdown .mega-menu-col > a:hover,
 .sina-nav .menu-item-has-mega-menu.dropdown .mega-menu-col > a:focus {
-  color: #E42825;
   background: transparent;
 }
 .sina-nav .menu-item-has-mega-menu.dropdown .mega-menu-col-title {
@@ -454,7 +440,7 @@
   padding: 15px !important;
 }
 .nm_cart:hover, .nm_cart:focus {
-  border: none !important;
+  border-bottom: 2px solid transparent !important;
 }
 .nm_cart i {
   font-size: 24px;
@@ -466,7 +452,6 @@
 
 .woo_amc_head_title {
   font-family: "Montserrat", sans-serif;
-  color: #222 !important;
 }
 
 .woo_amc_item_wrap {
@@ -477,7 +462,6 @@
   border: none !important;
 }
 .woo_amc_item_wrap i {
-  color: #E42825;
   margin-top: 15px;
 }
 .woo_amc_item_wrap .woo_amc_item {
@@ -496,7 +480,6 @@
 .woo_amc_close i {
   font-size: 18px;
   display: block;
-  color: #222;
 }
 .woo_amc_close:hover {
   opacity: 0.7;
@@ -515,7 +498,6 @@
 }
 
 .woo_amc_item_title a {
-  color: #222 !important;
   font-family: "Montserrat", sans-serif !important;
   font-size: 14px !important;
 }
@@ -529,7 +511,6 @@
 }
 .woo_amc_item_quanity_wrap input {
   font-size: 14px !important;
-  color: #222 !important;
   border-left: none !important;
   border-right: none !important;
   margin: 0px !important;
@@ -537,12 +518,10 @@
 }
 .woo_amc_item_quanity_wrap i {
   font-size: 14px !important;
-  color: #222;
   margin-top: 3px;
 }
 
 .woo_amc_item_total_price {
-  color: #222 !important;
   font-family: "Montserrat", sans-serif;
   font-size: 14px !important;
   font-weight: 600 !important;
@@ -560,7 +539,6 @@
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
   font-weight: 500;
-  color: #222;
 }
 .nm_enjoy_product .nm-product-area {
   margin-top: 20px;
@@ -585,7 +563,6 @@
   font-family: "Montserrat", sans-serif;
   margin-bottom: 0px;
   margin-top: 5px;
-  color: #222;
   padding: 0px;
   background: transparent;
 }
@@ -598,11 +575,7 @@
   font-family: "Montserrat", sans-serif;
   border-radius: 5px;
 }
-.nm_enjoy_product .nm-product-area .nm-product .nm_cart_btn:hover {
-  color: #222;
-}
 .nm_enjoy_product .nm-product-area .nm-product .nm_cart_btn del {
-  color: #222;
   margin-right: 5px;
 }
 
@@ -613,7 +586,6 @@
   font-family: "Montserrat", sans-serif;
 }
 .nm-secure-checkout span {
-  color: #222;
   font-size: 10px;
 }
 .nm-secure-checkout .nm-subtotal {
@@ -632,7 +604,6 @@
   display: block;
   padding: 15px;
   color: #fff;
-  background: #E42825;
   text-align: center;
   font-size: 18px;
   font-weight: 800;
@@ -770,7 +741,6 @@
     line-height: 26px;
   }
   .sina-nav .sina-menu .mega-menu-col .sub-menu a:hover, .sina-nav .sina-menu .mega-menu-col .sub-menu a:focus {
-    color: #E42825;
     background: transparent;
   }
   .sina-nav .sina-menu .mega-menu-col-title {
@@ -846,13 +816,10 @@
     color: #1085e4;
   }
   .sina-nav.navbar-transparent .sina-menu > li.sina-nav-cta-btn a {
-    border-color: #E42825;
     color: #fff;
-    background: #E42825;
   }
   .sina-nav.navbar-transparent .sina-menu > li.sina-nav-cta-btn a:hover, .sina-nav.navbar-transparent .sina-menu > li.sina-nav-cta-btn a:focus {
     border-color: #fff;
-    color: #E42825;
     background: #fff;
   }
   .sina-nav.logo-center .sina-nav-header {
@@ -1131,7 +1098,6 @@
   }
   .nm_user_login i {
     font-size: 24px;
-    color: #222;
   }
 
   body.mobile-left > .wrapper {

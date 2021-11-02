@@ -26,21 +26,18 @@ if (!defined('WPINC')) {
 }
 
 /**
- * Mega Menu init
+ * Mega Menu & Sidebar cart init
  */
 
 require(plugin_dir_path(__FILE__) . 'widgets/class-activation.php');
-$mega = new Elementor_Widegets_Register();
-$mega->init();
-
-
-/**
- * Sidebar cart Init
- */
 require plugin_dir_path(__FILE__) . 'cart-sidebar/includes/class-woo-amc.php';
-function run_woocommerce_ajax_mini_cart()
+
+function nm_mega_menu_package()
 {
-	$plugin = new WooAmc();
-	$plugin->run();
+	$mega = new Elementor_Widegets_Register();
+	$mega->init();
+
+	$sidecart = new WooAmc();
+	$sidecart->run();
 }
-run_woocommerce_ajax_mini_cart();
+nm_mega_menu_package();
