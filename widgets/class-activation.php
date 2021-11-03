@@ -12,6 +12,9 @@ final class Elementor_Widegets_Register
         // Register Widgets
         add_action('elementor/widgets/widgets_registered', [$this, 'register_widgets']);
 
+        // Register Mega menu
+        add_action('init', [$this, 'nm_mega_menu_register']);
+
         // Register Scripts
         $this->nm_mega_scripts();
     }
@@ -26,6 +29,10 @@ final class Elementor_Widegets_Register
         $this->includes();
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \NM_MEGA_MENU());
     }
+
+    public function nm_mega_menu_register(){
+		register_nav_menu( 'nm_mega_menu', esc_html__('Mega Menu', 'nm_theme') );
+	}
 
     public function nm_mega_scripts()
     {

@@ -231,100 +231,83 @@ class NM_MEGA_MENU extends Widget_Base
 	 */
 	protected function render()
 	{
-		$settings = $this->get_settings_for_display(); ?>
+		$settings = $this->get_settings_for_display();
 
-		<?php
-		$primanry = $settings['nm_mega_primary'];
-		$secondary = $settings['nm_mega_secondary'];
-		$fonts = $settings['nm_mega_fonts'];
-		?>
-		<style>
-			.sina-nav .sina-menu>li>a,
-			.sina-nav .sina-menu .mega-menu-col .sub-menu a,
-			.woo_amc_head_title,
-			.woo_amc_item_title a,
-			.woo_amc_item_quanity_wrap input,
-			.woo_amc_item_total_price,
-			.nm_enjoy_product h4,
-			.nm-product p a,
-			.nm_cart_btn:hover,
-			.nm_cart_btn del,
-			.nm-secure-checkout span,
-			.nm-shop-item-details:hover {
-				color: <?php echo $primanry; ?> !important;
-				font-family: <?php echo $fonts; ?>;
-			}
+		//Styles
+		$this->nm_mega_class($settings);
+?>
 
-			.woo_amc_close i,
-			.woo_amc_item_quanity_wrap i,
-			.nm_user_login i,
-			.woo_amc_item_wrap i
-			{
-				color: <?php echo $primanry; ?>;
-			}
+		<!-- Notification -->
+		<?php $this->nm_mega_top_bar($settings); ?>
 
-			.nm-shop-item .nm-shop-item-details i.fa-star, 
-			.nm-shop-item .nm-shop-item-details i.fa-star{
-				color: <?php echo $secondary; ?> !important;
-			}
+		<nav class="sina-nav mobile-sidebar logo-center" data-top="0">
+			<div class="container-fluid">
 
-			.nm-notofication a,
-			.sub-menu a:hover,
-			.sub-menu a:focus,
-			.sina-menu>li.sina-nav-cta-btn a:hover,
-			.sina-menu>li.sina-nav-cta-btn a:focus,
-			.sina-menu li .active>a,
-			.sina-menu li a:hover,
-			.sina-menu li a:focus,
-			.nm-shop-item .nm-shop-item-details span,
-			.nm-shop-item .nm-shop-item-details span,
-			.sina-menu li a:hover,
-			.sina-menu li a:focus,
-			.sina-nav .sina-menu .mega-menu-col .sub-menu a:hover {
-				color: <?php echo $secondary; ?> !important;
-				font-family: <?php echo $fonts; ?>;
-			}
+				<div class="sina-nav-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+						<i class="fa fa-bars"></i>
+					</button>
+					<a class="sina-brand" href="<?php echo home_url(); ?>">
+						<!-- <h2>
+					Sina-nav
+				</h2>
+				<p>Learn Something New</p> -->
+						<img src="<?php echo $settings['nm_mega_logo']['url']; ?>" alt="" class="logo-primary">
+						<img src="<?php echo $settings['nm_mega_logo']['url']; ?>" alt="" class="logo-secondary">
+					</a>
+				</div><!-- .sina-nav-header -->
+				<?php
+				$menu_items = $this->nm_mega_nav_items();
+				if (is_array($menu_items) && !empty($menu_items)) :
+				?>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="navbar-menu">
+						<ul class="sina-menu" data-in="fadeInTop" data-out="fadeInOut">
 
-			.sina-nav-cta-btn a {
-				border: 1px solid <?php echo $secondary; ?>;
-				background: <?php echo $secondary; ?>;
-				font-family: <?php echo $fonts; ?>;
-			}
+							<?php
+							foreach ($menu_items as $main_menu_item) :
+								if (!$main_menu_item->menu_item_parent) :
 
-			.sina-nav .sina-menu>li>a:hover{
-				border-bottom: 2px solid <?php echo $secondary; ?>;
-			}
+									$child_menu_items = $this->nm_get_child_menu($main_menu_item->ID, $menu_items);
+									$has_child = !empty($child_menu_items) && is_array($child_menu_items);
 
-			.sina-nav-cta-btn a:hover,
-			.sina-nav-cta-btn a:focus {
-				border-color: <?php echo $secondary; ?>;
-				color: <?php echo $secondary; ?>;
-			}
+									if (!$has_child) { ?>
+										<li><a href="<?php echo esc_url($main_menu_item->url) ?>"><?php echo esc_html($main_menu_item->title) ?></a></li>
+									<?php } else { ?>
+										<li class="dropdown menu-item-has-mega-menu">
+											<a href="<?php echo esc_url($main_menu_item->url) ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo esc_html($main_menu_item->title) ?></a>
+											<div class="mega-menu dropdown-menu">
+												<ul class="mega-menu-row" role="menu">
+													<li class="mega-menu-col col-md-4">
+														<!-- <h4 class="mega-menu-col-title">Shop All</h4> -->
+														<ul class="sub-menu">
+															<?php foreach ($child_menu_items as $child_menu_item) : ?>
+																<li><a href="<?php echo esc_url($child_menu_item->url) ?>"><?php echo esc_html($child_menu_item->title) ?></a></li>
+															<?php endforeach; ?>
+														</ul>
+													</li>
+													<li class="mega-menu-col col-md-8">
+														<!-- Mega Menu product area -->
+														<?php $this->nm_mega_products($settings); ?>
+													</li>
+												</ul><!-- end row -->
+											</div>
+										</li>
+							<?php
+									}
+								endif;
+							endforeach; ?>
+						</ul>
+					</div><!-- /.navbar-collapse -->
+				<?php endif; ?>
+			</div><!-- .container -->
+		</nav>
+	<?php
+	}
 
-			.mega-menu-col .active>a,
-			.mega-menu-col a:hover,
-			.mega-menu-col a:focus {
-				color: <?php echo $secondary; ?>;
-			}
-
-			.nm-secure-checkout a {
-				background: <?php echo $secondary; ?>;
-				font-family: <?php echo $fonts; ?>;
-			}
-
-			.sina-menu>li.sina-nav-cta-btn a {
-				border-color: <?php echo $secondary; ?>;
-				background: <?php echo $secondary; ?>;
-				font-family: <?php echo $fonts; ?>;
-			}
-
-			.nm-notofication,
-			.nm-item-notification span,
-			.nm_cart_btn,
-			.nm-secure-checkout {
-				font-family: <?php echo $fonts; ?>;
-			}
-		</style>
+	// Notification Bar
+	public function nm_mega_top_bar($settings)
+	{ ?>
 
 		<div class="container-fluid nm-notofication">
 			<div class="row">
@@ -342,164 +325,136 @@ class NM_MEGA_MENU extends Widget_Base
 				</div>
 			</div>
 		</div>
-		<nav class="sina-nav mobile-sidebar logo-center" data-top="0">
-			<div class="container-fluid">
 
-				<div class="sina-nav-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-						<i class="fa fa-bars"></i>
-					</button>
-					<a class="sina-brand" href="<?php echo home_url(); ?>">
-						<!-- <h2>
-					Sina-nav
-				</h2>
-				<p>Learn Something New</p> -->
-						<img src="<?php echo $settings['nm_mega_logo']['url']; ?>" alt="" class="logo-primary">
-						<img src="<?php echo $settings['nm_mega_logo']['url']; ?>" alt="" class="logo-secondary">
+	<?php }
+
+	// Mega menu products
+	public function nm_mega_products(array $settings)
+	{ ?>
+		<h4 class="mega-menu-col-title">Featured Products</h4>
+		<div class="nm-shop-area">
+
+
+			<?php
+			$category = $settings['nm_mega_menu_products_type'];
+			$category_all = ['tshirts', 'hoodies', 'accessories'];
+
+			$args = [
+				'post_type'      => 'product',
+				'post_status'  => 'publish',
+				'orderby' => 'publish_date',
+				'posts_per_page' => 4,
+			];
+
+			if ($category != 'all') {
+				$args['tax_query'] = [
+					[
+						'taxonomy' => 'product_cat',
+						'field'    => 'term_id',
+						'terms'    => $category,
+					]
+				];
+			} else {
+				$args['tax_query'] = [
+					[
+						'taxonomy' => 'product_cat',
+						'field'    => 'term_id',
+						'terms'    => $category_all,
+					]
+				];
+			}
+
+			$products = new WP_Query($args);
+
+			if ($products->have_posts()) {
+				while ($products->have_posts()) : $products->the_post();
+					global $product; ?>
+
+					<a href="<?php echo esc_url(get_the_permalink()); ?>" class="nm-shop">
+						<div class="nm-shop-item">
+							<div class="nm-shop-item-image">
+								<?php if (has_post_thumbnail()) : ?>
+									<img src="<?php echo esc_url(get_the_post_thumbnail_url()); ?>" alt="">
+								<?php endif; ?>
+							</div>
+							<div class="nm-shop-item-details">
+								<h4><?php echo $product->name; ?></h4>
+								<div class="nm-shop-item-rating">
+									<?php
+									$average = $product->get_average_rating();
+									$rating_left = 5 - $average;
+
+									for ($i = 0; $i < round($average); $i++) {
+										echo '<i class="fa fa-star" aria-hidden="true"></i>';
+									}
+									for ($i = 0; $i < round($rating_left); $i++) {
+										echo '<i class="fa fa-star gray-star" aria-hidden="true"></i>';
+									}
+									?>
+
+									<!-- <span>(422)</span> -->
+									<?php
+
+									$total_sell = $this->get_total_sell_product('2016-05-26', get_the_ID());
+									if ($total_sell > 0) {
+										echo '<span>(' . $total_sell . ')</span>';
+									} else {
+										echo '<span>(0)</span>';
+									}
+									?>
+
+								</div>
+								<div class="nm-shop-item-price">
+									<?php
+									$regular_price = $product->get_regular_price();
+									$sell_price = $product->get_sale_price();
+
+									if ($sell_price) { ?>
+										Starting at <del><?php echo get_woocommerce_currency_symbol() . $regular_price; ?></del> <span><?php echo get_woocommerce_currency_symbol() . $regular_price; ?></span>
+									<?php
+									} else { ?>
+										Starting at <span><?php echo get_woocommerce_currency_symbol() . $regular_price; ?></span>
+									<?php } ?>
+
+								</div>
+							</div>
+						</div>
 					</a>
-				</div><!-- .sina-nav-header -->
+			<?php
+				endwhile;
+			}
+			?>
+		</div>
+	<?php }
 
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="navbar-menu">
-					<ul class="sina-menu" data-in="fadeInTop" data-out="fadeInOut">
+	// Mega Menu
+	public function nm_mega_nav_items()
+	{
 
-						<?php
-						if ($settings['nm_mega_menu_main_items']) :
-							foreach ($settings['nm_mega_menu_main_items'] as $main_menu_items) :
-								if ($main_menu_items['menu_type'] === 'mega_item') { ?>
+		$locations = get_nav_menu_locations();
+		$get_menu_id = $locations['nm_mega_menu'];
+		$get_menu_items = wp_get_nav_menu_items($get_menu_id);
 
-									<li class="dropdown menu-item-has-mega-menu">
-										<a href="<?php echo $main_menu_items['menu_item_url']; ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo $main_menu_items['menu_item']; ?></a>
-										<div class="mega-menu dropdown-menu">
-											<ul class="mega-menu-row" role="menu">
-												<li class="mega-menu-col col-md-4">
-													<!-- <h4 class="mega-menu-col-title">Shop All</h4> -->
-													<ul class="sub-menu">
-														<li><a href="#">Shop All</a></li>
-														<li><a href="#">CBD Gummies</a></li>
-														<li><a href="#">CBD Oil</a></li>
-														<li><a href="#">CBD</a></li>
-														<li><a href="#">Category</a></li>
-														<li><a href="#">CBD Esential</a></li>
-														<li><a href="#">CBD Pet Products</a></li>
-													</ul>
-												</li>
-												<li class="mega-menu-col col-md-8">
-													<h4 class="mega-menu-col-title">Featured Products</h4>
-													<div class="nm-shop-area">
-
-
-														<?php
-														$category = $settings['nm_mega_menu_products_type'];
-														$category_all = ['tshirts', 'hoodies', 'accessories'];
-
-														$args = [
-															'post_type'      => 'product',
-															'post_status'  => 'publish',
-															'orderby' => 'publish_date',
-															'posts_per_page' => 4,
-														];
-
-														if ($category != 'all') {
-															$args['tax_query'] = [
-																[
-																	'taxonomy' => 'product_cat',
-																	'field'    => 'term_id',
-																	'terms'    => $category,
-																]
-															];
-														} else {
-															$args['tax_query'] = [
-																[
-																	'taxonomy' => 'product_cat',
-																	'field'    => 'term_id',
-																	'terms'    => $category_all,
-																]
-															];
-														}
-
-														$products = new WP_Query($args);
-
-														if ($products->have_posts()) {
-															while ($products->have_posts()) : $products->the_post();
-																global $product; ?>
-
-																<a href="<?php echo esc_url(get_the_permalink()); ?>" class="nm-shop">
-																	<div class="nm-shop-item">
-																		<div class="nm-shop-item-image">
-																			<?php if (has_post_thumbnail()) : ?>
-																				<img src="<?php echo esc_url(get_the_post_thumbnail_url()); ?>" alt="">
-																			<?php endif; ?>
-																		</div>
-																		<div class="nm-shop-item-details">
-																			<h4><?php echo $product->name; ?></h4>
-																			<div class="nm-shop-item-rating">
-																				<?php
-																				$average = $product->get_average_rating();
-																				$rating_left = 5 - $average;
-
-																				for ($i = 0; $i < round($average); $i++) {
-																					echo '<i class="fa fa-star" aria-hidden="true"></i>';
-																				}
-																				for ($i = 0; $i < round($rating_left); $i++) {
-																					echo '<i class="fa fa-star gray-star" aria-hidden="true"></i>';
-																				}
-																				?>
-
-																				<!-- <span>(422)</span> -->
-																				<?php
-
-																				$total_sell = $this->get_total_sell_product('2016-05-26', get_the_ID());
-																				if ($total_sell > 0) {
-																					echo '<span>(' . $total_sell . ')</span>';
-																				} else {
-																					echo '<span>(0)</span>';
-																				}
-																				?>
-
-																			</div>
-																			<div class="nm-shop-item-price">
-																				<?php
-																				$regular_price = $product->get_regular_price();
-																				$sell_price = $product->get_sale_price();
-
-																				if ($sell_price) { ?>
-																					Starting at <del><?php echo get_woocommerce_currency_symbol() . $regular_price; ?></del> <span><?php echo get_woocommerce_currency_symbol() . $regular_price; ?></span>
-																				<?php
-																				} else { ?>
-																					Starting at <span><?php echo get_woocommerce_currency_symbol() . $regular_price; ?></span>
-																				<?php } ?>
-
-																			</div>
-																		</div>
-																	</div>
-																</a>
-														<?php
-															endwhile;
-														}
-														?>
-													</div>
-												</li>
-											</ul><!-- end row -->
-										</div>
-									</li>
-
-								<?php } else { ?>
-									<li><a href="<?php echo $main_menu_items['menu_item_url']; ?>"><?php echo $main_menu_items['menu_item']; ?></a></li>
-						<?php }
-							endforeach;
-						endif; ?>
-					</ul>
-				</div><!-- /.navbar-collapse -->
-			</div><!-- .container -->
-		</nav>
-
-
-<?php
-
-
+		return !empty($get_menu_items) ? $get_menu_items : '';
 	}
 
+	public function nm_get_child_menu($parent_id, $menu_items)
+	{
+		$child_menus = [];
+
+		if (is_array($menu_items) && !empty($menu_items)) {
+			foreach ($menu_items as $menu_item) {
+				if (intval($menu_item->menu_item_parent) == $parent_id) {
+					array_push($child_menus, $menu_item);
+				}
+			}
+		}
+
+		return $child_menus;
+	}
+
+
+	// Get total sell per product
 	public function get_total_sell_product($date_from, $product_id)
 	{
 		global $wpdb;
@@ -523,5 +478,102 @@ class NM_MEGA_MENU extends Widget_Base
 		GROUP BY order_meta.meta_value";
 
 		return $wpdb->get_var($wpdb->prepare($sql, $product_id, $date_from, $date_to));
+	}
+
+	//Elementor Styles
+	public function nm_mega_class(array $settings)
+	{
+
+		$primanry = $settings['nm_mega_primary'];
+		$secondary = $settings['nm_mega_secondary'];
+		$fonts = $settings['nm_mega_fonts'];
+	?>
+		<style>
+			.sina-nav .sina-menu>li>a,
+			.sina-nav .sina-menu .mega-menu-col .sub-menu a,
+			.woo_amc_head_title,
+			.woo_amc_item_title a,
+			.woo_amc_item_quanity_wrap input,
+			.woo_amc_item_total_price,
+			.nm_enjoy_product h4,
+			.nm-product p a,
+			.nm_cart_btn del,
+			.nm-secure-checkout span {
+				color: <?php echo $primanry; ?> !important;
+				font-family: <?php echo $fonts; ?> !important;
+			}
+
+			.woo_amc_close i,
+			.woo_amc_item_quanity_wrap i,
+			.nm_user_login i,
+			.woo_amc_item_wrap i,
+			.nm_cart_btn:hover,
+			.nm-shop-item-details:hover {
+				color: <?php echo $primanry; ?>;
+			}
+
+			.nm-shop-item .nm-shop-item-details i.fa-star,
+			.nm-shop-item .nm-shop-item-details i.fa-star {
+				color: <?php echo $secondary; ?> !important;
+			}
+
+			.nm-notofication a,
+			.nm-shop-item .nm-shop-item-details span,
+			.nm-shop-item .nm-shop-item-details span {
+				color: <?php echo $secondary; ?> !important;
+				font-family: <?php echo $fonts; ?> !important;
+			}
+
+			.sina-nav-cta-btn a {
+				border: 1px solid <?php echo $secondary; ?> !important;
+				background: <?php echo $secondary; ?> !important;
+				font-family: <?php echo $fonts; ?> !important;
+			}
+
+			.sina-menu-right>li>a:hover {
+				border-bottom: 2px solid <?php echo $secondary; ?> !important;
+			}
+
+			.sina-nav-cta-btn a:hover,
+			.sina-nav-cta-btn a:focus {
+				border-color: <?php echo $secondary; ?> !important;
+				color: <?php echo $secondary; ?> !important;
+			}
+
+			.mega-menu-col .active>a,
+			/* .mega-menu-col a:hover, */
+
+			.sub-menu a:hover,
+			/* .sub-menu a:focus, */
+			.sina-menu>li.sina-nav-cta-btn a:hover,
+			/* .sina-menu>li.sina-nav-cta-btn a:focus, */
+			.sina-menu li .active>a,
+			.sina-menu li>a:focus,
+			/* .sina-menu li a:hover */
+			/* .sina-nav .sina-menu .mega-menu-col .sub-menu a:hover   */
+			.sina-nav .menu-item-has-mega-menu.dropdown .mega-menu-col li>a:hover {
+				color: <?php echo $secondary; ?> !important;
+			}
+
+			.nm-secure-checkout a {
+				background: <?php echo $secondary; ?> !important;
+				font-family: <?php echo $fonts; ?> !important;
+			}
+
+			.sina-menu>li.sina-nav-cta-btn a {
+				border-color: <?php echo $secondary; ?> !important;
+				background: <?php echo $secondary; ?> !important;
+				font-family: <?php echo $fonts; ?> !important;
+			}
+
+			.nm-notofication,
+			.nm-item-notification span,
+			.nm_cart_btn,
+			.nm-secure-checkout,
+			.nm-shop-item-details {
+				font-family: <?php echo $fonts; ?> !important;
+			}
+		</style>
+<?php
 	}
 }

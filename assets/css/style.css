@@ -7,8 +7,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Open+Sans:wght@300;500&display=swap");
 .nm-notofication {
   padding: 10px 30px;
-  font-family: "Montserrat", sans-serif;
-  border-bottom: 1px solid #f5f5f5;
 }
 .nm-notofication span,
 .nm-notofication a {
@@ -66,8 +64,9 @@
   left: 0;
   right: 0;
   background: #fff;
-  border: none;
   transition: box-shadow, border, background 0.5s ease-in-out;
+  border-bottom: 1px solid #f5f5f5;
+  border-top: 1px solid #f5f5f5;
 }
 .sina-nav a {
   text-decoration: none;
@@ -81,7 +80,6 @@
 }
 .sina-nav ul li a {
   display: block;
-  font-family: "Montserrat", sans-serif;
   line-height: 20px;
   text-decoration: none;
   white-space: normal;
@@ -450,10 +448,6 @@
   border-bottom: 1px solid #ddd;
 }
 
-.woo_amc_head_title {
-  font-family: "Montserrat", sans-serif;
-}
-
 .woo_amc_item_wrap {
   margin-bottom: 15px;
   padding: 0px !important;
@@ -493,12 +487,10 @@
 .nm-item-notification span {
   font-size: 12px;
   text-align: center;
-  font-family: "Montserrat", sans-serif;
   color: #fff;
 }
 
 .woo_amc_item_title a {
-  font-family: "Montserrat", sans-serif !important;
   font-size: 14px !important;
 }
 
@@ -522,7 +514,6 @@
 }
 
 .woo_amc_item_total_price {
-  font-family: "Montserrat", sans-serif;
   font-size: 14px !important;
   font-weight: 600 !important;
 }
@@ -536,7 +527,6 @@
   margin-bottom: 150px;
 }
 .nm_enjoy_product h4 {
-  font-family: "Montserrat", sans-serif;
   font-size: 16px;
   font-weight: 500;
 }
@@ -560,7 +550,6 @@
 }
 .nm_enjoy_product .nm-product-area .nm-product p a {
   font-size: 12px;
-  font-family: "Montserrat", sans-serif;
   margin-bottom: 0px;
   margin-top: 5px;
   padding: 0px;
@@ -572,7 +561,6 @@
   background: #fff;
   padding: 7px 20px;
   font-weight: 800;
-  font-family: "Montserrat", sans-serif;
   border-radius: 5px;
 }
 .nm_enjoy_product .nm-product-area .nm-product .nm_cart_btn del {
@@ -583,7 +571,6 @@
   border-top: 1px solid #dbd8d8;
   padding: 0px 20px;
   background: #FAFAFA !important;
-  font-family: "Montserrat", sans-serif;
 }
 .nm-secure-checkout span {
   font-size: 10px;
@@ -638,6 +625,9 @@
   border-radius: 10px;
   float: left;
   width: 48%;
+}
+.nm-shop:focus {
+  color: inherit !important;
 }
 
 .nm-shop-item {
