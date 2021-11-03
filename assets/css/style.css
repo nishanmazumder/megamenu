@@ -579,13 +579,15 @@
   margin-top: -10px;
   margin-bottom: 5px;
 }
+.nm-secure-checkout .nm-subtotal .woo_amc_value {
+  margin-top: 7px;
+}
 .nm-secure-checkout .nm-subtotal span {
   font-size: 14px;
   font-weight: 800;
 }
 .nm-secure-checkout .nm-subtotal span:last-child {
   float: right;
-  margin-top: 3px;
 }
 .nm-secure-checkout a {
   display: block;
@@ -603,6 +605,10 @@
   color: #fff;
 }
 .nm-secure-checkout a:hover {
+  background: #602531;
+  color: #fff;
+}
+.nm-secure-checkout a:focus {
   background: #602531;
   color: #fff;
 }

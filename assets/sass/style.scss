@@ -864,13 +864,17 @@ $animateTime: 1s;
 		margin-top: -10px;
 		margin-bottom: 5px;
 
+		.woo_amc_value{
+			margin-top: 7px;
+		}
+
 		span{
 			font-size: 14px;
 			font-weight: 800;
 
 			&:last-child{
 				float: right;
-				margin-top: 3px;
+				// margin-top: 3px;
 			}
 		}
 	}
@@ -892,6 +896,11 @@ $animateTime: 1s;
 		}
 
 		&:hover{
+			background: #602531;
+			color: #fff;
+		}
+
+		&:focus{
 			background: #602531;
 			color: #fff;
 		}

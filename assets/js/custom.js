@@ -62,7 +62,7 @@
 				// }
 
 				//rightNav.html('<li><a href="#" class="nm_cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>');
-				rightNav.html('<li><a href="#" class="woo_amc_open_active nm_cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>');
+				rightNav.html('<li><a href="javascript:void(0)" class="woo_amc_open_active nm_cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>');
 				getNav.find('.col-half.left').after( rightNav.addClass('sina-menu-dropdown-right sina-menu-left') );
 				rightNav.wrap('<div class="col-half right"></div>');
 			}

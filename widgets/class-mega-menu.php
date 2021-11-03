@@ -84,7 +84,7 @@ class NM_MEGA_MENU extends Widget_Base
 		$this->start_controls_section(
 			'nm_mega_menu_section',
 			[
-				'label' => __('Mega Menu', 'nm_theme'),
+				'label' => __('Logo', 'nm_theme'),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -96,66 +96,6 @@ class NM_MEGA_MENU extends Widget_Base
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
-				]
-			]
-		);
-
-		//Menu add
-		$repeater = new \Elementor\Repeater();
-
-		$repeater->add_control(
-			'menu_item',
-			[
-				'label' => __('Menu Label', 'nm_theme'),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('Home', 'nm_theme'),
-				'label_block' => true,
-			]
-		);
-
-		$repeater->add_control(
-			'menu_item_url',
-			[
-				'label' => __('Menu Link', 'nm_theme'),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'input_type' => 'url',
-				'default' => __('#', 'nm_theme'),
-				'label_block' => true,
-			]
-		);
-
-		$repeater->add_control(
-			'menu_type',
-			[
-				'label' => __('Chose menu type', 'nm_theme'),
-				'label_block' => true,
-				'type' => \Elementor\Controls_Manager::CHOOSE,
-				'options' => [
-					'simple_item' => [
-						'title' => __('Simple Item', 'nm_theme')
-					],
-					'mega_item' => [
-						'title' => __('Mega Item', 'nm_theme')
-					]
-				],
-				'default' => 'simple_item',
-				'toggle' => true,
-			]
-		);
-
-
-		$this->add_control(
-			'nm_mega_menu_main_items',
-			[
-				'label' => __('Main Menu Items', 'nm_theme'),
-				'type' => \Elementor\Controls_Manager::REPEATER,
-				'fields' => $repeater->get_controls(),
-				'default' => [
-					[
-						'menu_item' => __('Home', 'nm_theme'),
-						'menu_item_url' => __('#', 'nm_theme'),
-						'menu_type' => __('simple_item', 'nm_theme')
-					]
 				]
 			]
 		);
@@ -558,6 +498,7 @@ class NM_MEGA_MENU extends Widget_Base
 			.nm-secure-checkout a {
 				background: <?php echo $secondary; ?> !important;
 				font-family: <?php echo $fonts; ?> !important;
+				color: #fff;
 			}
 
 			.sina-menu>li.sina-nav-cta-btn a {

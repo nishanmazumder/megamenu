@@ -34,22 +34,6 @@
                     <div class="nm-product-area">
 
                         <?php
-
-                        // $args = array(
-                        //     'category' => array( 'hoodies' ),
-                        //     'orderby'  => 'name',
-                        // );
-
-
-                        // $args = apply_filters( 'woocommerce_related_products_args', array(
-                        //     'post_type'            => 'product',
-                        //     'posts_per_page'       => 3,
-                        //     'post__in'             => $related,
-                        //     'post__not_in'         => array( $product->id )
-                        // ) );
-
-                        // $products = wc_get_products( $args );
-
                         global $post;
 
                         $terms = wp_get_post_terms($post->ID, 'product_cat');
@@ -73,6 +57,8 @@
 
                         $products = new WP_Query($args);
                         if ($products->have_posts()) { ?>
+
+                       
 
                                 <?php while ($products->have_posts()) : $products->the_post();
                                     global $product; ?>
