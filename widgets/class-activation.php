@@ -15,6 +15,9 @@ final class Elementor_Widegets_Register
         // Register Mega menu
         add_action('init', [$this, 'nm_mega_menu_register']);
 
+        //Register woocommerce tab for discount
+        $this->nm_discount_admin();
+
         // Register Scripts
         $this->nm_mega_scripts();
     }
@@ -38,5 +41,10 @@ final class Elementor_Widegets_Register
     {
         require_once(plugin_dir_path(__FILE__) . 'class-assets.php');
         $assets = new Assets();
+    }
+
+    public function nm_discount_admin()
+    {
+        require_once(plugin_dir_path(__FILE__) . '../admin/class-discount.php');
     }
 }

@@ -9,7 +9,7 @@
         $get_coupon_code = strtolower(get_option('nm_discount_code'));
         $coupon = new WC_Coupon($get_coupon_code);
         if (in_array($_product->get_id(), $coupon->product_ids)) : ?>
-            <div class="nm-item-notification"><span><?php echo $coupon->get_description(); ?> Add 1 more and save extra 2.5%</span></div>
+            <div class="nm-item-notification"><span><?php echo $coupon->get_description(); ?></span></div>
         <?php endif; ?>
         <div class="woo_amc_item">
             <div class="woo_amc_item_delete" data-key="<?php echo $item; ?>">

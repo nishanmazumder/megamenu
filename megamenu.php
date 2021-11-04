@@ -31,7 +31,6 @@ if (!defined('WPINC')) {
 
 require(plugin_dir_path(__FILE__) . 'widgets/class-activation.php');
 require plugin_dir_path(__FILE__) . 'cart-sidebar/includes/class-woo-amc.php';
-require(plugin_dir_path(__FILE__) . 'admin/class-discount.php');
 
 function nm_mega_menu_package()
 {
