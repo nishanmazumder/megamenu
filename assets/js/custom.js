@@ -40,32 +40,32 @@
 
 			// Navbar Center 
 			// ---------------------------------
-			if( getNav.hasClass('logo-center')){
-				var mainNav		= getNav.find('.sina-menu'),
-					rightNav 	= mainNav.clone(),
-					lists 		= mainNav.children('li'),
-					divided 	= Math.round(lists.length);
+			// if( getNav.hasClass('logo-center')){
+			// 	var mainNav		= getNav.find('.sina-menu'),
+			// 		rightNav 	= mainNav.clone(),
+			// 		lists 		= mainNav.children('li'),
+			// 		divided 	= Math.round(lists.length);
 
-				// Remove All list item for newly creation
-				mainNav.empty();
-				rightNav.empty();
+			// 	// Remove All list item for newly creation
+			// 	mainNav.empty();
+			// 	rightNav.empty();
 
-				// Create left part
-				for (var i = 0; i < divided; i++) {
-					mainNav.append( lists[i] );
-				}
-				mainNav.addClass('sina-menu-right').wrap('<div class="col-half left"></div>');
+			// 	// Create left part
+			// 	for (var i = 0; i < divided; i++) {
+			// 		mainNav.append( lists[i] );
+			// 	}
+			// 	mainNav.addClass('sina-menu-right').wrap('<div class="col-half left"></div>');
 
-				// Create right part
-				// for (var i = divided; i < lists.length; i++) {
-				// 	rightNav.append( lists[i] );
-				// }
+			// 	// Create right part
+			// 	// for (var i = divided; i < lists.length; i++) {
+			// 	// 	rightNav.append( lists[i] );
+			// 	// }
 
-				//rightNav.html('<li><a href="#" class="nm_cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>');
-				rightNav.html('<li><a href="javascript:void(0)" class="woo_amc_open_active nm_cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>');
-				getNav.find('.col-half.left').after( rightNav.addClass('sina-menu-dropdown-right sina-menu-left') );
-				rightNav.wrap('<div class="col-half right"></div>');
-			}
+			// 	//rightNav.html('<li><a href="#" class="nm_cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>');
+			// 	rightNav.html('<li><a href="javascript:void(0)" class="woo_amc_open_active nm_cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>');
+			// 	getNav.find('.col-half.left').after( rightNav.addClass('sina-menu-dropdown-right sina-menu-left') );
+			// 	rightNav.wrap('<div class="col-half right"></div>');
+			// }
 
 			// Mobile Sidebar
 			// ---------------------------------
@@ -286,4 +286,16 @@
 	}
 	// Initialize
 	$('.sina-nav').sinaNav();
+
+
+
+		// $('.nm-notofication').hover(function() {
+		// 		$('.sina-nav').css("background", "<?php echo $background_hover; ?>")
+		// 	}
+
+		// )
+		// $('.sina-nav').hover(function() {
+		// 	$('.nm-notofication').css("background", "<?php echo $background_hover; ?>")
+		// })
+
 }(jQuery));

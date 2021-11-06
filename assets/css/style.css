@@ -13,6 +13,12 @@
   font-size: 12px;
   text-decoration: none !important;
 }
+.nm-notofication span {
+  margin-left: 220px;
+}
+.nm-notofication a {
+  margin-right: 50px;
+}
 .nm-notofication .nm_user_login {
   display: none;
 }
@@ -65,8 +71,6 @@
   right: 0;
   background: #fff;
   transition: box-shadow, border, background 0.5s ease-in-out;
-  border-bottom: 1px solid #f5f5f5;
-  border-top: 1px solid #f5f5f5;
 }
 .sina-nav a {
   text-decoration: none;
@@ -93,6 +97,8 @@
 .sina-nav .container,
 .sina-nav .container-fluid {
   position: relative;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 .sina-nav .sina-brand {
   height: 60px;
@@ -126,6 +132,10 @@
 }
 .sina-nav .logo-secondary, .sina-nav.navbar-transparent .logo-primary {
   display: none;
+}
+.sina-nav .sina-nav-header {
+  border-bottom: 1px solid #f5f5f5;
+  border-top: 1px solid #f5f5f5;
 }
 .sina-nav .dropdown-toggle::after {
   width: inherit;
@@ -251,7 +261,7 @@
   margin-left: 0;
 }
 .sina-nav .navbar-collapse {
-  padding: 0;
+  padding: 0px 20px;
 }
 .sina-nav .menu-item-has-mega-menu.dropdown {
   position: static;
@@ -434,14 +444,28 @@
   float: left;
 }
 
-.nm_cart {
+.nm_cart_area {
+  margin-top: 10px;
+  float: right;
+  z-index: 100;
+  position: absolute;
+  right: 35px;
+  top: 0px;
+}
+.nm_cart_area .nm_cart {
+  color: #222;
   padding: 15px !important;
 }
-.nm_cart:hover, .nm_cart:focus {
+.nm_cart_area .nm_cart:hover, .nm_cart_area .nm_cart:focus {
   border-bottom: 2px solid transparent !important;
 }
-.nm_cart i {
+.nm_cart_area .nm_cart i {
   font-size: 24px;
+}
+.nm_cart_area .nm_cart span {
+  font-size: 12px;
+  position: relative;
+  top: -15px;
 }
 
 .woo_amc_head {
@@ -570,7 +594,6 @@
 .nm-secure-checkout {
   border-top: 1px solid #dbd8d8;
   padding: 0px 20px;
-  background: #FAFAFA !important;
 }
 .nm-secure-checkout span {
   font-size: 10px;
@@ -889,7 +912,7 @@
     position: relative;
     float: left;
     font-size: 18px;
-    margin: 12px 0 0 0;
+    margin: 12px 0 0 25px;
     padding: 4px 10px;
     width: 38px;
     cursor: pointer;
@@ -1079,18 +1102,30 @@
     display: none !important;
   }
 
+  .nm-notofication span {
+    margin-left: 150px;
+  }
+
+  .woocommerce-Price-amount {
+    margin-right: 15px;
+  }
+
   .nm-dnone-mobile {
     display: none !important;
   }
 
   .nm_user_login {
     display: block !important;
-    position: relative;
-    top: 60px;
+    position: absolute;
+    top: 70px;
+    right: 0;
     z-index: 100;
   }
-  .nm_user_login a {
-    padding: 15px;
+  .nm_user_login a span {
+    font-size: 12px;
+    position: relative;
+    top: -15px;
+    margin-left: 0px;
   }
   .nm_user_login i {
     font-size: 24px;
@@ -1137,6 +1172,14 @@
     width: 250px;
   }
 
+  .nm-notofication span {
+    margin-left: 0px;
+  }
+
+  .nm-notofication a {
+    margin-right: 0px;
+  }
+
   .nm_user_login {
     position: absolute;
     right: 0;
@@ -1148,6 +1191,10 @@
 
   body.on-side {
     margin-left: -250px;
+  }
+
+  .nm-product p {
+    line-height: 17px;
   }
 
   .nm-product {
@@ -1190,6 +1237,45 @@
   }
   .sina-nav.wp-topbar .widget-bar {
     top: 46px;
+  }
+}
+.nm-mega-center .sina-menu {
+  float: none !important;
+}
+.nm-mega-center .sina-brand {
+  float: left !important;
+  margin-left: 35px !important;
+}
+.nm-mega-center .navbar-collapse {
+  margin-bottom: -10px;
+}
+
+.nm-mega-right .sina-menu {
+  float: right !important;
+  margin-right: 100px;
+  margin-top: -10px;
+}
+.nm-mega-right .navbar-collapse {
+  margin-bottom: -10px;
+}
+.nm-mega-right .sina-brand {
+  float: left !important;
+  margin-left: 35px !important;
+}
+
+@media (max-width: 1025px) {
+  .nm-mega-center .sina-brand {
+    float: none !important;
+  }
+
+  .nm-mega-right .sina-brand {
+    float: none !important;
+    margin-left: -50px !important;
+  }
+}
+@media (max-width: 479px) {
+  .nm-mega-center .sina-brand {
+    margin-left: -40px !important;
   }
 }
 

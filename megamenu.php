@@ -11,7 +11,7 @@
  * Author URI:        https://www.bdsoftcreation.com/
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       btc-price-text-domain
+ * Text Domain:       nm_theme
  * Domain Path:       /languages
  */
 

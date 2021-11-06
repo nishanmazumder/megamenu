@@ -24,7 +24,7 @@ class Assets
     public function register_styles()
     {
         wp_enqueue_style('nm-mega-bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css');
-        wp_enqueue_style('nm-mega-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+        wp_enqueue_style('nm-mega-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.0/css/all.min.css');
         wp_enqueue_style('nm-mega-animate', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
         wp_enqueue_style('nm-mega-style', plugins_url('../assets/css/style.css', __FILE__));
     }

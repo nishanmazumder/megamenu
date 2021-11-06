@@ -8,6 +8,7 @@ use Elementor\Widget_Base as Widget_Base;
 
 class NM_MEGA_MENU extends Widget_Base
 {
+	
 	/**
 	 *  Widget name
 	 */
@@ -50,13 +51,13 @@ class NM_MEGA_MENU extends Widget_Base
 		$this->start_controls_section(
 			'nm_top_section',
 			[
-				'label' => __('Top Bar', 'nm_theme'),
+				'label' => __('Notification', 'nm_theme'),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
 
 		$this->add_control('nm_notification', [
-			'label' => __('Notification', 'nm_theme'),
+			'label' => __('Notification Text', 'nm_theme'),
 			'label_block' => true,
 			'type' => \Elementor\Controls_Manager::TEXT,
 			'default' => __('Free Shipping on All Orders', 'nm_theme'),
@@ -84,7 +85,7 @@ class NM_MEGA_MENU extends Widget_Base
 		$this->start_controls_section(
 			'nm_mega_menu_section',
 			[
-				'label' => __('Logo', 'nm_theme'),
+				'label' => __('Navigation', 'nm_theme'),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -100,15 +101,15 @@ class NM_MEGA_MENU extends Widget_Base
 			]
 		);
 
-		$this->end_controls_section();
-
-
-		//Mega menu products
-		$this->start_controls_section(
-			'nm_mega_menu_products',
+		$menus = ['mega-menu-left' => "Menu Left", 'mega-menu-center' => 'Menu Center', 'mega-menu-right' => 'Menu Right'];
+		$this->add_control(
+			'nm_mega_menu_position',
 			[
-				'label' => __('Mega Menu Product', 'nm_theme'),
-				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+				'label' => __('Menu Position', 'nm_theme'),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'multiple' => false,
+				'default' => 'mega-menu-left',
+				'options' => $menus,
 			]
 		);
 
@@ -123,10 +124,46 @@ class NM_MEGA_MENU extends Widget_Base
 		$this->add_control(
 			'nm_mega_menu_products_type',
 			[
-				'label' => __('Select Product Type', 'nm_theme'),
+				'label' => __('Select Product', 'nm_theme'),
 				'type' => \Elementor\Controls_Manager::SELECT2,
 				'multiple' => false,
 				'options' => $options,
+			]
+		);
+
+		$this->end_controls_section();
+
+
+		//Mega menu products
+		$this->start_controls_section(
+			'nm_mega_cart_area',
+			[
+				'label' => __('Shoping Cart', 'nm_theme'),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->add_control(
+			'nm_mega_cart_icon',
+			[
+				'label' => __('Cart Icon', 'text-domain'),
+				'type' => \Elementor\Controls_Manager::ICONS,
+				'default' => [
+					'value' => 'fas fa-shopping-cart',
+					'library' => 'solid',
+				],
+			]
+		);
+
+		$this->add_control(
+			'nm_mega_user_icon',
+			[
+				'label' => __('User Icon', 'text-domain'),
+				'type' => \Elementor\Controls_Manager::ICONS,
+				'default' => [
+					'value' => 'far fa-user',
+					'library' => 'solid',
+				],
 			]
 		);
 
@@ -144,23 +181,50 @@ class NM_MEGA_MENU extends Widget_Base
 
 		// Primary Color
 		$this->add_control('nm_mega_primary', [
-			'label' => __('Primary Color', 'nm_theme'),
+			'label' => __('Primary Text Color', 'nm_theme'),
 			'type' => \Elementor\Controls_Manager::COLOR,
 			'default' => __('#222', 'nm_theme'),
 		]);
 
 		// Secondary Color
 		$this->add_control('nm_mega_secondary', [
-			'label' => __('Secondary Color', 'nm_theme'),
+			'label' => __('Secondary Text Color + Hover', 'nm_theme'),
 			'type' => \Elementor\Controls_Manager::COLOR,
 			'default' => __('#E42825', 'nm_theme'),
 		]);
 
 		//Fonts
 		$this->add_control('nm_mega_fonts', [
-			'label' => __('Fonts', 'nm_theme'),
+			'label' => __('Global Fonts', 'nm_theme'),
 			'type' => \Elementor\Controls_Manager::FONT,
 			'default' => __('"Montserrat"' . ',' . ' sans-serif', 'nm_theme'),
+		]);
+
+		// Header Background
+		$this->add_control('nm_mega_menu_bg', [
+			'label' => __('Header Background', 'nm_theme'),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'default' => __('#fff', 'nm_theme'),
+		]);
+
+		$this->add_control('nm_mega_menu_bg_hover', [
+			'label' => __('Header Background Hover', 'nm_theme'),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'default' => __('#ddd', 'nm_theme'),
+		]);
+
+		// Dropdown Background
+		$this->add_control('nm_mega_menu_drop_bg', [
+			'label' => __('Dropdown Menu Background', 'nm_theme'),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'default' => __('#fff', 'nm_theme'),
+		]);
+
+		// Cart Background
+		$this->add_control('nm_cart_bg', [
+			'label' => __('Cart Background', 'nm_theme'),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'default' => __('#FAFAFA', 'nm_theme'),
 		]);
 
 		$this->end_controls_section();
@@ -173,25 +237,60 @@ class NM_MEGA_MENU extends Widget_Base
 	{
 		$settings = $this->get_settings_for_display();
 
+		// Notification
+
+
+		// Mega menu
+		if ($settings['nm_mega_menu_position'] === 'mega-menu-left') {
+			$this->nm_mega_menu_left($settings);
+		} elseif ($settings['nm_mega_menu_position'] === 'mega-menu-center') {
+			$this->nm_mega_menu_center($settings);
+		} else {
+			$this->nm_mega_menu_right($settings);
+		}
+
 		//Styles
 		$this->nm_mega_class($settings);
-?>
+	}
 
-		<!-- Notification -->
-		<?php $this->nm_mega_top_bar($settings); ?>
+	// Notification Bar
+	public function nm_mega_top_bar($settings)
+	{ ?>
 
+		<div class="container-fluid nm-notofication">
+			<div class="row no-gutters">
+				<div class="col-md-10 col-xs-8 text-center">
+					<span><?php echo $settings['nm_notification']; ?></span>
+				</div>
+
+				<div class="col-md-2 col-xs-4 text-right nm-dnone-mobile">
+					<a href="<?php echo $settings['nm_login_register_url']; ?>"><?php echo $settings['nm_login_register']; ?></a>
+				</div>
+
+				<div class="nm_user_login">
+					<a href="#" class="woo_amc_open_active">
+						<?php \Elementor\Icons_Manager::render_icon($settings['nm_mega_cart_icon'], ['aria-hidden' => 'true']); ?>
+						<span id="mini-cart-count"></span>
+					</a>
+					<a href="<?php echo $settings['nm_login_register_url']; ?>"><?php \Elementor\Icons_Manager::render_icon($settings['nm_mega_user_icon'], ['aria-hidden' => 'true']); ?></i></a>
+				</div>
+			</div>
+		</div>
+
+	<?php }
+
+	// Mega menu LEFT
+	public function nm_mega_menu_left($settings)
+	{ 
+		?>
 		<nav class="sina-nav mobile-sidebar logo-center" data-top="0">
+			<?php $this->nm_mega_top_bar($settings); ?>
 			<div class="container-fluid">
-
 				<div class="sina-nav-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
 						<i class="fa fa-bars"></i>
 					</button>
 					<a class="sina-brand" href="<?php echo home_url(); ?>">
-						<!-- <h2>
-					Sina-nav
-				</h2>
-				<p>Learn Something New</p> -->
 						<img src="<?php echo $settings['nm_mega_logo']['url']; ?>" alt="" class="logo-primary">
 						<img src="<?php echo $settings['nm_mega_logo']['url']; ?>" alt="" class="logo-secondary">
 					</a>
@@ -238,34 +337,153 @@ class NM_MEGA_MENU extends Widget_Base
 								endif;
 							endforeach; ?>
 						</ul>
+						<div class="nm_cart_area">
+							<a href="javascript:void(0)" class="woo_amc_open_active nm_cart">
+								<?php \Elementor\Icons_Manager::render_icon($settings['nm_mega_cart_icon'], ['aria-hidden' => 'true']); ?>
+								<span id="mini-cart-count"></span>
+							</a>
+						</div>
 					</div><!-- /.navbar-collapse -->
 				<?php endif; ?>
 			</div><!-- .container -->
 		</nav>
-	<?php
-	}
+	<?php }
 
-	// Notification Bar
-	public function nm_mega_top_bar($settings)
+	// Mega menu CENTER
+	public function nm_mega_menu_center(array $settings)
 	{ ?>
+		<nav class="sina-nav mobile-sidebar logo-center nm-mega-center" data-top="0">
+			<?php $this->nm_mega_top_bar($settings); ?>
+			<div class="container-fluid">
+				<div class="sina-nav-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+						<i class="fa fa-bars"></i>
+					</button>
+					<a class="sina-brand" href="<?php echo home_url(); ?>">
+						<img src="<?php echo $settings['nm_mega_logo']['url']; ?>" alt="" class="logo-primary">
+						<img src="<?php echo $settings['nm_mega_logo']['url']; ?>" alt="" class="logo-secondary">
+					</a>
+				</div><!-- .sina-nav-header -->
+				<?php
+				$menu_items = $this->nm_mega_nav_items();
+				if (is_array($menu_items) && !empty($menu_items)) :
+				?>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="navbar-menu">
+						<ul class="sina-menu" data-in="fadeInTop" data-out="fadeInOut">
 
-		<div class="container-fluid nm-notofication">
-			<div class="row">
-				<div class="col-md-10 col-xs-8 text-center">
-					<span><?php echo $settings['nm_notification']; ?></span>
-				</div>
+							<?php
+							foreach ($menu_items as $main_menu_item) :
+								if (!$main_menu_item->menu_item_parent) :
 
-				<div class="col-md-2 col-xs-4 text-right nm-dnone-mobile">
-					<a href="<?php echo $settings['nm_login_register_url']; ?>"><?php echo $settings['nm_login_register']; ?></a>
-				</div>
+									$child_menu_items = $this->nm_get_child_menu($main_menu_item->ID, $menu_items);
+									$has_child = !empty($child_menu_items) && is_array($child_menu_items);
 
-				<div class="nm_user_login">
-					<a href="#" class="woo_amc_open_active"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
-					<a href="<?php echo $settings['nm_login_register_url']; ?>"><i class="fa fa-user-o" aria-hidden="true"></i></a>
-				</div>
-			</div>
-		</div>
+									if (!$has_child) { ?>
+										<li><a href="<?php echo esc_url($main_menu_item->url) ?>"><?php echo esc_html($main_menu_item->title) ?></a></li>
+									<?php } else { ?>
+										<li class="dropdown menu-item-has-mega-menu">
+											<a href="<?php echo esc_url($main_menu_item->url) ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo esc_html($main_menu_item->title) ?></a>
+											<div class="mega-menu dropdown-menu">
+												<ul class="mega-menu-row" role="menu">
+													<li class="mega-menu-col col-md-4">
+														<!-- <h4 class="mega-menu-col-title">Shop All</h4> -->
+														<ul class="sub-menu">
+															<?php foreach ($child_menu_items as $child_menu_item) : ?>
+																<li><a href="<?php echo esc_url($child_menu_item->url) ?>"><?php echo esc_html($child_menu_item->title) ?></a></li>
+															<?php endforeach; ?>
+														</ul>
+													</li>
+													<li class="mega-menu-col col-md-8">
+														<!-- Mega Menu product area -->
+														<?php $this->nm_mega_products($settings); ?>
+													</li>
+												</ul><!-- end row -->
+											</div>
+										</li>
+							<?php
+									}
+								endif;
+							endforeach; ?>
+						</ul>
+						<div class="clearfix"></div>
+						<div class="nm_cart_area">
+							<a href="javascript:void(0)" class="woo_amc_open_active nm_cart">
+								<?php \Elementor\Icons_Manager::render_icon($settings['nm_mega_cart_icon'], ['aria-hidden' => 'true']); ?>
+							</a>
+						</div>
+					</div><!-- /.navbar-collapse -->
+				<?php endif; ?>
+			</div><!-- .container -->
+		</nav>
+	<?php }
 
+	// Mega menu RIGHT
+	public function nm_mega_menu_right(array $settings)
+	{ ?>
+		<nav class="sina-nav mobile-sidebar nm-mega-right" data-top="0">
+			<?php $this->nm_mega_top_bar($settings); ?>
+			<div class="container-fluid">
+				<div class="sina-nav-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+						<i class="fa fa-bars"></i>
+					</button>
+					<a class="sina-brand" href="<?php echo home_url(); ?>">
+						<img src="<?php echo $settings['nm_mega_logo']['url']; ?>" alt="" class="logo-primary">
+						<img src="<?php echo $settings['nm_mega_logo']['url']; ?>" alt="" class="logo-secondary">
+					</a>
+				</div><!-- .sina-nav-header -->
+				<?php
+				$menu_items = $this->nm_mega_nav_items();
+				if (is_array($menu_items) && !empty($menu_items)) :
+				?>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="navbar-menu">
+						<ul class="sina-menu" data-in="fadeInTop" data-out="fadeInOut">
+
+							<?php
+							foreach ($menu_items as $main_menu_item) :
+								if (!$main_menu_item->menu_item_parent) :
+
+									$child_menu_items = $this->nm_get_child_menu($main_menu_item->ID, $menu_items);
+									$has_child = !empty($child_menu_items) && is_array($child_menu_items);
+
+									if (!$has_child) { ?>
+										<li><a href="<?php echo esc_url($main_menu_item->url) ?>"><?php echo esc_html($main_menu_item->title) ?></a></li>
+									<?php } else { ?>
+										<li class="dropdown menu-item-has-mega-menu">
+											<a href="<?php echo esc_url($main_menu_item->url) ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo esc_html($main_menu_item->title) ?></a>
+											<div class="mega-menu dropdown-menu">
+												<ul class="mega-menu-row" role="menu">
+													<li class="mega-menu-col col-md-4">
+														<!-- <h4 class="mega-menu-col-title">Shop All</h4> -->
+														<ul class="sub-menu">
+															<?php foreach ($child_menu_items as $child_menu_item) : ?>
+																<li><a href="<?php echo esc_url($child_menu_item->url) ?>"><?php echo esc_html($child_menu_item->title) ?></a></li>
+															<?php endforeach; ?>
+														</ul>
+													</li>
+													<li class="mega-menu-col col-md-8">
+														<!-- Mega Menu product area -->
+														<?php $this->nm_mega_products($settings); ?>
+													</li>
+												</ul><!-- end row -->
+											</div>
+										</li>
+							<?php
+									}
+								endif;
+							endforeach; ?>
+						</ul>
+						<div class="nm_cart_area">
+							<a href="javascript:void(0)" class="woo_amc_open_active nm_cart">
+								<?php \Elementor\Icons_Manager::render_icon($settings['nm_mega_cart_icon'], ['aria-hidden' => 'true']); ?>
+							</a>
+						</div>
+					</div><!-- /.navbar-collapse -->
+				<?php endif; ?>
+			</div><!-- .container -->
+		</nav>
 	<?php }
 
 	// Mega menu products
@@ -367,7 +585,7 @@ class NM_MEGA_MENU extends Widget_Base
 		</div>
 	<?php }
 
-	// Mega Menu
+	// Mega Menu items
 	public function nm_mega_nav_items()
 	{
 
@@ -426,9 +644,15 @@ class NM_MEGA_MENU extends Widget_Base
 
 		$primanry = $settings['nm_mega_primary'];
 		$secondary = $settings['nm_mega_secondary'];
+		$background = $settings['nm_mega_menu_bg'];
+		$background_hover = $settings['nm_mega_menu_bg_hover'];
+		$background_drop = $settings['nm_mega_menu_drop_bg'];
+		$background_cart = $settings['nm_cart_bg'];
 		$fonts = $settings['nm_mega_fonts'];
 	?>
 		<style>
+			.nm-notofication a,
+			.nm-notofication span,
 			.sina-nav .sina-menu>li>a,
 			.sina-nav .sina-menu .mega-menu-col .sub-menu a,
 			.woo_amc_head_title,
@@ -453,11 +677,11 @@ class NM_MEGA_MENU extends Widget_Base
 			}
 
 			.nm-shop-item .nm-shop-item-details i.fa-star,
-			.nm-shop-item .nm-shop-item-details i.fa-star {
+			.nm-shop-item .nm-shop-item-details i.fa-star,
+			.nm_cart_area i:hover {
 				color: <?php echo $secondary; ?> !important;
 			}
 
-			.nm-notofication a,
 			.nm-shop-item .nm-shop-item-details span,
 			.nm-shop-item .nm-shop-item-details span {
 				color: <?php echo $secondary; ?> !important;
@@ -470,7 +694,7 @@ class NM_MEGA_MENU extends Widget_Base
 				font-family: <?php echo $fonts; ?> !important;
 			}
 
-			.sina-menu-right>li>a:hover {
+			.sina-menu>li>a:hover {
 				border-bottom: 2px solid <?php echo $secondary; ?> !important;
 			}
 
@@ -514,7 +738,27 @@ class NM_MEGA_MENU extends Widget_Base
 			.nm-shop-item-details {
 				font-family: <?php echo $fonts; ?> !important;
 			}
+
+			.sina-nav {
+				background: <?php echo $background; ?> !important;
+
+			}
+
+			.sina-nav:hover {
+				background: <?php echo $background_hover; ?> !important;
+			}
+
+			.dropdown-menu {
+				background: <?php echo $background_drop; ?> !important;
+			}
+
+			.woo_amc_container,
+			.woo_amc_head,
+			.nm-secure-checkout {
+				background: <?php echo $background_cart; ?> !important;
+			}
 		</style>
+
 <?php
 	}
 }

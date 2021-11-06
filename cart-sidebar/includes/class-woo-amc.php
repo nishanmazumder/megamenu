@@ -22,11 +22,11 @@ class WooAmc {
 	 */
 	public function __construct() {
 		if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
-			$this->version = PLUGIN_NAME_VERSION;
+			$this->version = NM_MEGA_MENU;
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'woocommerce-ajax-mini-cart';
+		$this->plugin_name = 'nm-mega-menu';
 
 		$this->load_dependencies();
 		$this->set_locale();

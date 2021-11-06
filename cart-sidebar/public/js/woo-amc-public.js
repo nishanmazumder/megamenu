@@ -21,7 +21,7 @@ var public_woo_amc_get_cart;
         });
         
         $('body').on( 'added_to_cart', function(e, fragments, cart_hash, this_button){
-           // woo_amc_show();
+            woo_amc_show();
             woo_amc_get_cart();
         });
 
