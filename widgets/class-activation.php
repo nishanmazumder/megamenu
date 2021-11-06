@@ -62,7 +62,7 @@ final class Elementor_Widegets_Register
 ?>
         <span id="mini-cart-count"><?php echo $items_count ? $items_count : '0'; ?></span>
 <?php
-        $fragments['#mini-cart-count'] = ob_get_clean();
+        $fragments['.mini-cart-count'] = ob_get_clean();
         return $fragments;
     }
 }

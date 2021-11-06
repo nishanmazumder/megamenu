@@ -13,7 +13,7 @@
         <?php endif; ?>
         <div class="woo_amc_item">
             <div class="woo_amc_item_delete" data-key="<?php echo $item; ?>">
-                <i class="fa fa-trash-o" aria-hidden="true"></i>
+            <i class="fas fa-trash-alt"></i>
             </div>
             <a href="<?php echo $product_link; ?>" class="woo_amc_item_img">
                 <?php echo $_product->get_image(); ?>
