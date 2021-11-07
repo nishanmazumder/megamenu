@@ -238,15 +238,33 @@ class NM_MEGA_MENU extends Widget_Base
 			'default' => __('#FAFAFA', 'nm_theme'),
 		]);
 
-		$this->add_group_control(
-			\Elementor\Group_Control_Background::get_type(),
+		$this->add_control(
+			'nm_cart_notification_title',
 			[
-				'name' => 'nm_cart_notification_bg',
-				'label' => __('Discount notification Background', 'nm_theme'),
-				'types' => ['classic', 'gradient'],
-				'selector' => '{{WRAPPER}} .nm-item-notification',
+				'label' => __( 'Discount notification', 'nm_theme' ),
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
 			]
 		);
+
+		
+		$this->add_control('nm_cart_notification_color', [
+			'label' => __('Notification Color', 'nm_theme'),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'default' => __('#fff', 'nm_theme'),
+		]);
+
+		$this->add_control('nm_cart_notification_bg_start', [
+			'label' => __('To Start', 'nm_theme'),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'default' => __('rgba(255, 0, 0, 1)', 'nm_theme'),
+		]);
+
+		$this->add_control('nm_cart_notification_bg_end', [
+			'label' => __('To End', 'nm_theme'),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'default' => __('#c5c575', 'nm_theme'),
+		]);
 
 		$this->end_controls_section();
 	}
@@ -277,7 +295,6 @@ class NM_MEGA_MENU extends Widget_Base
 	// Notification Bar
 	public function nm_mega_top_bar($settings)
 	{ ?>
-
 		<div class="container-fluid nm-notofication">
 			<div class="row no-gutters">
 				<div class="col-md-10 col-xs-8 text-center">
@@ -787,7 +804,11 @@ class NM_MEGA_MENU extends Widget_Base
 			}
 
 			.nm-item-notification {
-				background-image: linear-gradient(to right, rgba(255, 0, 0, 1), #c5c575);
+				background-image: linear-gradient(to right, <?php echo $settings['nm_cart_notification_bg_start']; ?>, <?php echo $settings['nm_cart_notification_bg_end']; ?>);
+			}
+
+			.nm-item-notification span{
+				color: <?php echo $settings['nm_cart_notification_color']; ?>;
 			}
 
 			<?php
