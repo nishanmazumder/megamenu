@@ -8,7 +8,7 @@ use Elementor\Widget_Base as Widget_Base;
 
 class NM_MEGA_MENU extends Widget_Base
 {
-	
+
 	/**
 	 *  Widget name
 	 */
@@ -134,12 +134,24 @@ class NM_MEGA_MENU extends Widget_Base
 		$this->end_controls_section();
 
 
-		//Mega menu products
+		//Cart
 		$this->start_controls_section(
 			'nm_mega_cart_area',
 			[
 				'label' => __('Shoping Cart', 'nm_theme'),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$cart_sidebar = ['cart-left' => "Left", 'cart-right' => 'Right'];
+		$this->add_control(
+			'nm_cart_position',
+			[
+				'label' => __('Cart Sidebar Position', 'nm_theme'),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'multiple' => false,
+				'default' => 'cart-right',
+				'options' => $cart_sidebar,
 			]
 		);
 
@@ -169,7 +181,6 @@ class NM_MEGA_MENU extends Widget_Base
 
 		$this->end_controls_section();
 
-
 		//Styles
 		$this->start_controls_section(
 			'nm_mega_menu_style',
@@ -193,6 +204,12 @@ class NM_MEGA_MENU extends Widget_Base
 			'default' => __('#E42825', 'nm_theme'),
 		]);
 
+		$this->add_control('nm_mega_menu_item_hover', [
+			'label' => __('Mega Menu Item Hover', 'nm_theme'),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'default' => __('#ddd', 'nm_theme'),
+		]);
+
 		//Fonts
 		$this->add_control('nm_mega_fonts', [
 			'label' => __('Global Fonts', 'nm_theme'),
@@ -205,12 +222,6 @@ class NM_MEGA_MENU extends Widget_Base
 			'label' => __('Header Background', 'nm_theme'),
 			'type' => \Elementor\Controls_Manager::COLOR,
 			'default' => __('#fff', 'nm_theme'),
-		]);
-
-		$this->add_control('nm_mega_menu_bg_hover', [
-			'label' => __('Header Background Hover', 'nm_theme'),
-			'type' => \Elementor\Controls_Manager::COLOR,
-			'default' => __('#ddd', 'nm_theme'),
 		]);
 
 		// Dropdown Background
@@ -281,8 +292,8 @@ class NM_MEGA_MENU extends Widget_Base
 
 	// Mega menu LEFT
 	public function nm_mega_menu_left($settings)
-	{ 
-		?>
+	{
+	?>
 		<nav class="sina-nav mobile-sidebar logo-center" data-top="0">
 			<?php $this->nm_mega_top_bar($settings); ?>
 			<div class="container-fluid">
@@ -479,8 +490,8 @@ class NM_MEGA_MENU extends Widget_Base
 						<div class="nm_cart_area">
 							<a href="javascript:void(0)" class="woo_amc_open_active nm_cart">
 								<?php \Elementor\Icons_Manager::render_icon($settings['nm_mega_cart_icon'], ['aria-hidden' => 'true']); ?>
+								<span class="mini-cart-count"></span>
 							</a>
-							<span class="mini-cart-count"></span>
 						</div>
 					</div><!-- /.navbar-collapse -->
 				<?php endif; ?>
@@ -583,6 +594,7 @@ class NM_MEGA_MENU extends Widget_Base
 			<?php
 				endwhile;
 			}
+			wp_reset_postdata();
 			?>
 		</div>
 	<?php }
@@ -646,6 +658,7 @@ class NM_MEGA_MENU extends Widget_Base
 
 		$primanry = $settings['nm_mega_primary'];
 		$secondary = $settings['nm_mega_secondary'];
+		$mega_menu_item_hover = $settings['nm_mega_menu_item_hover'];
 		$background = $settings['nm_mega_menu_bg'];
 		$background_hover = $settings['nm_mega_menu_bg_hover'];
 		$background_drop = $settings['nm_mega_menu_drop_bg'];
@@ -674,7 +687,9 @@ class NM_MEGA_MENU extends Widget_Base
 			.nm_user_login i,
 			.woo_amc_item_wrap i,
 			.nm_cart_btn:hover,
-			.nm-shop-item-details:hover {
+			.nm-shop-item-details:hover,
+			.nm_cart,
+			.nm_user_login a{
 				color: <?php echo $primanry; ?>;
 			}
 
@@ -694,6 +709,10 @@ class NM_MEGA_MENU extends Widget_Base
 				border: 1px solid <?php echo $secondary; ?> !important;
 				background: <?php echo $secondary; ?> !important;
 				font-family: <?php echo $fonts; ?> !important;
+			}
+
+			.sina-menu>li:hover {
+				background: <?php echo $mega_menu_item_hover; ?>;
 			}
 
 			.sina-menu>li>a:hover {
@@ -746,10 +765,6 @@ class NM_MEGA_MENU extends Widget_Base
 
 			}
 
-			.sina-nav:hover {
-				background: <?php echo $background_hover; ?> !important;
-			}
-
 			.dropdown-menu {
 				background: <?php echo $background_drop; ?> !important;
 			}
@@ -759,6 +774,17 @@ class NM_MEGA_MENU extends Widget_Base
 			.nm-secure-checkout {
 				background: <?php echo $background_cart; ?> !important;
 			}
+
+			<?php
+			if ($settings['nm_cart_position'] === 'cart-right') { ?>.woo_amc_container_wrap {
+				right: 0;
+			}
+
+			<?php } else { ?>.woo_amc_container_wrap {
+				left: 0;
+			}
+
+			<?php } ?>
 		</style>
 
 <?php

@@ -287,15 +287,9 @@
 	// Initialize
 	$('.sina-nav').sinaNav();
 
-
-
-		// $('.nm-notofication').hover(function() {
-		// 		$('.sina-nav').css("background", "<?php echo $background_hover; ?>")
-		// 	}
-
-		// )
-		// $('.sina-nav').hover(function() {
-		// 	$('.nm-notofication').css("background", "<?php echo $background_hover; ?>")
-		// })
+	// $('.add_to_cart_button').on('click', 'nm_cart_count')
+	// function nm_cart_count(){
+	// 	alert('test')
+	// }
 
 }(jQuery));

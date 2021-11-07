@@ -1,5 +1,5 @@
 <div class="woo_amc_bg"></div>
-<div class="woo_amc_container_wrap woo_amc_container_wrap_<?php echo $options['cart_type']; ?>">
+<div class="woo_amc_container_wrap">
     <div class="woo_amc_container woo_amc_container_side">
         <div class="woo_amc_head">
             <div class="woo_amc_head_title woo_amc_center"><?php echo $options['cart_header_title']; ?></div>
@@ -58,31 +58,35 @@
                         $products = new WP_Query($args);
                         if ($products->have_posts()) { ?>
 
-                       
 
-                                <?php while ($products->have_posts()) : $products->the_post();
-                                    global $product; ?>
-                                    <div class="nm-product">
-                                        <?php if (has_post_thumbnail()) : ?>
-                                            <a href="<?php echo esc_url(get_the_permalink()); ?>"><img src="<?php echo esc_url(get_the_post_thumbnail_url()); ?>" alt=""></a>
-                                        <?php endif; ?>
-                                        <p><a href="<?php echo esc_url(get_the_permalink()); ?>"><?php echo $product->get_name(); ?></a></p>
 
-                                        <?php
-                                        $regular_price = $product->get_regular_price();
-                                        $sell_price = $product->get_sale_price();
+                            <?php while ($products->have_posts()) : $products->the_post();
+                                global $product; ?>
+                                <div class="nm-product">
+                                    <?php if (has_post_thumbnail()) : ?>
+                                        <a href="<?php echo esc_url(get_the_permalink()); ?>"><img src="<?php echo esc_url(get_the_post_thumbnail_url()); ?>" alt=""></a>
+                                    <?php endif; ?>
+                                    <p><a href="<?php echo esc_url(get_the_permalink()); ?>"><?php echo $product->get_name(); ?></a></p>
 
-                                        if ($sell_price) { ?>
-                                            <a href="#">Add - <del><?php echo get_woocommerce_currency_symbol().$regular_price; ?></del><?php echo get_woocommerce_currency_symbol().$sell_price; ?></a>
-                                        <?php
-                                        } else { ?>
-                                            <a class="nm_cart_btn" href="<?php echo $product->add_to_cart_url(); ?>">Add - <?php echo get_woocommerce_currency_symbol().$regular_price; ?></a>
-                                        <?php } ?>
-                                    </div>
-                                <?php endwhile;  ?>
+                                    <?php
+                                    $regular_price = $product->get_regular_price();
+                                    $sell_price = $product->get_sale_price();
 
-                        <?php wp_reset_query();
-                        } ?>
+                                    if ($sell_price) { ?>
+                                        <a href="#">Add - <del><?php echo get_woocommerce_currency_symbol() . $regular_price; ?></del><?php echo get_woocommerce_currency_symbol() . $sell_price; ?></a>
+                                    <?php
+                                    } else { ?>
+                                        <a class="nm_cart_btn" href="<?php echo $product->add_to_cart_url(); ?>">Add - <?php echo get_woocommerce_currency_symbol() . $regular_price; ?></a>
+                                    <?php } ?>
+                                </div>
+                            <?php endwhile;  ?>
+
+                        <?php
+                        }
+
+                        wp_reset_postdata();
+
+                        ?>
                     </div>
                 </div>
             </div>

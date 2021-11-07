@@ -308,7 +308,7 @@ body{
 }
 .woo_amc_item_delete{
     position: absolute;
-    right: 0;
+    right: 15px;
     top: 0;
     width: 15px;
     height: 15px;
@@ -368,7 +368,7 @@ input.woo_amc_item_quanity{
 }
 .woo_amc_item_total_price{
     position: absolute;
-    right: 0;
+    right: 15px;
     bottom: 0;
     line-height: 100%;
 }

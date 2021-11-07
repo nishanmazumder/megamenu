@@ -67,6 +67,7 @@
   border-radius: 0;
   min-height: 60px;
   z-index: 9999;
+  position: fixed;
   left: 0;
   right: 0;
   background: #fff;
@@ -453,7 +454,6 @@
   top: 0px;
 }
 .nm_cart_area .nm_cart {
-  color: #222;
   padding: 15px !important;
 }
 .nm_cart_area .nm_cart:hover, .nm_cart_area .nm_cart:focus {
@@ -1104,10 +1104,6 @@
 
   .nm-notofication span {
     margin-left: 150px;
-  }
-
-  .woocommerce-Price-amount {
-    margin-right: 15px;
   }
 
   .nm-dnone-mobile {
