@@ -238,6 +238,16 @@ class NM_MEGA_MENU extends Widget_Base
 			'default' => __('#FAFAFA', 'nm_theme'),
 		]);
 
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			[
+				'name' => 'nm_cart_notification_bg',
+				'label' => __('Discount notification Background', 'nm_theme'),
+				'types' => ['classic', 'gradient'],
+				'selector' => '{{WRAPPER}} .nm-item-notification',
+			]
+		);
+
 		$this->end_controls_section();
 	}
 
@@ -281,7 +291,7 @@ class NM_MEGA_MENU extends Widget_Base
 				<div class="nm_user_login">
 					<a href="#" class="woo_amc_open_active">
 						<?php \Elementor\Icons_Manager::render_icon($settings['nm_mega_cart_icon'], ['aria-hidden' => 'true']); ?>
-						<span class="cart-customlocation"><?php echo WC()->cart->get_cart_contents_count()?></span>
+						<span class="cart-customlocation"><?php WC()->cart->get_cart_contents_count() ?></span>
 					</a>
 					<a href="<?php echo $settings['nm_login_register_url']; ?>"><?php \Elementor\Icons_Manager::render_icon($settings['nm_mega_user_icon'], ['aria-hidden' => 'true']); ?></i></a>
 				</div>
@@ -352,7 +362,7 @@ class NM_MEGA_MENU extends Widget_Base
 							<a href="javascript:void(0)" class="woo_amc_open_active nm_cart">
 								<?php \Elementor\Icons_Manager::render_icon($settings['nm_mega_cart_icon'], ['aria-hidden' => 'true']); ?>
 								<!-- <span class="mini-cart-count"></span> -->
-								<span class="cart-customlocation"><?php echo WC()->cart->get_cart_contents_count()?></span>
+								<span class="cart-customlocation"><?php WC()->cart->get_cart_contents_count() ?></span>
 							</a>
 						</div>
 					</div><!-- /.navbar-collapse -->
@@ -422,7 +432,7 @@ class NM_MEGA_MENU extends Widget_Base
 						<div class="nm_cart_area">
 							<a href="javascript:void(0)" class="woo_amc_open_active nm_cart">
 								<?php \Elementor\Icons_Manager::render_icon($settings['nm_mega_cart_icon'], ['aria-hidden' => 'true']); ?>
-								<span class="cart-customlocation"><?php echo WC()->cart->get_cart_contents_count()?></span>
+								<span class="cart-customlocation"><?php WC()->cart->get_cart_contents_count() ?></span>
 							</a>
 						</div>
 					</div><!-- /.navbar-collapse -->
@@ -491,7 +501,7 @@ class NM_MEGA_MENU extends Widget_Base
 						<div class="nm_cart_area">
 							<a href="javascript:void(0)" class="woo_amc_open_active nm_cart">
 								<?php \Elementor\Icons_Manager::render_icon($settings['nm_mega_cart_icon'], ['aria-hidden' => 'true']); ?>
-								<span class="cart-customlocation"><?php echo WC()->cart->get_cart_contents_count()?></span>
+								<span class="cart-customlocation"><?php WC()->cart->get_cart_contents_count() ?></span>
 							</a>
 						</div>
 					</div><!-- /.navbar-collapse -->
@@ -690,7 +700,7 @@ class NM_MEGA_MENU extends Widget_Base
 			.nm_cart_btn:hover,
 			.nm-shop-item-details:hover,
 			.nm_cart,
-			.nm_user_login a{
+			.nm_user_login a {
 				color: <?php echo $primanry; ?>;
 			}
 
@@ -774,6 +784,10 @@ class NM_MEGA_MENU extends Widget_Base
 			.woo_amc_head,
 			.nm-secure-checkout {
 				background: <?php echo $background_cart; ?> !important;
+			}
+
+			.nm-item-notification {
+				background-image: linear-gradient(to right, rgba(255, 0, 0, 1), #c5c575);
 			}
 
 			<?php
