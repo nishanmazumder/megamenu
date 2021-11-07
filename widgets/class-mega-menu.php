@@ -351,7 +351,8 @@ class NM_MEGA_MENU extends Widget_Base
 						<div class="nm_cart_area">
 							<a href="javascript:void(0)" class="woo_amc_open_active nm_cart">
 								<?php \Elementor\Icons_Manager::render_icon($settings['nm_mega_cart_icon'], ['aria-hidden' => 'true']); ?>
-								<span class="mini-cart-count"></span>
+								<!-- <span class="mini-cart-count"></span> -->
+								<span class="cart-customlocation"><?php echo WC()->cart->get_cart_contents_count()?></span>
 							</a>
 						</div>
 					</div><!-- /.navbar-collapse -->

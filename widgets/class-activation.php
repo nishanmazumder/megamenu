@@ -23,6 +23,9 @@ final class Elementor_Widegets_Register
 
         //Cart count
         add_filter('woocommerce_add_to_cart_fragments', [$this, 'nm_mega_cart_count']);
+
+
+        add_filter('woocommerce_add_to_cart_fragments', [$this, 'woocommerce_header_add_to_cart_fragment']);
     }
 
     public function includes()
@@ -63,6 +66,18 @@ final class Elementor_Widegets_Register
         <span id="mini-cart-count"><?php echo $items_count ? $items_count : '0'; ?></span>
 <?php
         $fragments['.mini-cart-count'] = ob_get_clean();
+        return $fragments;
+    }
+
+    public function woocommerce_header_add_to_cart_fragment( $fragments ) {
+        global $woocommerce;
+    
+        ob_start();
+    
+        ?>
+        <span class="cart-customlocation"><?php echo $woocommerce->cart->cart_contents_count ?></span>
+        <?php
+        $fragments['span.cart-customlocation'] = ob_get_clean();
         return $fragments;
     }
 }
