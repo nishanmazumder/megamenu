@@ -25,9 +25,11 @@ final class Elementor_Widegets_Register
         add_filter('woocommerce_add_to_cart_fragments', [$this, 'woocommerce_header_add_to_cart_fragment']);
 
         //Table for cart
-        //$this->nm_create_cart_table();
-
         add_action('plugins_loaded', [$this, 'nm_create_cart_table']);
+
+        //Remove view cart
+        //add_action('woocommerce_init', [$this, 'nm_remove_message_after_add_to_cart'], 99);
+        
     }
 
     public function includes()
@@ -102,9 +104,19 @@ final class Elementor_Widegets_Register
                 $cart_button
             )
         );
-
     }
 
-    //Get minimum rate of shipping method
-    
+    //Remove VIEW CART
+    public function nm_remove_message_after_add_to_cart()
+    {
+        if (isset($_GET['add-to-cart'])) {
+            wc_clear_notices();
+        }
+    }
+
+    //add_filter( 'wc_add_to_cart_message_html', 'empty_wc_add_to_cart_message');
+    function empty_wc_add_to_cart_message( $message, $products ) { 
+        return ''; 
+    }
+
 }

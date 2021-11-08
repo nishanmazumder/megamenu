@@ -84,11 +84,16 @@
                                     $sell_price = $product->get_sale_price();
 
                                     if ($sell_price) { ?>
-                                        <a href="#">Add - <del><?php echo get_woocommerce_currency_symbol() . $regular_price; ?></del><?php echo get_woocommerce_currency_symbol() . $sell_price; ?></a>
+                                        <a rel="nofollow" href="/?add-to-cart=<?php echo get_the_ID(); ?>" data-quantity="1" data-product_id="<?php echo get_the_ID(); ?>" data-product_sku="" class="add_to_cart_button ajax_add_to_cart">Add - <del><?php echo get_woocommerce_currency_symbol() . $regular_price; ?></del><?php echo get_woocommerce_currency_symbol() . $sell_price; ?></a>
                                     <?php
                                     } else { ?>
-                                        <a class="nm_cart_btn" href="<?php echo $product->add_to_cart_url(); ?>">Add - <?php echo get_woocommerce_currency_symbol() . $regular_price; ?></a>
+
+                                        <a rel="nofollow" href="/?add-to-cart=<?php echo get_the_ID(); ?>" data-quantity="1" data-product_id="<?php echo get_the_ID(); ?>" data-product_sku="" class="add_to_cart_button ajax_add_to_cart">Add - <?php echo get_woocommerce_currency_symbol() . $regular_price; ?></a>
                                     <?php } ?>
+
+
+
+
                                 </div>
                             <?php endwhile;  ?>
 
@@ -103,8 +108,44 @@
             </div>
         </div>
 
+
+
+
+
+
+
+
+        <?php
+
+        $zone_ids = array_keys(array('') + WC_Shipping_Zones::get_zones());
+
+        foreach ($zone_ids as $zone_id) {
+            $shipping_zone = new WC_Shipping_Zone($zone_id);
+
+            $shipping_methods = $shipping_zone->get_shipping_methods(true, 'values');
+
+            foreach ($shipping_methods as  $shipping_method) {
+                $min_amount[] = $shipping_method->min_amount;
+            }
+        }
+
+
+
+        ?>
+
         <div class="nm-secure-checkout woo_amc_footer">
+            <?php if ($cart_total >= max($min_amount)) : ?>
                 <span>You've unlocked <b>FREE Priority Shipping!</b></span>
+            <?php endif; ?>
+
+
+
+
+
+
+
+
+
             <div class="nm-subtotal woo_amc_footer_total">
                 <span>Subtotal</span>
                 <span class="woo_amc_value"><?php echo $cart_total; ?></span>

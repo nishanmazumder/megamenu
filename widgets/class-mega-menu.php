@@ -723,42 +723,6 @@ class NM_MEGA_MENU extends Widget_Base
 	}
 
 
-	// public function get_cart_table_info()
-	// {
-
-	
-	// 		if (!isset($zone_name)) return null;
-
-	// 		$result = null;
-	// 		$zone = null;
-
-	// 		$zones = WC_Shipping_Zones::get_zones();
-	// 		foreach ($zones as $z) {
-	// 			if ($z['zone_name'] == $zone_name) {
-	// 				$zone = $z;
-	// 			}
-	// 		}
-
-	// 		if ($zone) {
-	// 			$shipping_methods_nl = $zone['shipping_methods'];
-	// 			$free_shipping_method = null;
-	// 			foreach ($shipping_methods_nl as $method) {
-	// 				if ($method->id == 'free_shipping') {
-	// 					$free_shipping_method = $method;
-	// 					break;
-	// 				}
-	// 			}
-
-	// 			if ($free_shipping_method) {
-	// 				$result = $free_shipping_method->min_amount;
-	// 			}
-	// 		}
-
-	// 		return $result;
-		
-	// }
-
-
 	// Get total sell per product
 	public function get_total_sell_product($date_from, $product_id)
 	{
