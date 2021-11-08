@@ -79,6 +79,9 @@ body{
     -o-transition: 0.3s;
     transition: 0.3s;
 }
+.woo_amc_bg:after{
+    background: transparent !important;
+}
 .woo_amc_bg.woo_amc_show{
     visibility: visible;
     opacity: 1;
@@ -362,6 +365,7 @@ input.woo_amc_item_quanity{
     font-weight: 400;
     box-shadow: none;
     text-align: center;
+    background: transparent !important;
 }
 .woo_amc_item_quanity_plus{
 

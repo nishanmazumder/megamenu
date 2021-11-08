@@ -50,3 +50,5 @@ function nm_discount_all_settings($settings, $current_section)
         return $settings;
     }
 }
+
+

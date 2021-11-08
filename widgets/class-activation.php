@@ -104,4 +104,7 @@ final class Elementor_Widegets_Register
         );
 
     }
+
+    //Get minimum rate of shipping method
+    
 }

@@ -233,6 +233,18 @@ class NM_MEGA_MENU extends Widget_Base
 			'default' => __('"Montserrat"' . ',' . ' sans-serif', 'nm_theme'),
 		]);
 
+		$this->add_control(
+			'nm_cart_item_trash',
+			[
+				'label' => __('Delete Icon size', 'nm_theme'),
+				'type' => \Elementor\Controls_Manager::NUMBER,
+				'min' => 10,
+				'max' => 20,
+				'step' => 5,
+				'default' => 15,
+			]
+		);
+
 		// Header Background
 		$this->add_control('nm_mega_menu_bg', [
 			'label' => __('Header Background', 'nm_theme'),
@@ -669,7 +681,7 @@ class NM_MEGA_MENU extends Widget_Base
 			$wpdb->update(
 				'nm_cart_table',
 				array(
-					'nm_cart_title' => $cart_title, 
+					'nm_cart_title' => $cart_title,
 				),
 				array('id' => 0),
 				array(
@@ -684,7 +696,7 @@ class NM_MEGA_MENU extends Widget_Base
 			$wpdb->update(
 				'nm_cart_table',
 				array(
-					'nm_cart_button' => $cart_button, 
+					'nm_cart_button' => $cart_button,
 				),
 				array('id' => 0),
 				array(
@@ -714,70 +726,36 @@ class NM_MEGA_MENU extends Widget_Base
 	public function get_cart_table_info()
 	{
 
-		global $wpdb;
+	
+			if (!isset($zone_name)) return null;
 
-		// insert
+			$result = null;
+			$zone = null;
 
+			$zones = WC_Shipping_Zones::get_zones();
+			foreach ($zones as $z) {
+				if ($z['zone_name'] == $zone_name) {
+					$zone = $z;
+				}
+			}
 
+			if ($zone) {
+				$shipping_methods_nl = $zone['shipping_methods'];
+				$free_shipping_method = null;
+				foreach ($shipping_methods_nl as $method) {
+					if ($method->id == 'free_shipping') {
+						$free_shipping_method = $method;
+						break;
+					}
+				}
 
+				if ($free_shipping_method) {
+					$result = $free_shipping_method->min_amount;
+				}
+			}
 
-		//global $current_user;
-
-		//$user = wp_get_current_user();
-		//echo ($user);
-		//$post_id = $wpdb->get_results("SELECT DISTINCT user_id FROM $wpdb->pmpro_membership_orders");
-
-		// if (isset($_POST['submit'])) {
-
-		// 	$type = $_POST["type"];
-		// 	$nom_ecole = $_POST["nom_ecole"];
-		// 	$adresse = $_POST["adresse"];
-		// 	$postale = $_POST["postale"];
-		// 	$ville = $_POST["ville"];
-		// 	$telephone = $_POST["telephone"];
-		// 	$classes = $_POST["classes"];
-		// 	$total_eleve = $_POST["total_eleve"];
-		// 	$n_scolaire = $_POST["n_scolaire"];
-
-		// 	global $wpdb;
-		// 	$wpdb->insert(
-		// 		'wp_ecoles_details',
-		// 		array(
-		// 			'type' =>   $type,
-		// 			'nom_ecole' => $nom_ecole,
-		// 			'adresse' => $adresse,
-		// 			'postale' => $postale,
-		// 			'ville' => $ville,
-		// 			'telephone' => $telephone,
-		// 			'classes' => $classes,
-		// 			'total_eleve' => $total_eleve,
-		// 			'n_scolaire' => $n_scolaire
-		// 		),
-		// 		array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')
-		// 	);
-		// }
-
-
-		//$post_id = $wpdb->get_results("SELECT * FROM $wpdb->nm_cart_table");
-
-		// $fivesdrafts = $wpdb->get_results(
-		// 	"
-		// 		SELECT * 
-		// 		FROM $wpdb->nm_cart_table
-		// 		WHERE id = 1
-		// 	"
-		// );
-
-
-		//Select
-		$results = $wpdb->get_results("SELECT * FROM nm_cart_table WHERE id = 1", OBJECT);
-
-
-		//$results = $GLOBALS['wpdb']->get_results( "SELECT * FROM $wpdb->nm_cart_table WHERE option_id = 1", OBJECT );
-
-
-		echo '<pre>';
-		print_r($results);
+			return $result;
+		
 	}
 
 
@@ -936,6 +914,10 @@ class NM_MEGA_MENU extends Widget_Base
 
 			.nm-item-notification span {
 				color: <?php echo $settings['nm_cart_notification_color']; ?>;
+			}
+
+			.woo_amc_item_wrap i {
+				font-size: <?php echo $settings['nm_cart_item_trash']; ?>px;
 			}
 
 			<?php
