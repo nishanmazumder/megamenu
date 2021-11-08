@@ -602,12 +602,14 @@
   margin-bottom: 5px;
 }
 .nm-secure-checkout .nm-subtotal .woo_amc_value {
-  margin-top: 30px;
-  float: right;
+  margin-top: 7px;
 }
 .nm-secure-checkout .nm-subtotal span {
   font-size: 14px;
   font-weight: 800;
+}
+.nm-secure-checkout .nm-subtotal span:last-child {
+  float: right;
 }
 .nm-secure-checkout a {
   display: block;

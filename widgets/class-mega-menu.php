@@ -143,6 +143,22 @@ class NM_MEGA_MENU extends Widget_Base
 			]
 		);
 
+		$this->add_control('nm_cart_title', [
+			'label' => __('Cart Title', 'nm_theme'),
+			'label_block' => true,
+			'type' => \Elementor\Controls_Manager::TEXT,
+			//'input_type' => 'url',
+			'default' => 'Shopping Cart'
+		]);
+
+		$this->add_control('nm_cart_button', [
+			'label' => __('Cart Button text', 'nm_theme'),
+			'label_block' => true,
+			'type' => \Elementor\Controls_Manager::TEXT,
+			//'input_type' => 'url',
+			'default' => 'Secure Checkout'
+		]);
+
 		$cart_sidebar = ['cart-left' => "Left", 'cart-right' => 'Right'];
 		$this->add_control(
 			'nm_cart_position',
@@ -276,7 +292,8 @@ class NM_MEGA_MENU extends Widget_Base
 	{
 		$settings = $this->get_settings_for_display();
 
-		// Notification
+		// Cart Info
+		$this->nm_get_cart_info($settings);
 
 
 		// Mega menu
@@ -639,6 +656,45 @@ class NM_MEGA_MENU extends Widget_Base
 		return !empty($get_menu_items) ? $get_menu_items : '';
 	}
 
+	// Cart Title & Button
+	public function nm_get_cart_info(array $settings)
+	{
+		global $wpdb;
+
+		$cart_title = $settings['nm_cart_title'];
+		$cart_button = $settings['nm_cart_button'];
+
+		if (isset($cart_title)) {
+
+			$wpdb->update(
+				'nm_cart_table',
+				array(
+					'nm_cart_title' => $cart_title, 
+				),
+				array('id' => 0),
+				array(
+					'%s'
+				),
+				array('%d')
+			);
+		}
+
+		if (isset($cart_button)) {
+
+			$wpdb->update(
+				'nm_cart_table',
+				array(
+					'nm_cart_button' => $cart_button, 
+				),
+				array('id' => 0),
+				array(
+					'%s'
+				),
+				array('%d')
+			);
+		}
+	}
+
 	public function nm_get_child_menu($parent_id, $menu_items)
 	{
 		$child_menus = [];
@@ -652,6 +708,76 @@ class NM_MEGA_MENU extends Widget_Base
 		}
 
 		return $child_menus;
+	}
+
+
+	public function get_cart_table_info()
+	{
+
+		global $wpdb;
+
+		// insert
+
+
+
+
+		//global $current_user;
+
+		//$user = wp_get_current_user();
+		//echo ($user);
+		//$post_id = $wpdb->get_results("SELECT DISTINCT user_id FROM $wpdb->pmpro_membership_orders");
+
+		// if (isset($_POST['submit'])) {
+
+		// 	$type = $_POST["type"];
+		// 	$nom_ecole = $_POST["nom_ecole"];
+		// 	$adresse = $_POST["adresse"];
+		// 	$postale = $_POST["postale"];
+		// 	$ville = $_POST["ville"];
+		// 	$telephone = $_POST["telephone"];
+		// 	$classes = $_POST["classes"];
+		// 	$total_eleve = $_POST["total_eleve"];
+		// 	$n_scolaire = $_POST["n_scolaire"];
+
+		// 	global $wpdb;
+		// 	$wpdb->insert(
+		// 		'wp_ecoles_details',
+		// 		array(
+		// 			'type' =>   $type,
+		// 			'nom_ecole' => $nom_ecole,
+		// 			'adresse' => $adresse,
+		// 			'postale' => $postale,
+		// 			'ville' => $ville,
+		// 			'telephone' => $telephone,
+		// 			'classes' => $classes,
+		// 			'total_eleve' => $total_eleve,
+		// 			'n_scolaire' => $n_scolaire
+		// 		),
+		// 		array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')
+		// 	);
+		// }
+
+
+		//$post_id = $wpdb->get_results("SELECT * FROM $wpdb->nm_cart_table");
+
+		// $fivesdrafts = $wpdb->get_results(
+		// 	"
+		// 		SELECT * 
+		// 		FROM $wpdb->nm_cart_table
+		// 		WHERE id = 1
+		// 	"
+		// );
+
+
+		//Select
+		$results = $wpdb->get_results("SELECT * FROM nm_cart_table WHERE id = 1", OBJECT);
+
+
+		//$results = $GLOBALS['wpdb']->get_results( "SELECT * FROM $wpdb->nm_cart_table WHERE option_id = 1", OBJECT );
+
+
+		echo '<pre>';
+		print_r($results);
 	}
 
 
