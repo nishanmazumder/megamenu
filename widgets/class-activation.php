@@ -71,7 +71,7 @@ final class Elementor_Widegets_Register
         return $fragments;
     }
 
-    // able for cart info
+    // Tableable for cart info
     public function nm_create_cart_table()
     {
         global $wpdb;

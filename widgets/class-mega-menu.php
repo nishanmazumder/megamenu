@@ -305,7 +305,7 @@ class NM_MEGA_MENU extends Widget_Base
 		$settings = $this->get_settings_for_display();
 
 		// Cart Info
-		$this->nm_get_cart_info($settings);
+		//$this->nm_get_cart_info($settings);
 
 
 		// Mega menu
@@ -723,40 +723,40 @@ class NM_MEGA_MENU extends Widget_Base
 	}
 
 
-	public function get_cart_table_info()
-	{
+	// public function get_cart_table_info()
+	// {
 
 	
-			if (!isset($zone_name)) return null;
+	// 		if (!isset($zone_name)) return null;
 
-			$result = null;
-			$zone = null;
+	// 		$result = null;
+	// 		$zone = null;
 
-			$zones = WC_Shipping_Zones::get_zones();
-			foreach ($zones as $z) {
-				if ($z['zone_name'] == $zone_name) {
-					$zone = $z;
-				}
-			}
+	// 		$zones = WC_Shipping_Zones::get_zones();
+	// 		foreach ($zones as $z) {
+	// 			if ($z['zone_name'] == $zone_name) {
+	// 				$zone = $z;
+	// 			}
+	// 		}
 
-			if ($zone) {
-				$shipping_methods_nl = $zone['shipping_methods'];
-				$free_shipping_method = null;
-				foreach ($shipping_methods_nl as $method) {
-					if ($method->id == 'free_shipping') {
-						$free_shipping_method = $method;
-						break;
-					}
-				}
+	// 		if ($zone) {
+	// 			$shipping_methods_nl = $zone['shipping_methods'];
+	// 			$free_shipping_method = null;
+	// 			foreach ($shipping_methods_nl as $method) {
+	// 				if ($method->id == 'free_shipping') {
+	// 					$free_shipping_method = $method;
+	// 					break;
+	// 				}
+	// 			}
 
-				if ($free_shipping_method) {
-					$result = $free_shipping_method->min_amount;
-				}
-			}
+	// 			if ($free_shipping_method) {
+	// 				$result = $free_shipping_method->min_amount;
+	// 			}
+	// 		}
 
-			return $result;
+	// 		return $result;
 		
-	}
+	// }
 
 
 	// Get total sell per product
@@ -921,12 +921,18 @@ class NM_MEGA_MENU extends Widget_Base
 			}
 
 			<?php
-			if ($settings['nm_cart_position'] === 'cart-right') { ?>.woo_amc_container_wrap {
-				right: 0;
+			if ($settings['nm_cart_position'] === 'cart-right') { ?>
+			
+			.woo_amc_container_wrap {
+				right: 0 !important;
 			}
 
-			<?php } else { ?>.woo_amc_container_wrap {
-				left: 0;
+			<?php }
+			
+			if ($settings['nm_cart_position'] === 'cart-left') {?>
+				
+			.woo_amc_container_wrap {
+				left: 0 !important;
 			}
 
 			<?php } ?>

@@ -4,16 +4,16 @@
         <div class="woo_amc_head">
             <?php
 
-            // global $wpdb;
-            // $results = $wpdb->get_results("SELECT * FROM nm_cart_table WHERE id = 0");
+            global $wpdb;
+            $results = $wpdb->get_results("SELECT * FROM nm_cart_table WHERE id = 0");
 
-            // foreach ($results as $result) {
-            //     $cart_title = $result->nm_cart_title;
-            //     $cart_btn = $result->nm_cart_button;
-            // }
+            foreach ($results as $result) {
+                $cart_title = $result->nm_cart_title;
+                $cart_btn = $result->nm_cart_button;
+            }
 
             ?>
-            <div class="woo_amc_head_title woo_amc_center"><?php //echo $cart_title; ?></div>
+            <div class="woo_amc_head_title woo_amc_center"><?php echo $cart_title; ?></div>
             <div class="woo_amc_close">
                 <i class="fa fa-times" aria-hidden="true"></i>
             </div>
@@ -109,7 +109,7 @@
                 <span>Subtotal</span>
                 <span class="woo_amc_value"><?php echo $cart_total; ?></span>
             </div>
-            <a href="<?php echo get_permalink(wc_get_page_id('cart')); ?>"><i class="fa fa-lock" aria-hidden="true"></i><?php //echo $cart_btn; ?></a>
+            <a href="<?php echo get_permalink(wc_get_page_id('cart')); ?>"><i class="fa fa-lock" aria-hidden="true"></i><?php echo $cart_btn; ?></a>
             <p>Taxes are calculated at checkout</p>
         </div>
 

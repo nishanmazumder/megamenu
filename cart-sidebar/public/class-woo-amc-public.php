@@ -1,7 +1,6 @@
 <?php
 
-class WooAmcPublic
-{
+class WooAmcPublic {
 
     /**
      * The ID of this plugin.
@@ -16,106 +15,98 @@ class WooAmcPublic
     /**
      * Initialize the class and set its properties.
      */
-    public function __construct($plugin_name, $version)
-    {
+    public function __construct( $plugin_name, $version ) {
 
         $this->plugin_name = $plugin_name;
         $this->version = $version;
+
     }
 
     /**
      * Register the stylesheets for the public-facing side of the site.
      */
-    public function enqueue_styles()
-    {
+    public function enqueue_styles() {
 
         $options = get_option('woo_amc_options');
-        $enabled = isset($options['enabled']) ? $options['enabled'] : 1;
-        if ((is_cart() || is_checkout()) && $enabled != 1) {
-            return;
-        }
+        $enabled = isset( $options['enabled']) ? $options['enabled'] : 1;
+        if( ( is_cart() || is_checkout() ) && $enabled != 1 ){return;}
 
-        wp_enqueue_style('perfect-scrollbar', plugin_dir_url(__FILE__) . 'css/perfect-scrollbar.css', array(), $this->version, 'all');
-        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/woo-amc-public.css', array(), $this->version, 'all');
+        wp_enqueue_style( 'perfect-scrollbar', plugin_dir_url( __FILE__ ) . 'css/perfect-scrollbar.css', array(), $this->version, 'all' );
+        wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/woo-amc-public.css', array(), $this->version, 'all' );
 
         $inline_css = $this->get_inline_css();
-        wp_add_inline_style($this->plugin_name, $inline_css);
+        wp_add_inline_style( $this->plugin_name, $inline_css );
+
     }
 
     /**
      * Register the JavaScript for the public-facing side of the site.
      */
-    public function enqueue_scripts()
-    {
+    public function enqueue_scripts() {
 
         $options = get_option('woo_amc_options');
-        $enabled = isset($options['enabled']) ? $options['enabled'] : 1;
-        if ((is_cart() || is_checkout()) && $enabled != 1) {
-            return;
-        }
+        $enabled = isset( $options['enabled']) ? $options['enabled'] : 1;
+        if( ( is_cart() || is_checkout() ) && $enabled != 1 ){return;}
         $options = get_option('woo_amc_options');
 
-        wp_enqueue_script('perfect-scrollbar', plugin_dir_url(__FILE__) . 'js/perfect-scrollbar.min.js', array('jquery'), $this->version, false);
-        wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/woo-amc-public.js', array('jquery'), $this->version, false);
+        wp_enqueue_script( 'perfect-scrollbar', plugin_dir_url( __FILE__ ) . 'js/perfect-scrollbar.min.js', array( 'jquery' ), $this->version, false );
+        wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/woo-amc-public.js', array( 'jquery' ), $this->version, false );
 
-        wp_localize_script(
-            $this->plugin_name,
-            'wooAmcVars',
-            array(
-                'ajaxurl' => admin_url('admin-ajax.php'),
-                'nonce' => wp_create_nonce('woo-amc-security'),
+        wp_localize_script( $this->plugin_name, 'wooAmcVars', array(
+                'ajaxurl' => admin_url( 'admin-ajax.php' ),
+                'nonce' => wp_create_nonce( 'woo-amc-security' ),
                 'cart_type' => $options['cart_type'],
             )
         );
+
     }
 
-    private function get_inline_css()
-    {
+    private function get_inline_css(){
         $css = get_option('woo_amc_options');
 
         //print_r($css);
 
-        $button_icon_color  = isset($css['button_icon_color']) ? $css['button_icon_color'] : 'red';
-        $button_bg_color    = isset($css['button_bg_color']) ? $css['button_bg_color'] : 'red';
-        $button_border_radius   = isset($css['button_border_radius']) ? $css['button_border_radius'] : 2;
-        $button_count_bg    = isset($css['button_count_bg']) ? $css['button_count_bg'] : 'red';
-        $button_count_color     = isset($css['button_count_color']) ? $css['button_count_color'] : 'red';
-        $bg_color = isset($css['bg_color']) ? $css['bg_color'] : 'red';
-        $bg_opacity = isset($css['bg_opacity']) ? $css['bg_opacity'] : 60;
-        $bg_opacity = $bg_opacity / 100;
-        $cart_bg    = isset($css['cart_bg']) ? $css['cart_bg'] : 'red';
-        $cart_loader_color  = isset($css['cart_loader_color']) ? $css['cart_loader_color'] : 'red';
-        $cart_header_bg     = isset($css['cart_header_bg']) ? $css['cart_header_bg'] : 'red';
-        $cart_header_title_size     = isset($css['cart_header_title_size']) ? $css['cart_header_title_size'] : 36;
-        $cart_header_title_color    = isset($css['cart_header_title_color']) ? $css['cart_header_title_color'] : 'red';
-        $cart_header_close_color    = isset($css['cart_header_close_color']) ? $css['cart_header_close_color'] : 'red';
-        $cart_item_bg   = isset($css['cart_item_bg']) ? $css['cart_item_bg'] : 'red';
-        $cart_item_border_width     = isset($css['cart_item_border_width']) ? $css['cart_item_border_width'] : 2;
-        $cart_item_border_color     = isset($css['cart_item_border_color']) ? $css['cart_item_border_color'] : 'red';
-        $cart_item_border_radius    = isset($css['cart_item_border_radius']) ? $css['cart_item_border_radius'] : 2;
-        $cart_item_padding  = isset($css['cart_item_padding']) ? $css['cart_item_padding'] : 2;
-        $cart_item_close_color  = isset($css['cart_item_close_color']) ? $css['cart_item_close_color'] : 'red';
-        $cart_item_title_color  = isset($css['cart_item_title_color']) ? $css['cart_item_title_color'] : 'red';
-        $cart_item_title_size   = isset($css['cart_item_title_size']) ? $css['cart_item_title_size'] : 36;
-        $cart_item_text_color   = isset($css['cart_item_text_color']) ? $css['cart_item_text_color'] : 'red';
-        $cart_item_text_size    = isset($css['cart_item_text_size']) ? $css['cart_item_text_size'] : 36;
-        $cart_item_old_price_color  = isset($css['cart_item_old_price_color']) ? $css['cart_item_old_price_color'] : 'red';
-        $cart_item_price_color  = isset($css['cart_item_price_color']) ? $css['cart_item_price_color'] : 'red';
-        $cart_item_quantity_buttons_color   = isset($css['cart_item_quantity_buttons_color']) ? $css['cart_item_quantity_buttons_color'] : 'red';
-        $cart_item_quantity_color   = isset($css['cart_item_quantity_color']) ? $css['cart_item_quantity_color'] : 'red';
-        $cart_item_quantity_bg  = isset($css['cart_item_quantity_bg']) ? $css['cart_item_quantity_bg'] : 'red';
-        $cart_item_quantity_border_radius   = isset($css['cart_item_quantity_border_radius']) ? $css['cart_item_quantity_border_radius'] : 2;
-        $cart_item_big_price_size   = isset($css['cart_item_big_price_size']) ? $css['cart_item_big_price_size'] : 36;
-        $cart_item_big_price_color  = isset($css['cart_item_big_price_color']) ? $css['cart_item_big_price_color'] : 'red';
-        $cart_footer_bg     = isset($css['cart_footer_bg']) ? $css['cart_footer_bg'] : 'red';
-        $cart_footer_products_size  = isset($css['cart_footer_products_size']) ? $css['cart_footer_products_size'] : 36;
-        $cart_footer_products_label_color   = isset($css['cart_footer_products_label_color']) ? $css['cart_footer_products_label_color'] : 'red';
-        $cart_footer_products_count_color   = isset($css['cart_footer_products_count_color']) ? $css['cart_footer_products_count_color'] : 'red';
-        $cart_footer_total_size     = isset($css['cart_footer_total_size']) ? $css['cart_footer_total_size'] : 36;
-        $cart_footer_total_label_color  = isset($css['cart_footer_total_label_color']) ? $css['cart_footer_total_label_color'] : 'red';
-        $cart_footer_total_price_color  = isset($css['cart_footer_total_price_color']) ? $css['cart_footer_total_price_color'] : 'red';
-        $cart_footer_link_size  = isset($css['cart_footer_link_size']) ? $css['cart_footer_link_size'] : 36;
-        $cart_footer_link_color     = isset($css['cart_footer_link_color']) ? $css['cart_footer_link_color'] : 'red';
+        $button_icon_color  = isset( $css['button_icon_color'] ) ? $css['button_icon_color'] : 'red';
+        $button_bg_color    = isset( $css['button_bg_color'] ) ? $css['button_bg_color'] : 'red';
+        $button_border_radius   = isset( $css['button_border_radius'] ) ? $css['button_border_radius'] : 2;
+        $button_count_bg    = isset( $css['button_count_bg'] ) ? $css['button_count_bg'] : 'red';
+        $button_count_color     = isset( $css['button_count_color'] ) ? $css['button_count_color'] : 'red';
+        $bg_color = isset( $css['bg_color'] ) ? $css['bg_color'] : 'red';
+        $bg_opacity = isset( $css['bg_opacity'] ) ? $css['bg_opacity'] : 60;
+        $bg_opacity = $bg_opacity/100;
+        $cart_bg    = isset( $css['cart_bg'] ) ? $css['cart_bg'] : 'red';
+        $cart_loader_color  = isset( $css['cart_loader_color'] ) ? $css['cart_loader_color'] : 'red';
+        $cart_header_bg     = isset( $css['cart_header_bg'] ) ? $css['cart_header_bg'] : 'red';
+        $cart_header_title_size     = isset( $css['cart_header_title_size'] ) ? $css['cart_header_title_size'] : 36;
+        $cart_header_title_color    = isset( $css['cart_header_title_color'] ) ? $css['cart_header_title_color'] : 'red';
+        $cart_header_close_color    = isset( $css['cart_header_close_color'] ) ? $css['cart_header_close_color'] : 'red';
+        $cart_item_bg   = isset( $css['cart_item_bg'] ) ? $css['cart_item_bg'] : 'red';
+        $cart_item_border_width     = isset( $css['cart_item_border_width'] ) ? $css['cart_item_border_width'] : 2;
+        $cart_item_border_color     = isset( $css['cart_item_border_color'] ) ? $css['cart_item_border_color'] : 'red';
+        $cart_item_border_radius    = isset( $css['cart_item_border_radius'] ) ? $css['cart_item_border_radius'] : 2;
+        $cart_item_padding  = isset( $css['cart_item_padding'] ) ? $css['cart_item_padding'] : 2;
+        $cart_item_close_color  = isset( $css['cart_item_close_color'] ) ? $css['cart_item_close_color'] : 'red';
+        $cart_item_title_color  = isset( $css['cart_item_title_color'] ) ? $css['cart_item_title_color'] : 'red';
+        $cart_item_title_size   = isset( $css['cart_item_title_size'] ) ? $css['cart_item_title_size'] : 36;
+        $cart_item_text_color   = isset( $css['cart_item_text_color'] ) ? $css['cart_item_text_color'] : 'red';
+        $cart_item_text_size    = isset( $css['cart_item_text_size'] ) ? $css['cart_item_text_size'] : 36;
+        $cart_item_old_price_color  = isset( $css['cart_item_old_price_color'] ) ? $css['cart_item_old_price_color'] : 'red';
+        $cart_item_price_color  = isset( $css['cart_item_price_color'] ) ? $css['cart_item_price_color'] : 'red';
+        $cart_item_quantity_buttons_color   = isset( $css['cart_item_quantity_buttons_color'] ) ? $css['cart_item_quantity_buttons_color'] : 'red';
+        $cart_item_quantity_color   = isset( $css['cart_item_quantity_color'] ) ? $css['cart_item_quantity_color'] : 'red';
+        $cart_item_quantity_bg  = isset( $css['cart_item_quantity_bg'] ) ? $css['cart_item_quantity_bg'] : 'red';
+        $cart_item_quantity_border_radius   = isset( $css['cart_item_quantity_border_radius'] ) ? $css['cart_item_quantity_border_radius'] : 2;
+        $cart_item_big_price_size   = isset( $css['cart_item_big_price_size'] ) ? $css['cart_item_big_price_size'] : 36;
+        $cart_item_big_price_color  = isset( $css['cart_item_big_price_color'] ) ? $css['cart_item_big_price_color'] : 'red';
+        $cart_footer_bg     = isset( $css['cart_footer_bg'] ) ? $css['cart_footer_bg'] : 'red';
+        $cart_footer_products_size  = isset( $css['cart_footer_products_size'] ) ? $css['cart_footer_products_size'] : 36;
+        $cart_footer_products_label_color   = isset( $css['cart_footer_products_label_color'] ) ? $css['cart_footer_products_label_color'] : 'red';
+        $cart_footer_products_count_color   = isset( $css['cart_footer_products_count_color'] ) ? $css['cart_footer_products_count_color'] : 'red';
+        $cart_footer_total_size     = isset( $css['cart_footer_total_size'] ) ? $css['cart_footer_total_size'] : 36;
+        $cart_footer_total_label_color  = isset( $css['cart_footer_total_label_color'] ) ? $css['cart_footer_total_label_color'] : 'red';
+        $cart_footer_total_price_color  = isset( $css['cart_footer_total_price_color'] ) ? $css['cart_footer_total_price_color'] : 'red';
+        $cart_footer_link_size  = isset( $css['cart_footer_link_size'] ) ? $css['cart_footer_link_size'] : 36;
+        $cart_footer_link_color     = isset( $css['cart_footer_link_color'] ) ? $css['cart_footer_link_color'] : 'red';
 
         $css = "
             .woo_amc_open{
@@ -215,7 +206,7 @@ class WooAmcPublic
         $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
         // backup values within single or double quotes
         preg_match_all('/(\'[^\']*?\'|"[^"]*?")/ims', $css, $hit, PREG_PATTERN_ORDER);
-        for ($i = 0; $i < count($hit[1]); $i++) {
+        for ($i=0; $i < count($hit[1]); $i++) {
             $css = str_replace($hit[1][$i], '##########' . $i . '##########', $css);
         }
         // remove traling semicolon of selector's last property
@@ -233,11 +224,11 @@ class WooAmcPublic
         // shorten zero-values
         $css = preg_replace('/([^\d\.]0)(px|em|pt|%)/ims', '$1', $css);
         // constrain multiple whitespaces
-        $css = preg_replace('/\p{Zs}+/ims', ' ', $css);
+        $css = preg_replace('/\p{Zs}+/ims',' ', $css);
         // remove newlines
         $css = str_replace(array("\r\n", "\r", "\n"), '', $css);
         // Restore backupped values within single or double quotes
-        for ($i = 0; $i < count($hit[1]); $i++) {
+        for ($i=0; $i < count($hit[1]); $i++) {
             $css = str_replace('##########' . $i . '##########', $hit[1][$i], $css);
         }
 
@@ -250,14 +241,11 @@ class WooAmcPublic
      * Get Cart HTML
      */
 
-    public function get_cart_templates()
-    {
+    public function get_cart_templates(){
         $options = get_option('woo_amc_options');
-        $enabled = isset($options['enabled']) ? $options['enabled'] : 1;
-        if ((is_cart() || is_checkout()) && $enabled != 1) {
-            return;
-        }
-        if ($options['cart_type'] == 'center') {
+        $enabled = isset( $options['enabled']) ? $options['enabled'] : 1;
+        if( ( is_cart() || is_checkout() ) && $enabled != 1 ){return;}
+        if($options['cart_type']=='center'){
             $template_type = 'center';
             $template_type_items = 'items_center';
         } else {
@@ -265,36 +253,36 @@ class WooAmcPublic
             $template_type_items = 'items_side';
         }
 
-        $custom_templates_path = get_stylesheet_directory() . '/woocommerce-ajax-mini-cart';
+        $custom_templates_path = get_stylesheet_directory().'/woocommerce-ajax-mini-cart';
 
-        if (file_exists($custom_templates_path . '/' . $template_type_items . '.php')) {
-            $template_items_path = $custom_templates_path . '/' . $template_type_items . '.php';
+        if ( file_exists( $custom_templates_path.'/'.$template_type_items.'.php' ) ) {
+            $template_items_path = $custom_templates_path.'/'.$template_type_items.'.php';
         } else {
-            $template_items_path = plugin_dir_path(dirname(__FILE__)) . 'templates/' . $template_type_items . '.php';
+            $template_items_path = plugin_dir_path( dirname( __FILE__ ) ).'templates/'.$template_type_items.'.php';
         }
-
+        
         $cart_count = WC()->cart->cart_contents_count;
         $items = WC()->cart->get_cart();
         $cart_total = WC()->cart->get_cart_total();
 
-        if (file_exists($custom_templates_path . '/' . $template_type . '.php')) {
-            require_once $custom_templates_path . '/' . $template_type . '.php';
+        if ( file_exists( $custom_templates_path.'/'.$template_type.'.php' ) ) {
+            require_once $custom_templates_path.'/'.$template_type.'.php';
         } else {
-            require_once plugin_dir_path(dirname(__FILE__)) . 'templates/' . $template_type . '.php';
+            require_once plugin_dir_path( dirname( __FILE__ ) ).'templates/'.$template_type.'.php';
         }
 
-        if (file_exists($custom_templates_path . '/button.php')) {
-            require_once $custom_templates_path . '/button.php';
+        if ( file_exists( $custom_templates_path.'/button.php' ) ) {
+            require_once $custom_templates_path.'/button.php';
         } else {
-            require_once plugin_dir_path(dirname(__FILE__)) . 'templates/button.php';
+            require_once plugin_dir_path( dirname( __FILE__ ) ).'templates/button.php';
         }
+            
     }
 
     /**
      * Show Cart Items HTML
      */
-    public function show_cart_items_html()
-    {
+    public function show_cart_items_html(){
         $type = sanitize_text_field($_POST['type']);
         $cart = array(
             'html' => 0,
@@ -316,9 +304,9 @@ class WooAmcPublic
             $cart['html'] = $output;
             $cart['count'] = WC()->cart->cart_contents_count;
             $cart['total'] = WC()->cart->get_cart_total();
-            $cart['nonce'] = wp_create_nonce('woo-amc-security');
+            $cart['nonce'] = wp_create_nonce( 'woo-amc-security' );
         }
-
+        
         echo json_encode($cart);
         wp_die();
     }
@@ -326,28 +314,26 @@ class WooAmcPublic
     /**
      * Delete Cart Item
      */
-    public function delete_cart_item()
-    {
+    public function delete_cart_item(){
         $key = sanitize_text_field($_POST['key']);
         $cart = array(
             'count' => 0,
             'total' => 0,
         );
-        if ($key && wp_verify_nonce($_POST['security'], 'woo-amc-security')) {
+        if ($key && wp_verify_nonce( $_POST['security'], 'woo-amc-security' )){
             WC()->cart->remove_cart_item($key);
             $cart = array();
             $cart['count'] = WC()->cart->cart_contents_count;
             $cart['total'] = WC()->cart->get_cart_total();
         }
-        echo json_encode($cart);
+        echo json_encode( $cart );
         wp_die();
     }
 
     /**
      * Quanity update
      */
-    public function quanity_update()
-    {
+    public function quanity_update(){
         $key = sanitize_text_field($_POST['key']);
         $number = intval(sanitize_text_field($_POST['number']));
         $cart = array(
@@ -355,23 +341,22 @@ class WooAmcPublic
             'total' => 0,
             'item_price' => 0,
         );
-        if ($key && $number > 0 && wp_verify_nonce($_POST['security'], 'woo-amc-security')) {
-            WC()->cart->set_quantity($key, $number);
+        if($key && $number>0 && wp_verify_nonce( $_POST['security'], 'woo-amc-security' )){
+            WC()->cart->set_quantity( $key, $number );
             $items = WC()->cart->get_cart();
             $cart = array();
             $cart['count'] = WC()->cart->cart_contents_count;
             $cart['total'] = WC()->cart->get_cart_total();
             $cart['item_price'] = wc_price($items[$key]['line_total']);
         }
-        echo json_encode($cart);
+        echo json_encode( $cart );
         wp_die();
     }
 
     /**
      * Add To Cart
      */
-    public function add_to_cart()
-    {
+    public function add_to_cart(){
         WC_AJAX::get_refreshed_fragments();
         wp_die();
     }
@@ -379,8 +364,7 @@ class WooAmcPublic
     /**
      * Remove Added to Cart Notice
      */
-    public function remove_added_to_cart_notice()
-    {
+    public function remove_added_to_cart_notice(){
         return false;
     }
 
