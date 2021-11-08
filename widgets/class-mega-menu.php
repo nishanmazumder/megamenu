@@ -241,13 +241,13 @@ class NM_MEGA_MENU extends Widget_Base
 		$this->add_control(
 			'nm_cart_notification_title',
 			[
-				'label' => __( 'Discount notification', 'nm_theme' ),
+				'label' => __('Discount notification', 'nm_theme'),
 				'type' => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
 
-		
+
 		$this->add_control('nm_cart_notification_color', [
 			'label' => __('Notification Color', 'nm_theme'),
 			'type' => \Elementor\Controls_Manager::COLOR,
@@ -294,7 +294,8 @@ class NM_MEGA_MENU extends Widget_Base
 
 	// Notification Bar
 	public function nm_mega_top_bar($settings)
-	{ ?>
+	{
+?>
 		<div class="container-fluid nm-notofication">
 			<div class="row no-gutters">
 				<div class="col-md-10 col-xs-8 text-center">
@@ -807,7 +808,7 @@ class NM_MEGA_MENU extends Widget_Base
 				background-image: linear-gradient(to right, <?php echo $settings['nm_cart_notification_bg_start']; ?>, <?php echo $settings['nm_cart_notification_bg_end']; ?>);
 			}
 
-			.nm-item-notification span{
+			.nm-item-notification span {
 				color: <?php echo $settings['nm_cart_notification_color']; ?>;
 			}
 

@@ -2,7 +2,7 @@
 <div class="woo_amc_container_wrap">
     <div class="woo_amc_container woo_amc_container_side">
         <div class="woo_amc_head">
-            <div class="woo_amc_head_title woo_amc_center"><?php echo $options['cart_header_title']; ?></div>
+            <div class="woo_amc_head_title woo_amc_center">Cart title</div>
             <div class="woo_amc_close">
                 <i class="fa fa-times" aria-hidden="true"></i>
             </div>
