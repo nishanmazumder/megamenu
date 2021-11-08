@@ -305,7 +305,7 @@ class NM_MEGA_MENU extends Widget_Base
 		$settings = $this->get_settings_for_display();
 
 		// Cart Info
-		//$this->nm_get_cart_info($settings);
+		$this->nm_get_cart_info($settings);
 
 
 		// Mega menu

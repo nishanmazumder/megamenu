@@ -134,7 +134,7 @@
         ?>
 
         <div class="nm-secure-checkout woo_amc_footer">
-            <?php if ($cart_total >= max($min_amount)) : ?>
+        <?php if ( floatval($cart_total_amount) >= floatval($min_amount[0])) : ?>
                 <span>You've unlocked <b>FREE Priority Shipping!</b></span>
             <?php endif; ?>
 
