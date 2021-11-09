@@ -39,6 +39,9 @@ var public_woo_amc_get_cart;
             woo_amc_quanity_update($(this));
         });
 
+
+
+
         $(document).on('click', '.single_add_to_cart_button', function (e) {
             e.preventDefault();
             var $button = $(this),
@@ -91,6 +94,10 @@ var public_woo_amc_get_cart;
         });
     });
 
+    function nm_get_cart_total(){
+        alert(test);
+    }
+
     function woo_amc_hide() {
         if (wooAmcVars.cart_type=='center') {
             $('.woo_amc_container_wrap_center').animate({opacity:'hide'},300);
@@ -126,10 +133,27 @@ var public_woo_amc_get_cart;
                 $('.woo_amc_open').addClass('woo_amc_open_active');
             }
             $( '.woo_amc_items_wrap' ).removeClass( 'woo_amc_items_wrap_loading' );
+            //nm_get_cart_total('nm_get_cart_total', cart_response['count']);
             nonce = cart_response['nonce'];
         } );
     }
 
+    function nm_get_cart_total($action, $total){
+        $.ajax({
+            url: wooAmcVars.ajaxurl,
+            method: 'POST',
+            data: {
+                action: action,
+                value: total
+            },
+
+            success: function (res) {
+                $(".cart-contents").html(res.data);
+                //console.log(res)
+            }
+        });
+    }
+   
     var woo_amc_quanity_update_send = true;
     function woo_amc_quanity_update_buttons( el ) {
         if(woo_amc_quanity_update_send){

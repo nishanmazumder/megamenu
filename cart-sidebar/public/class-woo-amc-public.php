@@ -19,7 +19,6 @@ class WooAmcPublic {
 
         $this->plugin_name = $plugin_name;
         $this->version = $version;
-
     }
 
     /**
@@ -34,8 +33,8 @@ class WooAmcPublic {
         wp_enqueue_style( 'perfect-scrollbar', plugin_dir_url( __FILE__ ) . 'css/perfect-scrollbar.css', array(), $this->version, 'all' );
         wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/woo-amc-public.css', array(), $this->version, 'all' );
 
-        $inline_css = $this->get_inline_css();
-        wp_add_inline_style( $this->plugin_name, $inline_css );
+        //$inline_css = $this->get_inline_css();
+        //wp_add_inline_style( $this->plugin_name, $inline_css );
 
     }
 
@@ -367,5 +366,12 @@ class WooAmcPublic {
     public function remove_added_to_cart_notice(){
         return false;
     }
+
+    // public function nm_show_cart_total(){
+    //     $total = $_POST['value'];
+
+    //     echo '<pre>'; 
+    //     print_r($total);
+    // }
 
 }

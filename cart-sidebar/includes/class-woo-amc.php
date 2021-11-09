@@ -107,6 +107,7 @@ class WooAmc {
         $this->loader->add_action( 'wp_footer', $plugin_public, 'get_cart_templates' );
 
         $this->loader->add_action( 'wp_ajax_woo_amc_get_cart', $plugin_public, 'show_cart_items_html' );
+        //$this->loader->add_action( 'wp_ajax_nm_get_cart_total', $plugin_public, 'nm_show_cart_total' );
         $this->loader->add_action( 'wp_ajax_nopriv_woo_amc_get_cart', $plugin_public, 'show_cart_items_html' );
         $this->loader->add_action( 'wp_ajax_woo_amc_quanity_update', $plugin_public, 'quanity_update' );
         $this->loader->add_action( 'wp_ajax_nopriv_woo_amc_quanity_update', $plugin_public, 'quanity_update' );

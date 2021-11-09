@@ -45,6 +45,7 @@
                     <div class="nm-product-area">
 
                         <?php
+
                         global $post;
 
                         $terms = wp_get_post_terms($post->ID, 'product_cat');
@@ -67,10 +68,8 @@
                         );
 
                         $products = new WP_Query($args);
+                        
                         if ($products->have_posts()) { ?>
-
-
-
                             <?php while ($products->have_posts()) : $products->the_post();
                                 global $product; ?>
                                 <div class="nm-product">
@@ -133,12 +132,16 @@
 
         ?>
 
+        <div id="cart_container">
+            <a class="cart-contents" href="" title="<?php // _e('View your shopping cart'); ?>">
+                <?php //echo WC()->cart->get_cart_total(); ?>
+            </a>
+        </div>
+
         <div class="nm-secure-checkout woo_amc_footer">
-        <?php if ( floatval($cart_total_amount) >= floatval($min_amount[0])) : ?>
+            <?php //if (floatval($cart_total_amount) >= floatval($min_amount[0])) : ?>
                 <span>You've unlocked <b>FREE Priority Shipping!</b></span>
-            <?php endif; ?>
-
-
+            <?php //endif; ?>
 
 
 
