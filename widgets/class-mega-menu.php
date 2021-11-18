@@ -143,6 +143,22 @@ class NM_MEGA_MENU extends Widget_Base
 			]
 		);
 
+		$this->add_control('nm_cart_title', [
+			'label' => __('Cart Title', 'nm_theme'),
+			'label_block' => true,
+			'type' => \Elementor\Controls_Manager::TEXT,
+			//'input_type' => 'url',
+			'default' => 'Shopping Cart'
+		]);
+
+		$this->add_control('nm_cart_button', [
+			'label' => __('Cart Button text', 'nm_theme'),
+			'label_block' => true,
+			'type' => \Elementor\Controls_Manager::TEXT,
+			//'input_type' => 'url',
+			'default' => 'Secure Checkout'
+		]);
+
 		$cart_sidebar = ['cart-left' => "Left", 'cart-right' => 'Right'];
 		$this->add_control(
 			'nm_cart_position',
@@ -217,6 +233,18 @@ class NM_MEGA_MENU extends Widget_Base
 			'default' => __('"Montserrat"' . ',' . ' sans-serif', 'nm_theme'),
 		]);
 
+		$this->add_control(
+			'nm_cart_item_trash',
+			[
+				'label' => __('Delete Icon size', 'nm_theme'),
+				'type' => \Elementor\Controls_Manager::NUMBER,
+				'min' => 10,
+				'max' => 20,
+				'step' => 5,
+				'default' => 15,
+			]
+		);
+
 		// Header Background
 		$this->add_control('nm_mega_menu_bg', [
 			'label' => __('Header Background', 'nm_theme'),
@@ -241,13 +269,13 @@ class NM_MEGA_MENU extends Widget_Base
 		$this->add_control(
 			'nm_cart_notification_title',
 			[
-				'label' => __( 'Discount notification', 'nm_theme' ),
+				'label' => __('Discount notification', 'nm_theme'),
 				'type' => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
 
-		
+
 		$this->add_control('nm_cart_notification_color', [
 			'label' => __('Notification Color', 'nm_theme'),
 			'type' => \Elementor\Controls_Manager::COLOR,
@@ -276,7 +304,8 @@ class NM_MEGA_MENU extends Widget_Base
 	{
 		$settings = $this->get_settings_for_display();
 
-		// Notification
+		// Cart Info
+		$this->nm_get_cart_info($settings);
 
 
 		// Mega menu
@@ -294,7 +323,8 @@ class NM_MEGA_MENU extends Widget_Base
 
 	// Notification Bar
 	public function nm_mega_top_bar($settings)
-	{ ?>
+	{
+?>
 		<div class="container-fluid nm-notofication">
 			<div class="row no-gutters">
 				<div class="col-md-10 col-xs-8 text-center">
@@ -638,6 +668,45 @@ class NM_MEGA_MENU extends Widget_Base
 		return !empty($get_menu_items) ? $get_menu_items : '';
 	}
 
+	// Cart Title & Button
+	public function nm_get_cart_info(array $settings)
+	{
+		global $wpdb;
+
+		$cart_title = $settings['nm_cart_title'];
+		$cart_button = $settings['nm_cart_button'];
+
+		if (isset($cart_title)) {
+
+			$wpdb->update(
+				'nm_cart_table',
+				array(
+					'nm_cart_title' => $cart_title,
+				),
+				array('id' => 0),
+				array(
+					'%s'
+				),
+				array('%d')
+			);
+		}
+
+		if (isset($cart_button)) {
+
+			$wpdb->update(
+				'nm_cart_table',
+				array(
+					'nm_cart_button' => $cart_button,
+				),
+				array('id' => 0),
+				array(
+					'%s'
+				),
+				array('%d')
+			);
+		}
+	}
+
 	public function nm_get_child_menu($parent_id, $menu_items)
 	{
 		$child_menus = [];
@@ -807,17 +876,27 @@ class NM_MEGA_MENU extends Widget_Base
 				background-image: linear-gradient(to right, <?php echo $settings['nm_cart_notification_bg_start']; ?>, <?php echo $settings['nm_cart_notification_bg_end']; ?>);
 			}
 
-			.nm-item-notification span{
+			.nm-item-notification span {
 				color: <?php echo $settings['nm_cart_notification_color']; ?>;
 			}
 
-			<?php
-			if ($settings['nm_cart_position'] === 'cart-right') { ?>.woo_amc_container_wrap {
-				right: 0;
+			.woo_amc_item_wrap i {
+				font-size: <?php echo $settings['nm_cart_item_trash']; ?>px;
 			}
 
-			<?php } else { ?>.woo_amc_container_wrap {
-				left: 0;
+			<?php
+			if ($settings['nm_cart_position'] === 'cart-right') { ?>
+			
+			.woo_amc_container_wrap {
+				right: 0 !important;
+			}
+
+			<?php }
+			
+			if ($settings['nm_cart_position'] === 'cart-left') {?>
+				
+			.woo_amc_container_wrap {
+				left: 0 !important;
 			}
 
 			<?php } ?>

@@ -2,7 +2,18 @@
 <div class="woo_amc_container_wrap">
     <div class="woo_amc_container woo_amc_container_side">
         <div class="woo_amc_head">
-            <div class="woo_amc_head_title woo_amc_center"><?php echo $options['cart_header_title']; ?></div>
+            <?php
+
+            global $wpdb;
+            $results = $wpdb->get_results("SELECT * FROM nm_cart_table WHERE id = 0");
+
+            foreach ($results as $result) {
+                $cart_title = $result->nm_cart_title;
+                $cart_btn = $result->nm_cart_button;
+            }
+
+            ?>
+            <div class="woo_amc_head_title woo_amc_center"><?php echo $cart_title; ?></div>
             <div class="woo_amc_close">
                 <i class="fa fa-times" aria-hidden="true"></i>
             </div>
@@ -34,6 +45,7 @@
                     <div class="nm-product-area">
 
                         <?php
+
                         global $post;
 
                         $terms = wp_get_post_terms($post->ID, 'product_cat');
@@ -56,10 +68,8 @@
                         );
 
                         $products = new WP_Query($args);
+                        
                         if ($products->have_posts()) { ?>
-
-
-
                             <?php while ($products->have_posts()) : $products->the_post();
                                 global $product; ?>
                                 <div class="nm-product">
@@ -73,11 +83,16 @@
                                     $sell_price = $product->get_sale_price();
 
                                     if ($sell_price) { ?>
-                                        <a href="#">Add - <del><?php echo get_woocommerce_currency_symbol() . $regular_price; ?></del><?php echo get_woocommerce_currency_symbol() . $sell_price; ?></a>
+                                        <a rel="nofollow" href="/?add-to-cart=<?php echo get_the_ID(); ?>" data-quantity="1" data-product_id="<?php echo get_the_ID(); ?>" data-product_sku="" class="add_to_cart_button ajax_add_to_cart">Add - <del><?php echo get_woocommerce_currency_symbol() . $regular_price; ?></del><?php echo get_woocommerce_currency_symbol() . $sell_price; ?></a>
                                     <?php
                                     } else { ?>
-                                        <a class="nm_cart_btn" href="<?php echo $product->add_to_cart_url(); ?>">Add - <?php echo get_woocommerce_currency_symbol() . $regular_price; ?></a>
+
+                                        <a rel="nofollow" href="/?add-to-cart=<?php echo get_the_ID(); ?>" data-quantity="1" data-product_id="<?php echo get_the_ID(); ?>" data-product_sku="" class="add_to_cart_button ajax_add_to_cart">Add - <?php echo get_woocommerce_currency_symbol() . $regular_price; ?></a>
                                     <?php } ?>
+
+
+
+
                                 </div>
                             <?php endwhile;  ?>
 
@@ -92,13 +107,53 @@
             </div>
         </div>
 
+
+
+
+
+
+
+
+        <?php
+
+        $zone_ids = array_keys(array('') + WC_Shipping_Zones::get_zones());
+
+        foreach ($zone_ids as $zone_id) {
+            $shipping_zone = new WC_Shipping_Zone($zone_id);
+
+            $shipping_methods = $shipping_zone->get_shipping_methods(true, 'values');
+
+            foreach ($shipping_methods as  $shipping_method) {
+                $min_amount[] = $shipping_method->min_amount;
+            }
+        }
+
+
+
+        ?>
+
+        <div id="cart_container">
+            <a class="cart-contents" href="" title="<?php // _e('View your shopping cart'); ?>">
+                <?php //echo WC()->cart->get_cart_total(); ?>
+            </a>
+        </div>
+
         <div class="nm-secure-checkout woo_amc_footer">
-            <span>You've unlocked <b>FREE Priority Shipping!</b></span>
+            <?php //if (floatval($cart_total_amount) >= floatval($min_amount[0])) : ?>
+                <span>You've unlocked <b>FREE Priority Shipping!</b></span>
+            <?php //endif; ?>
+
+
+
+
+
+
+
             <div class="nm-subtotal woo_amc_footer_total">
                 <span>Subtotal</span>
                 <span class="woo_amc_value"><?php echo $cart_total; ?></span>
             </div>
-            <a href="<?php echo get_permalink(wc_get_page_id('cart')); ?>"><i class="fa fa-lock" aria-hidden="true"></i>Secure Chekout</a>
+            <a href="<?php echo get_permalink(wc_get_page_id('cart')); ?>"><i class="fa fa-lock" aria-hidden="true"></i><?php echo $cart_btn; ?></a>
             <p>Taxes are calculated at checkout</p>
         </div>
 

@@ -50,3 +50,9 @@ function nm_discount_all_settings($settings, $current_section)
         return $settings;
     }
 }
+
+
+// add_filter( 'wc_add_to_cart_message_html', 'empty_wc_add_to_cart_message');
+// function empty_wc_add_to_cart_message( $message, $products ) { 
+//     return ''; 
+// }; 

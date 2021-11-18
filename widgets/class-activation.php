@@ -22,10 +22,14 @@ final class Elementor_Widegets_Register
         $this->nm_mega_scripts();
 
         //Cart count
-        add_filter('woocommerce_add_to_cart_fragments', [$this, 'nm_mega_cart_count']);
-
-
         add_filter('woocommerce_add_to_cart_fragments', [$this, 'woocommerce_header_add_to_cart_fragment']);
+
+        //Table for cart
+        add_action('plugins_loaded', [$this, 'nm_create_cart_table']);
+
+        //Remove view cart
+        //add_action('woocommerce_init', [$this, 'nm_remove_message_after_add_to_cart'], 99);
+        
     }
 
     public function includes()
@@ -56,28 +60,63 @@ final class Elementor_Widegets_Register
     }
 
     //Cart Count
-    public function nm_mega_cart_count($fragments)
+    public function woocommerce_header_add_to_cart_fragment($fragments)
     {
         global $woocommerce;
 
         ob_start();
-        $items_count = $woocommerce->cart->cart_contents_count;
-?>
-        <span id="mini-cart-count"><?php echo $items_count ? $items_count : '0'; ?></span>
-<?php
-        $fragments['.mini-cart-count'] = ob_get_clean();
-        return $fragments;
-    }
 
-    public function woocommerce_header_add_to_cart_fragment( $fragments ) {
-        global $woocommerce;
-    
-        ob_start();
-    
-        ?>
+?>
         <span class="cart-customlocation"><?php echo $woocommerce->cart->cart_contents_count ?></span>
-        <?php
+<?php
         $fragments['span.cart-customlocation'] = ob_get_clean();
         return $fragments;
     }
+
+    // Tableable for cart info
+    public function nm_create_cart_table()
+    {
+        global $wpdb;
+        $table_name = 'nm_cart_table';
+        $charset_collate = $wpdb->get_charset_collate();
+
+        $sql = "CREATE TABLE $table_name (
+          id int(1) NOT 1 AUTO_INCREMENT,
+          nm_cart_title text NOT NULL,
+          nm_cart_button text NOT NULL,
+          PRIMARY KEY  (id)
+        ) $charset_collate;";
+
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
+
+        $cart_title = "Shoping Cart";
+        $cart_button = "Secure Checkout";
+
+        $wpdb->query(
+            $wpdb->prepare(
+                "
+               INSERT INTO nm_cart_table
+               ( nm_cart_title, nm_cart_button)
+               VALUES ( %s, %s )
+               ",
+                $cart_title,
+                $cart_button
+            )
+        );
+    }
+
+    //Remove VIEW CART
+    public function nm_remove_message_after_add_to_cart()
+    {
+        if (isset($_GET['add-to-cart'])) {
+            wc_clear_notices();
+        }
+    }
+
+    //add_filter( 'wc_add_to_cart_message_html', 'empty_wc_add_to_cart_message');
+    function empty_wc_add_to_cart_message( $message, $products ) { 
+        return ''; 
+    }
+
 }
