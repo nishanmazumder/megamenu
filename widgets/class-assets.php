@@ -36,6 +36,10 @@ class Assets
         wp_enqueue_script('nm-mega-wow', 'https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js', array('jquery'), '', true);
         wp_enqueue_script('nm-mega-custom', plugins_url('../assets/js/custom.js', __FILE__), array('jquery'), '', true);
 
-        //wp_localize_script('nmBtcCustom', 'btc_obj', array('ajax_url' => admin_url('admin-ajax.php')));
+        //Ajax Localize
+        wp_localize_script('nm-mega-custom', 'ajax_obj', [
+            'ajax_url' => admin_url('admin-ajax.php'),
+            //'nmnonce' => wp_create_nonce("23#as14blak&&90ad1584")
+        ]);
     }
 }
