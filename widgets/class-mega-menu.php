@@ -769,7 +769,7 @@ class NM_MEGA_MENU extends Widget_Base
 		$secondary = $settings['nm_mega_secondary'];
 		$mega_menu_item_hover = $settings['nm_mega_menu_item_hover'];
 		$background = $settings['nm_mega_menu_bg'];
-		$background_hover = $settings['nm_mega_menu_bg_hover'];
+		// $background_hover = $settings['nm_mega_menu_bg_hover'];
 		$background_drop = $settings['nm_mega_menu_drop_bg'];
 		$background_cart = $settings['nm_cart_bg'];
 		$fonts = $settings['nm_mega_fonts'];
