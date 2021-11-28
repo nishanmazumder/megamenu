@@ -870,7 +870,7 @@ class NM_MEGA_MENU extends Widget_Base
 				font-family: <?php echo $fonts; ?> !important;
 			}
 
-			.sina-nav {
+			.sina-nav, .sina-nav-header {
 				background: <?php echo $background; ?> !important;
 
 			}
