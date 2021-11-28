@@ -111,7 +111,6 @@
 .sina-nav .sina-brand > img {
   height: 100%;
   padding: 6px 0;
-  margin-top: 5px;
 }
 .sina-nav .sina-brand h2 {
   color: #222;
@@ -134,7 +133,6 @@
   display: none;
 }
 .sina-nav .sina-nav-header {
-  border-bottom: 1px solid #f5f5f5;
   border-top: 1px solid #f5f5f5;
 }
 .sina-nav .dropdown-toggle::after {
@@ -445,15 +443,12 @@
 }
 
 .nm_cart_area {
-  margin-top: 10px;
+  margin-top: 15px;
   float: right;
   z-index: 100;
   position: absolute;
   right: 35px;
   top: 0px;
-}
-.nm_cart_area .nm_cart {
-  padding: 15px !important;
 }
 .nm_cart_area .nm_cart:hover, .nm_cart_area .nm_cart:focus {
   border-bottom: 2px solid transparent !important;

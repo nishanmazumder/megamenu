@@ -216,7 +216,7 @@ $animateTime: 1s;
 		>img {
 			height: 100%;
 			padding: 6px 0;
-			margin-top: 5px;
+			// margin-top: 5px;
 		}
 
 		h2 {
@@ -247,7 +247,7 @@ $animateTime: 1s;
 	}
 
 	.sina-nav-header{
-		border-bottom: 1px solid #f5f5f5;
+		// border-bottom: 1px solid #f5f5f5;
 		border-top: 1px solid #f5f5f5;
 	}
 
@@ -669,7 +669,7 @@ $animateTime: 1s;
 
 //Cart menu
 .nm_cart_area {
-	margin-top: 10px;
+	margin-top: 15px;
     float: right;
     z-index: 100;
     position: absolute;
@@ -678,7 +678,7 @@ $animateTime: 1s;
 
 	.nm_cart {
 		// color: $color;
-		padding: 15px !important;
+		// padding: 15px !important;
 
 		&:hover,
 		&:focus {
