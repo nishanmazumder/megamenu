@@ -3,7 +3,6 @@
     <div class="woo_amc_container woo_amc_container_side">
         <div class="woo_amc_head">
             <?php
-
             // global $wpdb;
             // $results = $wpdb->get_results("SELECT * FROM nm_cart_table WHERE id = 0");
 
@@ -12,7 +11,6 @@
             //     $cart_btn = $result->nm_cart_button;
             // }
             
-
             ?>
             <div class="woo_amc_head_title woo_amc_center">
                 <?php echo (!empty(get_option('nm_cart_title'))) ? get_option('nm_cart_title') : "Shopping Cart T";  ?>
@@ -42,13 +40,10 @@
                 <div class="woo_amc_items">
                     <?php require_once $template_items_path; ?>
                 </div>
-
                 <div class="nm_enjoy_product">
                     <h4><?php _e('People also enjoy', 'nm_theme'); ?></h4>
                     <div class="nm-product-area">
-
                         <?php
-
                         global $post;
                         $cats_array = [];
                         $terms = wp_get_post_terms($post->ID, 'product_cat');
@@ -89,50 +84,30 @@
                                         <a rel="nofollow" href="/?add-to-cart=<?php echo get_the_ID(); ?>" data-quantity="1" data-product_id="<?php echo get_the_ID(); ?>" data-product_sku="" class="add_to_cart_button ajax_add_to_cart">Add - <del><?php echo get_woocommerce_currency_symbol() . $regular_price; ?></del><?php echo get_woocommerce_currency_symbol() . $sell_price; ?></a>
                                     <?php
                                     } else { ?>
-
                                         <a rel="nofollow" href="/?add-to-cart=<?php echo get_the_ID(); ?>" data-quantity="1" data-product_id="<?php echo get_the_ID(); ?>" data-product_sku="" class="add_to_cart_button ajax_add_to_cart">Add - <?php echo get_woocommerce_currency_symbol() . $regular_price; ?></a>
                                     <?php } ?>
-
-
-
-
                                 </div>
                             <?php endwhile;  ?>
 
                         <?php
                         }
-
                         wp_reset_postdata();
-
                         ?>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
-
-
-
-
-
         <?php
-
         $zone_ids = array_keys(array('') + WC_Shipping_Zones::get_zones());
-
         foreach ($zone_ids as $zone_id) {
             $shipping_zone = new WC_Shipping_Zone($zone_id);
-
             $shipping_methods = $shipping_zone->get_shipping_methods(true, 'values');
 
             foreach ($shipping_methods as  $shipping_method) {
                 $min_amount[] = $shipping_method->min_amount;
             }
         }
-
-
-
         ?>
 
         <div id="cart_container">
@@ -143,15 +118,8 @@
 
         <div class="nm-secure-checkout woo_amc_footer">
             <?php //if (floatval($cart_total_amount) >= floatval($min_amount[0])) : ?>
-                <span>You've unlocked <b>FREE Priority Shipping!</b></span>
+                <!-- <span>You've unlocked <b>FREE Priority Shipping!</b></span> -->
             <?php //endif; ?>
-
-
-
-
-
-
-
             <div class="nm-subtotal woo_amc_footer_total">
                 <span>Subtotal</span>
                 <span class="woo_amc_value"><?php echo $cart_total; ?></span>
@@ -159,7 +127,6 @@
             <a href="<?php echo get_permalink(wc_get_page_id('cart')); ?>"><i class="fa fa-lock" aria-hidden="true"></i><?php echo get_option('nm_cart_title'); ?></a>
             <p>Taxes are calculated at checkout</p>
         </div>
-
         <!-- <a href="<?php //echo get_permalink(wc_get_page_id('cart')); 
                         ?>" class="woo_amc_footer">
             <div class="woo_amc_center woo_amc_flex">
