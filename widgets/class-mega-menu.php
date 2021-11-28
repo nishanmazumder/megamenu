@@ -804,7 +804,8 @@ class NM_MEGA_MENU extends Widget_Base
 
 			.nm-shop-item .nm-shop-item-details i.fa-star,
 			.nm-shop-item .nm-shop-item-details i.fa-star,
-			.nm_cart_area i:hover {
+			.nm_cart_area i:hover,
+			.nm_cart:hover {
 				color: <?php echo $secondary; ?> !important;
 			}
 

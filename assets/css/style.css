@@ -457,6 +457,7 @@
 }
 .nm_cart_area .nm_cart:hover, .nm_cart_area .nm_cart:focus {
   border-bottom: 2px solid transparent !important;
+  border: none !important;
 }
 .nm_cart_area .nm_cart i {
   font-size: 24px;
