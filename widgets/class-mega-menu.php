@@ -408,8 +408,8 @@ class NM_MEGA_MENU extends Widget_Base
 						<div class="nm_cart_area">
 							<a href="javascript:void(0)" class="woo_amc_open_active nm_cart">
 								<?php \Elementor\Icons_Manager::render_icon($settings['nm_mega_cart_icon'], ['aria-hidden' => 'true']); ?>
-								<!-- <span class="mini-cart-count"></span> -->
-								<span class="cart-customlocation"><?php WC()->cart->get_cart_contents_count; ?></span>
+								<span class="mini-cart-count"></span>
+								<!-- <span class="cart-customlocation"><?php // WC()->cart->get_cart_contents_count; ?></span> -->
 							</a>
 						</div>
 					</div><!-- /.navbar-collapse -->
@@ -479,7 +479,7 @@ class NM_MEGA_MENU extends Widget_Base
 						<div class="nm_cart_area">
 							<a href="javascript:void(0)" class="woo_amc_open_active nm_cart">
 								<?php \Elementor\Icons_Manager::render_icon($settings['nm_mega_cart_icon'], ['aria-hidden' => 'true']); ?>
-								<span class="cart-customlocation"><?php WC()->cart->get_cart_contents_count; ?></span>
+								<span class="cart-customlocation"></span>
 							</a>
 						</div>
 					</div><!-- /.navbar-collapse -->
@@ -671,40 +671,52 @@ class NM_MEGA_MENU extends Widget_Base
 	// Cart Title & Button
 	public function nm_get_cart_info(array $settings)
 	{
-		global $wpdb;
 
-		$cart_title = $settings['nm_cart_title'];
-		$cart_button = $settings['nm_cart_button'];
+		$get_cart_title = get_option('nm_cart_title');
+		$get_cart_button = get_option('nm_cart_button');
 
-		if (isset($cart_title)) {
-
-			$wpdb->update(
-				'nm_cart_table',
-				array(
-					'nm_cart_title' => $cart_title,
-				),
-				array('id' => 0),
-				array(
-					'%s'
-				),
-				array('%d')
-			);
+		if (isset($settings['nm_cart_title']) && isset($settings['nm_cart_button'])) {
+			if (!empty($get_cart_title) && !empty($get_cart_button)) {
+				update_option($settings['nm_cart_title'], $get_cart_title);
+				update_option($settings['nm_cart_button'], $get_cart_title);
+			}
 		}
 
-		if (isset($cart_button)) {
 
-			$wpdb->update(
-				'nm_cart_table',
-				array(
-					'nm_cart_button' => $cart_button,
-				),
-				array('id' => 0),
-				array(
-					'%s'
-				),
-				array('%d')
-			);
-		}
+		// global $wpdb;
+
+		// $cart_title = $settings['nm_cart_title'];
+		// $cart_button = $settings['nm_cart_button'];
+
+		// if (isset($cart_title)) {
+
+		// 	$wpdb->update(
+		// 		'nm_cart_table',
+		// 		array(
+		// 			'nm_cart_title' => $cart_title,
+		// 		),
+		// 		array('id' => 0),
+		// 		array(
+		// 			'%s'
+		// 		),
+		// 		array('%d')
+		// 	);
+		// }
+
+		// if (isset($cart_button)) {
+
+		// 	$wpdb->update(
+		// 		'nm_cart_table',
+		// 		array(
+		// 			'nm_cart_button' => $cart_button,
+		// 		),
+		// 		array('id' => 0),
+		// 		array(
+		// 			'%s'
+		// 		),
+		// 		array('%d')
+		// 	);
+		// }
 	}
 
 	public function nm_get_child_menu($parent_id, $menu_items)
@@ -885,17 +897,13 @@ class NM_MEGA_MENU extends Widget_Base
 			}
 
 			<?php
-			if ($settings['nm_cart_position'] === 'cart-right') { ?>
-			
-			.woo_amc_container_wrap {
+			if ($settings['nm_cart_position'] === 'cart-right') { ?>.woo_amc_container_wrap {
 				right: 0 !important;
 			}
 
 			<?php }
-			
-			if ($settings['nm_cart_position'] === 'cart-left') {?>
-				
-			.woo_amc_container_wrap {
+
+			if ($settings['nm_cart_position'] === 'cart-left') { ?>.woo_amc_container_wrap {
 				left: 0 !important;
 			}
 

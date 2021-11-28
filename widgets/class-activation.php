@@ -27,9 +27,8 @@ final class Elementor_Widegets_Register
         //Table for cart
         add_action('plugins_loaded', [$this, 'nm_create_cart_table']);
 
-        //Remove view cart
-        //add_action('woocommerce_init', [$this, 'nm_remove_message_after_add_to_cart'], 99);
-        
+        //Plugin Activation
+        //register_activation_hook(__FILE__, [$this, 'nm_plugin_active']);
     }
 
     public function includes()
@@ -73,37 +72,45 @@ final class Elementor_Widegets_Register
         return $fragments;
     }
 
+
+
+
     // Tableable for cart info
     public function nm_create_cart_table()
     {
-        global $wpdb;
-        $table_name = 'nm_cart_table';
-        $charset_collate = $wpdb->get_charset_collate();
 
-        $sql = "CREATE TABLE $table_name (
-          id int(1) NOT 1 AUTO_INCREMENT,
-          nm_cart_title text NOT NULL,
-          nm_cart_button text NOT NULL,
-          PRIMARY KEY  (id)
-        ) $charset_collate;";
+        add_option('nm_cart_title', 'Shoping Cart');
+        add_option('nm_cart_button', 'Secure Checkout');
 
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-        dbDelta($sql);
+        // global $wpdb;
+        // $table_name = 'nm_cart_table';
+        // $charset_collate = $wpdb->get_charset_collate();
 
-        $cart_title = "Shoping Cart";
-        $cart_button = "Secure Checkout";
+        // // $sql = "CREATE TABLE $table_name (
+        // //   id int(1) NOT 1 AUTO_INCREMENT,
+        // //   nm_cart_title text NOT NULL,
+        // //   nm_cart_button text NOT NULL,
+        // //   PRIMARY KEY  (id)
+        // // ) $charset_collate;";
 
-        $wpdb->query(
-            $wpdb->prepare(
-                "
-               INSERT INTO nm_cart_table
-               ( nm_cart_title, nm_cart_button)
-               VALUES ( %s, %s )
-               ",
-                $cart_title,
-                $cart_button
-            )
-        );
+        // $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+        //     id int(1) NOT NULL AUTO_INCREMENT,
+        //     nm_cart_title TEXT NOT NULL,
+        //     nm_cart_button TEXT NOT NULL,
+        //     PRIMARY KEY  (id)
+        //   ) $charset_collate;";
+
+        // require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        // dbDelta($sql);
+
+        // $cart_title = "Shoping Cart";
+        // $cart_button = "Secure Checkout";
+
+        // $wpdb->query(
+        //     $wpdb->prepare("INSERT INTO nm_cart_table (nm_cart_title, nm_cart_button) VALUES (%s, %s )", $cart_title, $cart_button)
+        // );
+
+        // $wpdb->prepare("UPDATE nm_cart_table SET nm_cart_title = %s, nm_cart_button = %s WHERE id=1", $cart_title, $cart_button)
     }
 
     //Remove VIEW CART
@@ -115,8 +122,8 @@ final class Elementor_Widegets_Register
     }
 
     //add_filter( 'wc_add_to_cart_message_html', 'empty_wc_add_to_cart_message');
-    function empty_wc_add_to_cart_message( $message, $products ) { 
-        return ''; 
+    function empty_wc_add_to_cart_message($message, $products)
+    {
+        return '';
     }
-
 }

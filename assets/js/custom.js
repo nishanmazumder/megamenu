@@ -287,9 +287,9 @@
 	// Initialize
 	$('.sina-nav').sinaNav();
 
-	// $('.add_to_cart_button').on('click', 'nm_cart_count')
-	// function nm_cart_count(){
-	// 	alert('test')
-	// }
+	$('.add_to_cart_button').on('click', 'nm_cart_count')
+	function nm_cart_count(){
+		alert('test')
+	}
 
 }(jQuery));
